@@ -1,4 +1,5 @@
 # Temporary File
+*.~gm
 *.~*
 *.log
 *.lst
