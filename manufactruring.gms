@@ -11,8 +11,8 @@ $offtext
 *###################################################
 
 Sets
-	product product unit /P, Q, R/
-	machine machine unit	/A, B, C, D/;
+    product product unit /P, Q, R/
+    machine machine unit    /A, B, C, D/;
 
 
 
