@@ -13,7 +13,6 @@
 ##### [Reading/Writing data from file](https://github.com/dtripathy10/GAMS-Sample/blob/master/file_io.gms)
 
 + Replicate the code form a youtube [tutorial](https://www.youtube.com/watch?v=5PEjOUOL3sU)
-+ 
 
 
 ## Courses
