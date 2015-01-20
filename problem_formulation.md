@@ -12,8 +12,8 @@
 + **Problem Solution:** Determine design variable values which minimize (maximize) the objective while satisfying all constraints
 
 
-#### Example-1: Production planning by a computer manufacturer
+#### Examples
 *****
-
++ [Diet Problem](http://jeremykun.com/2014/06/02/linear-programming-and-the-most-affordable-healthy-diet-part-1/)
 
 
