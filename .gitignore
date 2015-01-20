@@ -9,3 +9,5 @@
 *.gdx
 *.txt
 Untitle*.*
+outdat*.*
+desktop.ini
