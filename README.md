@@ -15,6 +15,11 @@
 + Replicate the code form a youtube [tutorial](https://www.youtube.com/watch?v=5PEjOUOL3sU)
 
 
+## OPtimization class assignment
+
++ [non linear optimzation without constraints](https://github.com/dtripathy10/GAMS-Sample/blob/master/non_linear.gms)
+
+
 ## Courses
 
 + [Single Variable Calculus](https://github.com/dtripathy10/GAMS-Sample/blob/master/courses/Single%20Variable%20Calculus/Single%20Variable%20Calculus.md)
