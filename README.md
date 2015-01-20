@@ -18,6 +18,6 @@
 
 ## Courses
 
-+ [Single Variable Course](https://github.com/dtripathy10/GAMS-Sample/blob/master/courses/Single%20Variable%20Calculus/Single%20Variable%20Calculus.md)
++ [Single Variable Calculus](https://github.com/dtripathy10/GAMS-Sample/blob/master/courses/Single%20Variable%20Calculus/Single%20Variable%20Calculus.md)
 
 
