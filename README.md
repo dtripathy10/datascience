@@ -1,4 +1,5 @@
-## GAMS Sample Code
+### GAMS Sample Code
+****
 
 ##### [Manufacturing problem](https://github.com/dtripathy10/GAMS_Tutorial/blob/master/manufactruring.gms)
 
@@ -15,13 +16,15 @@
 + Replicate the code form a youtube [tutorial](https://www.youtube.com/watch?v=5PEjOUOL3sU)
 
 
-## Optimization Class Assignment
+### Optimization Class Assignment
+****
 
 + [non linear optimzation without constraints](https://github.com/dtripathy10/GAMS-Sample/blob/master/non_linear.gms)
 + [problem formulation technique](https://github.com/dtripathy10/GAMS-Sample/blob/master/problem_formulation.md)
 
 
-## Courses
+### Courses
+****
 
 + [Single Variable Calculus](https://github.com/dtripathy10/GAMS-Sample/blob/master/courses/Single%20Variable%20Calculus/Single%20Variable%20Calculus.md)
 
