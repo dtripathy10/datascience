@@ -18,6 +18,7 @@
 ## Optimization Class Assignment
 
 + [non linear optimzation without constraints](https://github.com/dtripathy10/GAMS-Sample/blob/master/non_linear.gms)
++ [problem formulation technique](https://github.com/dtripathy10/GAMS-Sample/blob/master/problem_formulation.md)
 
 
 ## Courses
