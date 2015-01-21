@@ -16,11 +16,10 @@
 + Replicate the code form a youtube [tutorial](https://www.youtube.com/watch?v=5PEjOUOL3sU)
 
 
-### Optimization Class Assignment
+### Optimization Lab
 ****
 
 + [non linear optimzation without constraints](https://github.com/dtripathy10/GAMS-Sample/blob/master/non_linear.gms)
-+ [problem formulation technique](https://github.com/dtripathy10/GAMS-Sample/blob/master/problem_formulation.md)
 
 
 
