@@ -17,7 +17,8 @@
 
 + [NPTEL Operation Research](http://nptel.ac.in/courses/112106134/)
 + [Diet Problem](http://jeremykun.com/2014/06/02/linear-programming-and-the-most-affordable-healthy-diet-part-1/)
-+ [Manufacturing production planning, Diet Problem](http://ocw.mit.edu/courses/sloan-school-of-management/15-053-optimization-methods-in-management-science-spring-2013/tutorials/MIT15_053S13_tut01.pdf )
++ [Manufacturing production planning](http://ocw.mit.edu/courses/sloan-school-of-management/15-053-optimization-methods-in-management-science-spring-2013/tutorials/MIT15_053S13_tut01.pdf )
++ [Post Office Problem](http://ocw.mit.edu/courses/sloan-school-of-management/15-053-optimization-methods-in-management-science-spring-2013/tutorials/MIT15_053S13_tut01.pdf )
 
 
 
