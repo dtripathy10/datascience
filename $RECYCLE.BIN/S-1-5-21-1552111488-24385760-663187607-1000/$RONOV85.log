@@ -1,0 +1,39 @@
+
+--- Job file_io.gms Start 01/21/15 14:52:54 24.4.1 r50296 WEX-VS8 x86 32bit/MS Windows
+GAMS 24.4.1   Copyright (C) 1987-2014 GAMS Development. All rights reserved
+Licensee: GAMS Development Corporation, Washington, DC   G871201/0000CA-ANY
+          Free Demo,  202-342-0180,  sales@gams.com,  www.gams.com   DC0000
+--- Starting compilation
+--- file_io.gms(26) 2 Mb
+--- call GDXXRW "../data/io.xlsx" trace=3 @tasks.txt
+
+GDXXRW           24.4.1 r50296 Released Dec 20, 2014 VS8 x86 32bit/MS Windows 
+Excel version 15.0
+Input file : B:\data\io.xlsx
+Output file: B:\code\io.gdx
+Type Symbol       Dim     Sheet                Data          RowHeader     ColHeader     
+Loading sheet Sheet1
+Reading data from Excel: Width = 3  Height = 3
+DSet r              1     Sheet1               B1:B3         A1:A3         --:--         
+DSet c              1     Sheet1               --:--         --:--         A1:C1         
+Par  data           2     Sheet1               B2:C3         A2:A3         B1:C1         
+Total time = 1373 Ms
+--- file_io.gms(28) 2 Mb
+--- GDXin=B:\code\io.gdx
+--- file_io.gms(37) 3 Mb
+--- call XLSDUMP  "../data/io.xlsx" mydump.gdx
+XLSDump          24.4.1 r50296 Released Dec 20, 2014 VS8 x86 32bit/MS Windows 
+Read sheets = 16 ms
+Write GDX   = 0 ms
+
+--- file_io.gms(51) 3 Mb
+--- Starting execution: elapsed 0:00:01.495
+--- file_io.gms(41) 4 Mb
+
+GDXXRW           24.4.1 r50296 Released Dec 20, 2014 VS8 x86 32bit/MS Windows 
+Input file : B:\code\outdata.gdx
+Output file: B:\code\outdata.xlsx
+Total time = 1076 Ms
+--- file_io.gms(46) 4 Mb
+*** Status: Normal completion
+--- Job file_io.gms Stop 01/21/15 14:52:56 elapsed 0:00:02.621

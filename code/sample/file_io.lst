@@ -1,0 +1,97 @@
+GAMS 24.4.1  r50296 Released Dec 20, 2014 WEX-VS8 x86 32bit/MS Windows 01/21/15 14:57:17 Page 1
+Reading Excel file using GDX
+C o m p i l a t i o n
+
+
+   2   
+        Author: Debabrata Tripathy
+        Email: dtripathy10@gmail.com
+        Problem Refernce:https: http//www.youtube.com/watch?v=5PEjOUOL3sU
+   8   
+   9  set
+  10      r number of rows
+  11      c number of columns;
+  12   
+  13  Parameter data(r,c) data from the excel;
+  14   
+  15  *****************************************************
+  16  *      Reading data form file and save into table
+  17  ****************************************************
+  18  * gdx file create
+  19   
+  25   
+  27  * read into gdx file
+GDXIN   B:\code\sample\io.gdx
+--- LOAD  r = 1:r
+--- LOAD  c = 2:c
+--- LOAD  data = 3:data
+  32   
+  33  *****************************************************
+  34  *      Writing data form file and save into table
+  35  ****************************************************
+  36  *dump excel file to gdx file
+  38   
+  39  data(r,c) = data(r,c) * 2
+  40  Execute_Unload 'outdata.gdx';
+  41  Execute 'GDXXRW outdata.gdx par=data rng=Sheet2!a1'
+  42   
+  43  *****************************************************
+  44  *      Display Table
+  45  ****************************************************
+  46  Display data,r,c
+  47   
+  48   
+  49   
+  50   
+  51   
+GAMS 24.4.1  r50296 Released Dec 20, 2014 WEX-VS8 x86 32bit/MS Windows 01/21/15 14:57:17 Page 2
+Reading Excel file using GDX
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  B:\code\sample\file_io.gms
+     2       26 CALL           1      26  GDXXRW "../../data/io.xlsx" trace=3 @t
+                                          asks.txt
+     3       28 GDXIN          1      28  B:\code\sample\io.gdx
+     4       37 CALL           1      37  XLSDUMP  "../../data/io.xlsx" mydump.g
+                                          dx
+
+
+COMPILATION TIME     =        0.702 SECONDS      3 MB  24.4.1 r50296 WEX-VS8
+GAMS 24.4.1  r50296 Released Dec 20, 2014 WEX-VS8 x86 32bit/MS Windows 01/21/15 14:57:17 Page 3
+Reading Excel file using GDX
+E x e c u t i o n
+
+
+----     46 PARAMETER data  data from the excel
+
+            c1          c2
+
+r1      10.000     106.000
+r2       6.000       8.000
+
+
+----     46 SET r  number of rows
+
+r1,    r2
+
+
+----     46 SET c  number of columns
+
+c1,    c2
+
+
+
+EXECUTION TIME       =        0.858 SECONDS      4 MB  24.4.1 r50296 WEX-VS8
+
+
+USER: GAMS Development Corporation, Washington, DC   G871201/0000CA-ANY
+      Free Demo,  202-342-0180,  sales@gams.com,  www.gams.com   DC0000
+
+
+**** FILE SUMMARY
+
+Input      B:\code\sample\file_io.gms
+Output     B:\code\sample\file_io.lst
