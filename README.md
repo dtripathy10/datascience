@@ -1,6 +1,6 @@
 ### Sample Code
 ****
-Sample codes are writen in GAMS programming language while I was doing Process Optimization course.
+Sample codes are writen in **GAMS** programming language while I was doing Process Optimization course.
 
 + [Manufacturing problem](https://github.com/dtripathy10/GAMS-Sample/blob/master/code/sample/manufactruring.gms)
 
