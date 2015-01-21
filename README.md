@@ -16,7 +16,7 @@
 + Replicate the code form a youtube [tutorial](https://www.youtube.com/watch?v=5PEjOUOL3sU)
 
 
-### Optimization Lab
+### Optimization Lab Assignment
 ****
 
 + [non linear optimzation without constraints](https://github.com/dtripathy10/GAMS-Sample/blob/master/non_linear.gms)
