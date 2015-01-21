@@ -4,7 +4,6 @@
 *.log
 *.lst
 *.lxi
-*.gpr
 *.dat
 *.gdx
 *.txt

@@ -1,0 +1,14 @@
+[PROJECT]
+
+[RP:FILE_IO]
+1=
+
+[OPENWINDOW_1]
+FILE0=B:\code\sample\file_io.gms
+FILE1=B:\code\sample\file_io.lst
+FILE2=B:\code\sample\file_io.lst
+MAXIM=1
+TOP=50
+LEFT=50
+HEIGHT=400
+WIDTH=400
