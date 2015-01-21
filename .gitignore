@@ -1,0 +1,13 @@
+# Temporary File
+*.~gm
+*.~*
+*.log
+*.lst
+*.lxi
+*.dat
+*.gdx
+*.txt
+Untitle*.*
+outdat*.*
+desktop.ini
+$RECYCLE.BIN/*

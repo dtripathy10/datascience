@@ -1,3 +1,0 @@
-dset=r rng a1 rdim=1
-dset=c rng=a1:c1 cdim=1
-par=data rng=Sheet1!a1 rdim=1 cdim=1
