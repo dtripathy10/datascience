@@ -23,7 +23,7 @@ dset=c rng=a1:c1 cdim=1
 par=data rng=Sheet1!a1 rdim=1 cdim=1
 $offecho
 
-$call GDXXRW data/io.xlsx trace=3 @tasks.txt
+$call GDXXRW "../../data/io.xlsx" trace=3 @tasks.txt
 * read into gdx file
 $GDXIN io.gdx
 $LOAD r c
@@ -34,7 +34,7 @@ $GDXIN
 *      Writing data form file and save into table
 ****************************************************
 *dump excel file to gdx file
-$call XLSDUMP  data/io.xlsx mydump.gdx
+$call XLSDUMP  "../../data/io.xlsx" mydump.gdx
 
 data(r,c) = data(r,c) * 2
 Execute_Unload 'outdata.gdx';
