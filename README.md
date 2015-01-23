@@ -2,13 +2,13 @@
 ****
 ##### [GAMS](http://www.gams.com/)
 
-+ [Manufacturing problem](https://github.com/dtripathy10/GAMS-Sample/blob/master/code/sample/manufactruring.gms)
++ [Manufacturing problem](https://github.com/dtripathy10/Mathematical-Optimization/blob/master/code/sample/manufactruring.gms)
 
-+ [Transportation problem](https://github.com/dtripathy10/GAMS-Sample/blob/master/code/sample/transportation.gms)
++ [Transportation problem](https://github.com/dtripathy10/Mathematical-Optimization/blob/master/code/sample/transportation.gms)
 
-+ [Reading/Writing data from file](https://github.com/dtripathy10/GAMS-Sample/blob/master/code/sample/file_io.gms)
++ [Reading/Writing data from file](https://github.com/dtripathy10/Mathematical-Optimization/blob/master/code/sample/file_io.gms)
 
-+ [non linear optimzation without constraints](https://github.com/dtripathy10/GAMS-Sample/blob/master/code/sample/non_linear.gms)
++ [non linear optimzation without constraints](https://github.com/dtripathy10/Mathematical-Optimization/blob/master/code/sample/non_linear.gms)
 
 ### Online Video Course on Mathematical Optimization
 ****
@@ -32,8 +32,10 @@
 ### Book
 ****
 
-+ [Applied Mathematical Programming.pdf](https://github.com/dtripathy10/GAMS-Sample/blob/master/docs/books/Applied%20Mathematical%20Programming.pdf)
++ [Applied Mathematical Programming.pdf](https://github.com/dtripathy10/Mathematical-Optimization/blob/master/docs/books/Applied%20Mathematical%20Programming.pdf)
 
-+ [Introduction to Linear Optimization.pdf](https://github.com/dtripathy10/GAMS-Sample/blob/master/docs/books/Introduction%20to%20Linear%20Optimization.pdf)
++ [Introduction to Linear Optimization.pdf](https://github.com/dtripathy10/Mathematical-Optimization/blob/master/docs/books/Introduction%20to%20Linear%20Optimization.pdf)
+
++ [Optimization of Chemical Processes.pdf](https://github.com/dtripathy10/Mathematical-Optimization/blob/master/docs/books/Optimization%20of%20Chemical%20Processes.pdf)
 
 
