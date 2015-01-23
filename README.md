@@ -20,11 +20,12 @@ Sample codes are writen in **GAMS** programming language while I was doing Proce
 
 + [Advanced Operations Research(OR)](http://nptel.ac.in/courses/112106131/)
 
-+ [Convex Optimization(Mathe)](http://nptel.ac.in/courses/111104068/)
++ [Foundations of Optimization(Math)](http://nptel.ac.in/courses/111104071/)
+ 
++ [Linear programming and Extensions(Math)](http://nptel.ac.in/courses/111104027/)
 
-+ [Foundations of Optimization(Mathe)](http://nptel.ac.in/courses/111104071/)
++ [Convex Optimization(Math)](http://nptel.ac.in/courses/111104068/)
 
-+ [Linear programming and Extensions(Mathe)](http://nptel.ac.in/courses/111104027/)
 
 
 
