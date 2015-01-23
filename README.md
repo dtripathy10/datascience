@@ -12,8 +12,8 @@ Sample codes are writen in **GAMS** programming language while I was doing Proce
 
 ### Online Video Lecture
 ****
-
-+ [Numerical Optimization](http://nptel.ac.in/courses/106108056/)
+NPTEL
+> + [Numerical Optimization](http://nptel.ac.in/courses/106108056/)
 
 ### Book
 ****
