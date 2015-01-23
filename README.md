@@ -26,6 +26,20 @@
 
 + [Convex Optimization(Math)](http://nptel.ac.in/courses/111104068/)
 
+##### [Stanford](http://stanford.edu/~boyd/)
+
++ [Introduction to Matrix Methods](http://stanford.edu/class/ee103/)
+
++ [Introduction to Linear Dynamical Systems](http://stanford.edu/class/ee263/)
+
++ [Linear Dynamical Systems](http://stanford.edu/class/ee363/)
+
++ [Convex Optimization I](http://stanford.edu/class/ee364a/)
+ 
++ [Convex Optimization II](http://stanford.edu/class/ee364b/)
+
++ [Stochastic Control](http://stanford.edu/class/ee365/)
+
 
 
 
