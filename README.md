@@ -45,6 +45,14 @@
 
 + [Optimization](https://www.cs.cmu.edu/~ggordon/10725-F12/index.html)
 
+##### [CMU](https://www.cs.cmu.edu/)
+
++ [Linear and Integer Programming](https://www.coursera.org/course/linearprogramming)
+
++ [Linear and Discrete Optimization](https://www.coursera.org/course/linearopt)
+
++ [Discrete Optimization](https://www.coursera.org/course/optimization)
+
 
 ### Book
 ****
