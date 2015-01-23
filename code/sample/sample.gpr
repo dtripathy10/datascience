@@ -32,10 +32,8 @@
 2=B:\code\sample\file_io.gms
 
 [OPENWINDOW_1]
-FILE0=D:\Download\BioFeed-Grains\ModelAssembly_test.gms
-FILE1=D:\Download\BioFeed-Grains\PostOptimizationCalculations.gms
-FILE2=D:\Download\BioFeed-Grains\PrivateTraderConstraints_grains.gms
-FILE3=D:\Download\BioFeed-Grains\PrivateTraderConstraints_grains.gms
+FILE0=B:\code\sample\scm.gms
+FILE1=B:\code\sample\scm.gms
 MAXIM=1
 TOP=50
 LEFT=50
