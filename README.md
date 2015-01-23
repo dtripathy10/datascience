@@ -44,8 +44,10 @@
 ##### [CMU](https://www.cs.cmu.edu/)
 
 + [Optimization](https://www.cs.cmu.edu/~ggordon/10725-F12/index.html)
+ 
 
-##### [CMU](https://www.cs.cmu.edu/)
+
+##### [Coursera](https://www.coursera.org/)
 
 + [Linear and Integer Programming](https://www.coursera.org/course/linearprogramming)
 
