@@ -10,7 +10,7 @@
 
 + [non linear optimzation without constraints](https://github.com/dtripathy10/GAMS-Sample/blob/master/code/sample/non_linear.gms)
 
-### Online Video Lecture on Mathematical Optimization
+### Online Video Course on Mathematical Optimization
 ****
 ##### [NPTEL](http://nptel.ac.in/)
 
