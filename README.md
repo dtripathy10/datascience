@@ -55,6 +55,7 @@
 
 + [Discrete Optimization](https://www.coursera.org/course/optimization)
 
++ [Convex Optimzation](https://class.stanford.edu/courses/Engineering/CVX101/Winter2014/about)
 
 ### Book
 ****
