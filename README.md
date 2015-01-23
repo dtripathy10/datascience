@@ -10,7 +10,7 @@ Sample codes are writen in **GAMS** programming language while I was doing Proce
 
 + [non linear optimzation without constraints](https://github.com/dtripathy10/GAMS-Sample/blob/master/code/sample/non_linear.gms)
 
-### Books
+### Book
 ****
 
 + [Applied Mathematical Programming.pdf](https://github.com/dtripathy10/GAMS-Sample/blob/master/docs/books/Applied%20Mathematical%20Programming.pdf)
