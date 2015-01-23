@@ -10,6 +10,11 @@ Sample codes are writen in **GAMS** programming language while I was doing Proce
 
 + [non linear optimzation without constraints](https://github.com/dtripathy10/GAMS-Sample/blob/master/code/sample/non_linear.gms)
 
+### Online Video Lecture
+****
+
++ [Numerical Optimization](http://nptel.ac.in/courses/106108056/)
+
 ### Book
 ****
 
