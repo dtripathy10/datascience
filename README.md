@@ -41,6 +41,9 @@
 + [Stochastic Control](http://stanford.edu/class/ee365/)
 
 
+##### [CMU](https://www.cs.cmu.edu/)
+
++ [Optimization](https://www.cs.cmu.edu/~ggordon/10725-F12/index.html)
 
 
 ### Book
