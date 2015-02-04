@@ -6,7 +6,7 @@ Equations
                  DemandConstraint3
                  DemandConstraint4
                  DemandConstraint5
-                 DemandConstraint6      
+                 DemandConstraint6
                  DemandConstraint7
                  DemandConstraint8
                  DemandConstraint9
