@@ -1,0 +1,411 @@
+"Srno","ExpNo","QType","Question","Option1","Option2","Option3","Option4","Answer"
+"1","17","MO","Person is making trip from Home to College then trip is :","Home-based ","Non-home based ","Both of these","None of these","Home-based"
+"2","17","MO","The total number of trips leaving or returning to homes in a zone may be described as a function of: ","Household Size","Age","Income","All of these","All of these"
+"3","17","TF","Number of destinations are always less than or equal to origins:","True","False","-","-","True"
+"8","1","MO","A person goes to work in the morning and from the work he goes to a grocery shop before coming home at night. All three stops are in different zones (home: zone 1, work: zone 2, grocery store: zone 3). Answer 8 to 11: <BR><BR>
+Number of home based trips: ","1","2","0","other","2"
+"4","17","MO","While using regression model which one of the variable is considered as dependent variable:","Trips","Population","Vehicle Ownership","Income","Trips"
+"5","17","MO","For the prediction of the external trip normally used method is:","Regression Model","Growth Factor Model","Cross Classification","Gravity Model","Growth Factor Model"
+"6","2","MO","If current trips in particular zone are 12000 and growth factor for future 10 yrs is 1.5, then the no. of trips produced after 10 yrs. Are:","18000","12500","20000","None of these","18000"
+"7","1","MO","You have the following trip generation model: Trips = B1Off + B2Ind + B3Ret and you are given the following coefficients derived from a regression model. (B1 = 0.61, B2 = 0.15 and B3 = 0.123). If there are 600 office employees (Off), 300 industrial employees (Ind), and 200 retail employees (Ret), how many trips are going from work to home?","465","435","480","495","435"
+"9","1","MO","Number of non-home based trips: ","2","1","0","other","1"
+"10","1","MO","Trips produced by zone 1, 2, and 3 are ","2,1,0","1,2,0","0,1,2","other","2,1,0"
+"11","1","MO","Trips attracted by zone 1, 2, and 3 are ","1,2,0","2,1,0","0,1,2","other","0,1,2"
+"12","1","TF","Non-linear relationship cannot be incorporated in cross-classification models. ","True","False","-","-","False"
+"13","17","TF","Since it is necessary to find the zonal trip totals in household based regression models, they can be called aggregate models. ","True","False","-","-","False"
+"14","17","TF","The route selection decision of drivers is not an important factor that influences trip generation. ","True","False","-","-","True"
+"15","17","TF","It is easy to extrapolate in cross-classification models. ","True","False","-","-","False"
+"16","1","TF","Non-linear models should be avoided in regression analysis. ","True","False","-","-","False"
+"17","17","TF","Trip generation estimated by cross-classification method is not influenced by the zonal characteristics. ","True","False","-","-","True"
+"23","13","MO","Weak assumption made in static traffic assignment models is/are:","Dynamic Traffic condition","Steady state traffic condition","Both ‘a’ and ‘b’","None of these","Steady state traffic condition"
+"24","13","MO","Main  components of Dynamic Traffic Assignment Model consist of:","Path Determination","Dynamic Network Loading","Both of these","None of these","Both of these"
+"25","13","MO","From an Analytical point of view, dynamic traffic assignment has usually been associated with","System equilibrium","User equilibrium","Both of these","None of these","Both of these"
+"26","13","MO","In constrained optimal control theory DTA formulations, the O-D trip rates are assumed as","Continues function of time","Continues function of distance","Discrete function of time","Discrete function of distance","Continues function of time"
+"27","13","MO","Components of path calculation and selection are:","Dynamic equilibrium algorithm","Route choice stochastic model","Trip generation model","Both ‘a’ and ‘b’","Both ‘a’ and ‘b’"
+"28","3","MO","Choose the pairs considering analogous parameters of Newton’s  gravity model to gravity model in transportation","(F<sub>ij</sub>,T<sub>ij</sub>)( m<sub>i</sub>,p<sub>i</sub>)(d<sub>ij</sub>,t<sub>ij</sub>)","(F<sub>ij</sub>,p<sub>i</sub>)( m<sub>i</sub>,T<sub>ij</sub>)(d<sub>ij</sub>,t<sub>ij</sub>)","(F<sub>ij</sub>,T<sub>ij</sub>)( m<sub>i</sub>,t<sub>ij</sub>)(d<sub>ij</sub>,p<sub>i</sub>)","(d<sub>ij</sub>,T<sub>ij</sub>)( m<sub>i</sub>,p<sub>i</sub>)(F<sub>ij</sub>,t<sub>ij</sub>)","(F<sub>ij</sub>,T<sub>ij</sub>)( m<sub>i</sub>,p<sub>i</sub>)(d<sub>ij</sub>,t<sub>ij</sub>)"
+"29","3","MO","Origins Constrained gravity model should satisfy............ ?","&#8721;<sub>i</sub>T<sub>ij</sub>  = O<sub>i</sub>","&#8721;<sub>i</sub>T<sub>ij</sub>  = D<sub>j</sub>","&#8721;<sub>i</sub>T<sub>ij</sub>  = O<sub>i</sub>, &#8721;<sub>i</sub>T<sub>ij</sub>  = D<sub>j</sub>","None of the above","&#8721;<sub>i</sub>T<sub>ij</sub>  = O<sub>i</sub>"
+"30","3","TF","In cases where more data is available to support trip attraction than trip production, the attraction constrained gravity model should be adopted.","True","False","-","-","True"
+"31","3","TF","The equivalent of body masses in gravity model can be populations or trip origins and trip destination total.","True","False","-","-","True"
+"32","3","MO","Which of the following option is correct?","Linear Function ( F<sub>ij</sub> = e<sup>-ßC<sub>ij</sub> </sup>)","Exponential Function  ( F<sub>ij</sub> = C<sub>ij</sub>ß )","Gamma Function Fij = ( e<sup>-ß<sub>1</sub>C<sub>ij</sub> </sup>C<sub>ij</sub>ß<sub>2</sub> )","Power Function F<sub>ij</sub> =( ß<sub>1</sub> + ß<sub>2</sub>C<sub>ij</sub> )","Gamma Function Fij = ( e<sup>-ß<sub>1</sub>C<sub>ij</sub> </sup>C<sub>ij</sub>ß<sub>2</sub> )"
+"33","4","TF","The aim of trip distribution is to estimate the target year interchange volumes between all pairs of zones.","True","False","-","-","True"
+"34","4","MO","Gravity model formulation is based on-------------------- ","Newton’s law of gravitation ","Ohm’s law","Newton’s law of motion","None of these","Newton’s law of gravitation "
+"35","4","TF","The trips volumes attracted to a destination depend on its relative attractiveness and relative impedance between the producing zone and destination.","True","False","-","-","True"
+"36","4","MO","Doubly constrained model can be applied when _______________","&#8721;jTij  = Oi","&#8721;iTij  = Dj","&#8721;iTij  = Oi, &#8721;iTij  = Dj","None of these","&#8721;iTij  = Oi, &#8721;iTij  = Dj"
+"37","5","TF","Estimation of &#946; is an iterative procedure.","True","False","-","-","True"
+"38","5","MO","Which of the following are frictional functions?","Exponential function","Power function","All of These","None of These","All of These"
+"39","5","TF","Calibration of gravity model is same as the calibration of simple linear regression model.","True","False","-","-","False"
+"40","5","TF","The observed trip distribution is same as the estimated trip distribution matrix at convergence of &#946;.","True","False","-","-","True"
+"41","6","TF","Estimation of &#946; is an iterative procedure.","True ","False","-","-","True "
+"42","6","MO","Which of the following are friction functions?","Exponential function","Power function","All of these","None of These","All of these"
+"43","6","TF","Calibration of gravity model is same as the calibration of simple linear regression model.","True","False","-","-","False"
+"44","6","TF","The observed trip distribution is same as the estimated trip distribution matrix at convergence of &#946;.","True","False","-","-","True"
+"45","2","TF","Fratar growth factor method is an iterative method.","True","False","-","-","True"
+"46","2","MO","If the growth factor is 20% then each cell of the trip distribution matrix will be multiplied by _______?","0.5","0.2","1.2","0.8","1.2"
+"47","2","TF","Trip distribution methods can be divided into two types i.e. growth factor methods and synthetic methods.","True","False","-","-","True"
+"48","2","MO","When the values of trips on the diagonal in trip table are zero it means that-----trips are not considered:","Interzonal trips","Intrazonal trips","Both of these","None of these","Intrazonal trips"
+"49","2","MO","When the information about the expected growth originating from each zone is known, which method should be used from the following:","Uniform growth factor","Singly constrained growth factor","Doubly constrained growth factor","Fratar growth factor","Singly constrained growth factor"
+"50","2","MO","Consider a table given below. If the growth in traffic in the study area is expected to be 20% increase in the next three years then answer the following question no. 6, 7, 8, 9 & 10
+
+<table border=""1"" cellspacing=""0"" cellpadding=""0"" width=""357"" height=""103"">
+<tbody>
+<tr>
+<td align=""center"" valign=""middle"">
+<p><strong>Zones</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>1</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>2</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>3</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>4</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>Total</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>Target</strong></p>
+</td>
+</tr>
+<tr>
+<td align=""center"" valign=""middle"">
+<p><strong>1</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>5</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>50</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>100</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>200</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>355</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>400</strong></p>
+</td>
+</tr>
+<tr>
+<td align=""center"" valign=""middle"">
+<p><strong>2</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>50</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>5</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>100</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>300</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>455</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>460</strong></p>
+</td>
+</tr>
+<tr>
+<td align=""center"" valign=""middle"">
+<p><strong>3</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>50</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>100</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>5</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>1000</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>255</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>400</strong></p>
+</td>
+</tr>
+<tr>
+<td align=""center"" valign=""middle"">
+<p><strong>4</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>100</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>200</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>250</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p>20</p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>570</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>702</strong></p>
+</td>
+</tr>
+<tr>
+<td align=""center"" valign=""middle"">
+<p><strong>Total</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>205</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>355</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>455</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>620</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>1635</strong></p>
+</td>
+<td align=""center"" valign=""middle"">
+<p><strong>1962</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+Future number of trips originating from zone 3 :
+","240","456","306","1962","306"
+"51","2","MO","Consider the table at question no.6, The future number of trips attracted to zone 2
+","240","355","620","426","426"
+"52","2","MO","Consider the table at question no.6, The future number of trips from zone 2 to zone 4","50","300","360","306","360"
+"53","2","MO","Consider the table at question no.6, The future number of trips from from zone 4 to zone 3","684","300","546","250","300"
+"54","2","MO","Consider the table at question no.6,The future number of intrazonal trips for zone 1","6","426","5","355","5"
+"55","2","MO","In trip table or matrix table for Fratar growth method following matrix operation are performed:","Column operations only","Row operations only","Alternate column and row operations","None of these.","Alternate column and row operations"
+"56","2","MO","In trip table or matrix table for singly constrained growth method following matrix operation are performed","Column operations only
+","Row operations only","Either of the above two.","Alternate column and row operations","Either of the above two."
+"57","7","MO","Consider the table below for question 1 to 5:
+<br>
+Let the number of trips from i to j is 5000, and three modes (i.e, car,bus and train) are available which has the following trip characteristics given in Table: 
+
+<br><br>
+<table border=""1"" cellspacing=""0"" cellpadding=""0"" width=""60%"" align=""center"">
+<tr align=""center""><th>&nbsp;</th><th>t<sup>v</sup><sub>ij</sub><th>t<sup>w</sup><sub>ij</sub></th><th>t<sup>t</sup><sub>ij</sub></th><th>F<sub>ij</sub></th><th>&#x3C6;<sub>j</sub></th></tr>
+								<tr align=""center""><th>Coefficient</th><td>0.05</td><td>0.04</td><td>0.07</td><td>0.2</td><td>0.2</td></tr>	
+								<tr align=""center""><th>Car</th><td>25</td><td>-</td><td>-</td><td>22</td><td>6</td></tr>	
+								<tr align=""center""><th>Bus</th><td>35</td><td>8</td><td>6</td><td>8</td><td>-</td></tr>	
+								<tr align=""center""><th>Train</th><td>17</td><td>14</td><td>5</td><td>6</td><td>-</td></tr>
+								</table>
+<br><br>
+What is the probability of choosing mode car:","0.1237
+
+
+","0.3105","0.5657
+","0.9823","0.1237"
+"58","7","MO","Cost of the travel by train is","2.8
+","1.88","1.28","1.37","1.28"
+"59","7","MO","Proportion of trips made by bus
+
+","618.5
+","1552.5
+","2828.5
+","2348.5","1552.5"
+"60","7","MO","Fare collected from mode train
+
+
+","9315","11314
+","6400
+","12345","11314
+"
+"61","7","MO","Cost of the travel by car
+","2.8
+
+","1.88
+","1.28
+","1.37","2.8"
+"64","8","MO","In all-or-nothing assignment, travel time on any link assumed to depends on:","flow on link with fixed capacity
+
+","flow on link with infinite capacity
+","Free flow travel time on link with fixed capacity 
+","Free flow travel time on link with infinite capacity","Free flow travel time on link with infinite capacity"
+"65","8","MO","Capacity of a link in all-or-nothing assignment is","Zero","a fixed value
+
+","Infinity
+","Cannot  say","Infinity"
+"66","8","TF","Shortest path among  a given number of path between a origin-destination pair is fixed","True
+","False","-","-","True"
+"67","9","MO","Travel time of typical link performance function 
+","Increases monotonically with increase in flow on link
+
+","decreases monotonically with increase in flow on link
+","may increase or remain constant depending on flow
+","none of above","Increases monotonically with increase in flow on link
+"
+"68","10","MO","At optimality, for a given O-D pair in a network
+","Travel time on all path connecting O-D pair is equal. 
+","Marginal total travel time on all path connecting O-D pair is equal.  
+","Travel time on all path connecting O-D pair is equal.  
+","Marginal total travel time on all used path connecting O-D pair is equal.
+","Marginal total travel time on all used path connecting O-D pair is equal.
+"
+"69","10","MO","If, which of equality always hold true<br>T1=Total system travel time obtained by All-or nothing assignment<br>T2=Total system travel time obtained by User equilibrium<br>T3=Total system travel time obtained by System optimization
+","T1 = T2 = T3
+
+","T1 &#x2265; T2 &#x2265; T3
+","T1 >T2> T3
+","T1 &#x2264; T2 &#x2264; T3","T1 &#x2265; T2 &#x2265; T3"
+"70","3","MO","Which is the step after finding trips by performing singly constraint gravity model in order to make the calculated trip Production Attraction equal?","Residue Standard of Square of Error
+
+
+
+","Normalisation method","Growth Factor method","Calibration","Normalisation method"
+"72","17","MO","What are the numbers of non home based trip?","2","1","4","5","1"
+"73","17","MO","Answer the question no. 12 and 13 from the table given below.
+<br>
+<center>
+<img src=""img/selfeval_img2.bmp"" />
+<br>
+<img src=""img/selfeval_img3.bmp"" />
+</center>
+<br>
+What is the number of trips considering only households having 2 Vehicles?",".",".",".",".","."
+"71","17","MO","For the fig given below answer the questions from  10 to 11
+<br>
+<center>
+<img src=""img/selfeval_img1.bmp"" />
+</center>
+<br>
+R- Residential place<br>
+W- Work Place<br>
+S- Shopping mall<br>
+what are the number of trip production?
+","3","5","6","4","5"
+"74","17","MO","What is the number of trips for Zone 2 for household having 3-4 persons in house?",".",".",".",".","."
+"75","1","MO","Which represent the better for the following given coefficient of determination? ","r = 0.25","r = 0.47","r = 0.7","r = 0.89","r = 0.89"
+"76","1","MO","Which represent the better for the following given coefficient of determination?  ","r = -0.45   ","r = -0.56   ","r = -0.78   ","r = -0.9","r = -0.9"
+"77","1","MO","In case linear regression model Y = a + bX. what is the sign of r?
+
+","a","b","a/b","b/a","b"
+"78","1","MO","What is the degree of freedom for a given linear equation of 2 variables and 6 observations?","2","4","6","8","4"
+"79","3","MO","The impedance matrix is in the form of","Cost matrix","Distance Matrix","Time Matrix","All the above","All the above"
+"80","3","MO","The impedance function can be in the form of except","Power","Exponential","Gamma","Beta","Beta"
+"81","3","MO","What are the input files used for gravity model","Cost Matrix,Base year Trip Matrix","OD Matrix,Base year Trip Matrix","Future Matrix,OD Matrix","Base year Trip Matrix,OD Matrix","Cost Matrix,Base year Trip Matrix"
+"83","4","MO","Which are the balancing factor ?","Trip production balancing factor
+
+
+
+","Trip Distribution balancing factor
+
+
+","Both","None","Both"
+"84","4","MO","The trips generally are in which unit?","Trips per month
+
+","Trips per day","Trips per peak hour","Trips per fifteen min","Trips per peak hour"
+"85","4","MO","The output of Gravity model in input of which step in the Travel Demand Modelling","Trip distribution Growth Factor
+
+","Model Split","Traffic Assignment","Equilibrium Assignment","Trip distribution Growth Factor"
+"86","4","MO","The impedance function uses which input file?","Base year origin matrix
+","Base year destination matrix
+
+","Cost matrix
+","All of the above","Cost matrix"
+"87","4","TF","The input function is future year PA matrix","True","False","-","-","True"
+"88","5","MO","Calibration mainly depends on ","Frictional function
+
+","Impedance function
+","Both
+","None","Frictional Function"
+"89","5","MO","Optimal Beta value is obtained when","Residual error is maximum
+
+","Residual error is minimum
+","Maximum no of iteration
+","None of the above","Residual error is minimum"
+"90","5","TF","The value of Beta obtained from Origin Constrained and from destination Constrained are same","True","False","-","-","True"
+"91","5","TF","If future year Trip Matrix file is used as input file for this experiment, the value of beta changes","True","False","-","-","True"
+"92","5","TF","The value of beta shows the sensitivity of travel cost.","True","False","-","-","True"
+"93","5","MO","Travel cost matrix is calculated using which factors","Time and distance
+
+","Number of trips
+","Number of person per household
+","Difference between the travel cost of the trips produced and attracted for a pair of zones","Time and distance"
+"94","6","MO","The value of friction factor function is constant for a given trip matrix when","Cost Matrix has constant values
+
+","Cost function is zero
+","Both
+","Neither","Cost function is zero"
+"95","6","MO","The range of beta value is from","(-1,1)
+
+","(0,1)
+","(-1,0)
+","None","(0,1)"
+"96","6","TF","The value of beta is the measure of sensitivity of trips and travel cost","True","False","-","-","True"
+"97","6","TF","The iterations takes place until the Sum of Squares of error is minimum","True","False","-","-","True"
+"98","6","MO","The input file for this experiment is","OD matrix 
+
+","Cost matrix and base year OD matrix
+","Base year PA matrix and Cost matrix
+","None","Base year PA matrix and Cost matrix"
+"99","6","TF","Most of the time the base year trip matrix is Person trips per peak hour","True","False","-","-","True"
+"100","7","MO","Suppose there are 2 types of buses Public transport and Private Bus having  fares of Rs 10 and Rs 12 respectively. The total no of trips is 2000.
+
+Probability of choosing Public Bus is 
+","0.85","0.15  ","0.88  ","0.12","0.12"
+"101","7","MO","Using the problem in question no. 6 answer the following:<br>
+No of trips by Private bus ","1700  ","240","750","600","240"
+"102","7","MO","Now the private bus is divided into two types Blue and Red colour but the fare is same. So now we have 3 types of buses having fare of Rs 2 and both the private buses having Rs 12.<br>
+Our new logit model for each of Coloured bus is <br>
+<img src=""img/selfeval_img1.bmp"">
+<br>
+Referring to the problem asked in question no. 6 and the condition presented above answer the question no.8 to 12:<br>
+Probability of choosing Red bus
+","0.341  ","0.106","0.231  ","0.182","0.106"
+"103","7","MO","Trips by Public Bus considering above logit model","1300  ","1456  ","1576  ","1867","1576  "
+"104","12","MO","Refer this question from 1 to 8
+Consider a stretch of 250 meters. A car approaches signalized intersection. The time taken for it to decelerate and come to rest is 6 sec. The signal shows red light for 2.5 min. After the signal turns green it takes 4 sec to accelerate and 25 sec  to reach the stop line.Its average speed is 40 km/hr. Calculate the Delays shown below. 
+Stopped time Delay","0 sec","25 sec","150 min","10 min","0 sec"
+"105","12","MO","Total Approach Delay","6 sec","4 sec","10 sec","12 sec","10 sec"
+"106","12","MO","Time in queue delay","185 sec","150 sec","160 sec","100 sec","185 sec"
+"107","12","MO","Control Delay","160 sec","156 sec","160 sec","100 sec","156 sec"
+"108","12","MO","Operational Delay","4 sec","10 sec","12 sec","25 sec","25 sec"
+"109","12","MO","What is the free flow time for the above example?","30 sec","22.5 sec","35 sec","23.5 sec","22.5 sec"
+"110","12","MO","Observed travel time","211 sec","234.5 sec","207.5 sec","213.8 sec","207.5 sec"
+"111","12","TF","Can the license plate approach be applied only to straight road sections and not including intersections?","True","False","-","-","False"
+"112","12","TF","Average travel time 
+(Free flow travel time + Delay time)/ Number of matched license plate
+","True","False","-","-","True"
+"113","12","TF","Observed travel time - free flow time= Delay due to impedance ","True","False","-","-","False"
+"114","8","TF","The volume is assigned to link with respect to minimum impedance between two nodes and not between minimum impedance between Origin Destination.","True","False","","","False"
+"115","8","TF","All the drivers are allowed to change their path in between?","True","False","","","False"
+"116","8","TF","Drivers behaviours is not taken into account while assigning traffic volume","True","False","","","True"
+"117","8","TF","All or nothing is an iterative process","True","False","","","False"
+"118","8","TF","The intrazonal impedance value should be zero?","True","False","","","True"
+"120","9","TF","The behavior of the driver is considered?","True","False","","","True"
+"121","9","TF","Can the driver chose another path for a given OD pair even thought the travel time for that path is more?","Yes","No","","","No"
+"122","9","TF","Freeflow Travel time is used for the first iteration while using BPR function?","Yes","No","","","Yes"
+"123","9","TF","UE does not give effective link volumes than AON","True","False","","","True"
+"124","9","MO","Link performance function is a function of?","Link flows","Capacity","Free flow time","All of the above","All of the above"
+"125","11","TF","Route choice is based on perceived travel time rather than measured travel time.","True","False","","","True"
+"126","11","TF","No motorist can improve his or her perceived travel time by unilaterally changing routes.","True","False","","","True"
+"127","11","TF","If the variance of travel time perception = 0, then Stochastic User Equilibrium is not equal to User Equilibrium.","True","False","","","False"
+"128","11","TF","When theta is large means perception error is small and user's will tend to select minimum travel time.","True","False","","","True"
+"129","11","TF","If the perception error is high then travelers use many routes with few significantly longer than true shortest path. ","True","False","","","True"
+"130","11","TF","As theta tends to 0 there is equal flow on all paths regardless of travel time.","True","False","","","True"
+"133","10","TF","When the vehicles travel with free flow time then the link flows obtained from User equilibrium and System Optimization are equal. ","True","False","","","True"
+"132","11","TF","Perceived travel time of each path is a random variable ","True","False","","","True"
+"134","10","TF","UE objective function is similar to SO objective function when link performance function is dependent of link flows.","True","False","","","False"
+"135","10","TF","Network will have marginal link cost as a result of similar UE and SO flows.","True","False","","","True"
