@@ -1,0 +1,58 @@
+{
+	"folders":
+	[
+		{
+			"name": "project-setting",
+			"path": "/C/Users/Debabrata/Downloads/Project/code/scm-agriculture",
+			"folder_exclude_patterns": [
+			   "io",
+			   "model",
+			   "scenario",
+			   "test"
+ 			]
+		},
+		{
+			"name": "model.consumer",
+			"path": "model/consumer"
+		},
+		{
+			"name": "model.market",
+			"path": "model/market"
+		},
+		{
+			"name": "model.producer",
+			"path": "model/producer"
+		},
+		{
+			"name": "model.storage",
+			"path": "model/storage"
+		},
+		{
+			"name": "model.technology",
+			"path": "model/technology"
+		},
+		{
+			"name": "model.transportation",
+			"path": "model/transportation"
+		},
+		{
+			"name": "io",
+			"path": "io"
+		},
+		{
+			"name": "test",
+			"path": "test"
+		},
+		{
+			"name": "scenario",
+			"path": "scenario"
+		}
+	],
+	"build_systems":
+    [
+        {
+            "name": "List",
+            "cmd": ["echo Debu"]
+        }
+    ]
+}
