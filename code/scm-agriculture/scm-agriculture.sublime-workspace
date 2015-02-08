@@ -8,10 +8,10 @@
 	"buffers":
 	[
 		{
-			"file": "/C/Users/Debabrata/Downloads/Apps/Sublime Text 2.0.2/Data/Packages/User/Preferences.sublime-settings",
+			"file": "scenario/ScenarioSetup_grains.gms",
 			"settings":
 			{
-				"buffer_size": 442,
+				"buffer_size": 33118,
 				"line_ending": "Unix"
 			}
 		}
@@ -27,7 +27,10 @@
 	},
 	"console":
 	{
-		"height": 153.0
+		"height": 153.0,
+		"history":
+		[
+		]
 	},
 	"distraction_free":
 	{
@@ -38,12 +41,15 @@
 		"side_bar_visible": true,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+	],
 	"file_history":
 	[
+		"/C/Users/Debabrata/Downloads/Apps/Sublime Text 2.0.2/Data/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/scm-agriculture.sublime-project",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/project.sublime-project",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/test/ModelAssembly_test.gms",
-		"/C/Users/Debabrata/Downloads/Apps/Sublime Text 2.0.2/Data/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/model/market/MarketConstraints_grains.gms",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/test/PostOptimizationCalculations.gms",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/test/model_1/ModelAssembly_test.gms",
@@ -103,28 +109,32 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/Debabrata/Downloads/Apps/Sublime Text 2.0.2/Data/Packages/User/Preferences.sublime-settings",
+					"file": "scenario/ScenarioSetup_grains.gms",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 442,
+						"buffer_size": 33118,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								174,
-								174
+								531,
+								531
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -165,6 +175,11 @@
 	{
 		"height": 142.0
 	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "scm-agriculture.sublime-project",
 	"replace":
 	{
 		"height": 0.0
@@ -210,10 +225,25 @@
 		],
 		"width": 0.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 187.0,
-	"status_bar_visible": true
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }
