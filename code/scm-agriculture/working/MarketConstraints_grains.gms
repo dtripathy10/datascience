@@ -189,7 +189,7 @@ DemandConstraint12(NonHarvestingHorizonAggregation,FarmNumber)$(not(CentralStora
                         =l=
                         FarmGatePurchaseDemand_UpperBound(NonHarvestingHorizonAggregation,FarmNumber);
 
-*======================================================================================================================
+*=====================================================================================================================
 * Including the constraints on the total grain that can be delivered at a particular location/market from a given farm
 *======================================================================================================================
 DemandConstraint13(FarmNumber)..
