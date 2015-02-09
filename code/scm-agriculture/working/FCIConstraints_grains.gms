@@ -60,9 +60,9 @@ FCIBalance4(NonHarvestingHorizonAggregation,FCIGodownSet)..
     FCICoveredStorageInput(NonHarvestingHorizonAggregation,FCIGodownSet)
     ;
 
-*================================================================================================
+*===============================================================================================
 * Doing the accounting for the FCI storage facility for biomass stored in buildings (covered)
-*================================================================================================
+*===============================================================================================
 FCIBalance5(HarvestingHorizonAggregation,FCIGodownSet)..
     FCICoveredStoredGrain(HarvestingHorizonAggregation,FCIGodownSet)
     =e=
