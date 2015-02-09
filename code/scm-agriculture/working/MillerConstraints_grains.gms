@@ -24,7 +24,7 @@ Equations
 
 *===========================================================================================================
 * Constraints modeling input to the miller
-*===========================================================================================================
+*==========================================================================================================
 MillerConstraint1(HarvestingHorizonAggregation,MillerSet)..
                          MillerInput(HarvestingHorizonAggregation,MillerSet) =e=
                          sum(FCIGodownSet,FCICAPMillerGrain(HarvestingHorizonAggregation,FCIGodownSet,MillerSet))
