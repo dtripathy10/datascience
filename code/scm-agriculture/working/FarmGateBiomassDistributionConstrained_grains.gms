@@ -14,7 +14,7 @@ Equations
 * First calculating the Grain made available at the farm gate by the farm and tagging it to the
 * availiability date as done for the storage constraints
 *
-*------------------------------------------------------------------------
+*-----------------------------------------------------------------------
 * Constraints related to harvested Grain
 *------------------------------------------------------------------------
 
