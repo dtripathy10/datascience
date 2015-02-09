@@ -1,6 +1,6 @@
 $title Based on the truck trip requirement, this file models the truck requirement
 
-*=======================================================================================
+*======================================================================================
 * Declaration of equations (constraints) related to the operation modeled in this file
 *=======================================================================================
 
