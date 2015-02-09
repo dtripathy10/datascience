@@ -2,7 +2,7 @@ $title Transportation task variable and constraint declaration
 
 *=======================================================================================
 * Declaration of equations (constraints) related to the operation modeled in this file
-*=======================================================================================
+*======================================================================================
 
 Equations
                  TransportationMassConstraint1
