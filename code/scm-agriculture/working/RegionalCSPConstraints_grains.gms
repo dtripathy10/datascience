@@ -1,6 +1,6 @@
 *------------------------------------------------------------------------
 * Constraints related to biomass balance at the central storage facility
-*------------------------------------------------------------------------
+*-----------------------------------------------------------------------
 Equations
                  RegionalCSPBalance1
                  RegionalCSPBalance2
