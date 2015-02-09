@@ -25,8 +25,8 @@
 		},*/
 		{
 			"follow_symlinks": true,
-			"name": "working_model",
-			"path": "working"
+			"name": "model.working",
+			"path": "model/working"
 		},
 		{
 			"follow_symlinks": true,
