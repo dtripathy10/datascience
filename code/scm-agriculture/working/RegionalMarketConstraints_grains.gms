@@ -1,4 +1,4 @@
-$title Constraints relevant to the regional market of grains (Mandi)
+$title Constraints relevant to the regional market of grains (Mandi) 
 
 Equations
                  RegionalMarketConstraint1
