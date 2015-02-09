@@ -1,5 +1,7 @@
 * This file includes the constraints on post harvest losses that may be included in the model
 
+* Adding loss in storage and transportation
+
 Variables
     LocalMarket_GrainDelivered Total grain delivered at the local market from all possible sources
     RegionalMarket_GrainDelivered Total grain delivered at the regional market from all possible sources
