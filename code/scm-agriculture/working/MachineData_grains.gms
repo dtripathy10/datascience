@@ -152,4 +152,4 @@ Set
          CentralizedStorageProcessingTypes The different types of processing and packing options at the centralized storage facility /Pelletization, Grinding/;
 
 Display TractorData, FieldLoaderData, LoaderData, GrinderData, ChopperData, StorageProcessorData,
-        HandlingMachineData, DryerData, SmallScaleStorageData, InFieldTransportationData, TransportationData;
+        HandlingMachineData, DryerData, SmallScaleStorageData, InFieldTransportationData, TransportationData; 
