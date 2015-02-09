@@ -46,7 +46,7 @@ FarmGateLocalMarket_GrainDelivered(NonHarvestingHorizonAggregation,LocalMarketSe
 
 
 
-TotalBags =                     sum((HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet),
+TotalBags =                    sum((HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet),
                                          FarmLocalCSPGunnyBags.l(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
                                 )
                                 +
