@@ -105,4 +105,4 @@ PrivateTraderBalance5..
                          sum((HarvestingHorizonAggregation,RetailerSet),PrivateTraderRetailerGrain(HarvestingHorizonAggregation,RetailerSet))
                          =g=
                          0;
-$offtext
+$offtext 
