@@ -40,7 +40,7 @@ Par_CumulativeFarmGateGrainAvailability(NonHarvestingHorizonAggregation)  = sum(
 
 Display  Par_FarmGateTotalGrain, Par_HarvestToFarmGate, Par_CumulativeFarmGateGrainAvailability;
 
-*====================================================================================================================
+*===================================================================================================================
 * Transportation operation related modifications: Based on the output form of Grain from a given farm, the type of
 * transportation equipment that can be used is limited. A correlation indicator is created here which enables us
 * to limit the number of transportation equipment considered for selection. This will reduce the number of possibilities
