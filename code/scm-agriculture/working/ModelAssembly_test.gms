@@ -1,4 +1,4 @@
-*Copyright © 2012 The Board of Trustees of the University of Illinois. All Rights Reserved
+*Copyright Â© 2012 The Board of Trustees of the University of Illinois. All Rights Reserved
 
 $title The main code that integrates all the other code files
 $Ontext
@@ -29,9 +29,9 @@ Option reslim=9E+8;
 
 Scalar tcomp, texec, telapsed;
 
-*##############################################################################################################
+*############################################################################################################
 * Set Declaration: Most of the sets are read from the Excel spreadsheet containing the problem data
-*##############################################################################################################
+*############################################################################################################
 
 Sets     SimulationHorizon/1*360/
          HarvestingHorizon(SimulationHorizon)/1*15/
