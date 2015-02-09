@@ -54,7 +54,7 @@ LocalMarketConstraint4(NonHarvestingHorizonAggregation,LocalMarketSet)..
 
 *=======================================================================================
 * Constraints pertaining to the distribution of the grain sold at a regoinal market (mandi)
-*=======================================================================================
+*======================================================================================
 
 LocalMarketConstraint5(HarvestingHorizonAggregation,LocalMarketSet)..
                         LocalMarketTotalGrain(HarvestingHorizonAggregation,LocalMarketSet)
