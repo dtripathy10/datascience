@@ -1,4 +1,4 @@
-$title Retail demand constraints
+$title Retail demand constraints 
 
 Equations
          RetailConstraint1
