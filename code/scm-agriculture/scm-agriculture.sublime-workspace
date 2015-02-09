@@ -8,10 +8,26 @@
 	"buffers":
 	[
 		{
-			"file": "scenario/ScenarioSetup_grains.gms",
+			"file": "test/ModelAssembly_test.gms",
 			"settings":
 			{
-				"buffer_size": 33118,
+				"buffer_size": 8892,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/dtripathy/.bashrc",
+			"settings":
+			{
+				"buffer_size": 3615,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/usr/share/byobu/profiles/bashrc",
+			"settings":
+			{
+				"buffer_size": 2792,
 				"line_ending": "Unix"
 			}
 		}
@@ -43,9 +59,24 @@
 	},
 	"expanded_folders":
 	[
+		"/home/dtripathy/Project/Mathematical-Programming/code/scm-agriculture/model/storage",
+		"/home/dtripathy/Project/Mathematical-Programming/code/scm-agriculture/test",
+		"/home/dtripathy/Project/Mathematical-Programming/code/scm-agriculture/scenario",
+		"/home/dtripathy/Project/Mathematical-Programming",
+		"/home/dtripathy/Project/Mathematical-Programming/blog",
+		"/home/dtripathy/Project/Mathematical-Programming/blog/tools",
+		"/home/dtripathy/Project/Mathematical-Programming/docs"
 	],
 	"file_history":
 	[
+		"/home/dtripathy/.bshrc",
+		"/home/dtripathy/Project/Mathematical-Programming/docs/scm-agriculture/index.tex",
+		"/home/dtripathy/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/dtripathy/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/dtripathy/Project/Mathematical-Programming/code/scm-agriculture/model/market/MarketConstraints_grains.gms",
+		"/home/dtripathy/Project/Mathematical-Programming/code/scm-agriculture/test/ModelAssembly_test.gms",
+		"/home/dtripathy/Project/Mathematical-Programming/blog/tools/system_setup.markdown",
+		"/home/dtripathy/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Debabrata/Downloads/Apps/Sublime Text 2.0.2/Data/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/scm-agriculture.sublime-project",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/project.sublime-project",
@@ -73,7 +104,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -87,6 +118,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Offlisting"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -104,31 +136,89 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "scenario/ScenarioSetup_grains.gms",
-					"semi_transient": true,
+					"file": "test/ModelAssembly_test.gms",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 33118,
+						"buffer_size": 8892,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								531,
-								531
+								230,
+								230
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/sublime-gams-master/Gams.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 840.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/dtripathy/.bashrc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3615,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1789,
+								1789
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1008.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/usr/share/byobu/profiles/bashrc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2792,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2711,
+								2711
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -142,7 +232,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 36.0
 	},
 	"input":
 	{
@@ -182,7 +272,7 @@
 	"project": "scm-agriculture.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 68.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -190,6 +280,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"mod",
+				"test/ModelAssembly_test.gms"
+			],
 			[
 				"scenariosetup_grains",
 				"scm-agriculture/test/model_1/scenario/ScenarioSetup_grains.gms"
@@ -240,8 +334,8 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 187.0,
+	"side_bar_visible": false,
+	"side_bar_width": 263.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

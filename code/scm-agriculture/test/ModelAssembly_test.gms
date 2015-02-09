@@ -1,4 +1,3 @@
-
 $title The main code that integrates all the other code files
 
 $Ontext
@@ -67,83 +66,64 @@ alias(NonHarvestingHorizonAggregation,NonHarvestingHorizonAggregation3)
 * Importing data pertaining to grain handling, storage and transportation technology
 * and equipment
 *##########################################################################################
-$include io/MachineData_grains.gms
-$include io/StorageTransportationData_grains.gms
+$include "../io/MachineData_grains.gms"
+$include "../io/StorageTransportationData_grains.gms"
 
 *########################################################################################
 * Importing data pertaining the specific case study: Farm number,
 * farm-storage-market distances etc.
 *#########################################################################################
-$include scenario/ScenarioSetup_grains.gms
+$include "../scenario/ScenarioSetup_grains.gms"
 
 *############################################################################################
 * Parameters calculated after the solution of the provision problem
 *###########################################################################################
 Parameter
-    Par_ProvisionStorageCost "The storage cost for the provision model calcualted
-      after the provision problem solution for feedback"
-
-    Par_ProvisionTransportationCost "The transportation cost calculated after
-      the provision model solution for feedback"
-
-    Par_ProvisionStorageCostRateConstrained "The storage cost for the provision model 
-      calcualted after the provision problem solution for feedback per unit biomass"
-
-    Par_ProvisionStorageCostRate "The storage cost for the provision model 
-      calcualted after the provision problem solution for feedback per unit biomass"
-
-    Par_ProvisionStorageProcessingCostConstrained "The processing cost at the storage
-    facilities for the provision model calcualted after the provision
-    problem solution for feedback"
-
-    Par_ProvisionStorageProcessingCost "The processing cost at the storage 
-      facilities for the provision model calcualted after the provision problem 
-      solution for feedback"
-
-    Par_ProvisionTransportationCostRate "The transportation cost calculated
-    after the provision model solution for feedback per unit biomass"
-
-    Par_ProvisionBiomassHandlingCost "The total cost of biomass handling for
-    the biomass provision model"
-
-    Par_CentralStorageOutput "The total biomass output from a centralized 
-      storage facility";
+    Par_ProvisionStorageCost
+    Par_ProvisionTransportationCost
+    Par_ProvisionStorageCostRateConstrained 
+    Par_ProvisionStorageCostRate
+    Par_ProvisionStorageProcessingCostConstrained
+    Par_ProvisionStorageProcessingCost 
+    Par_ProvisionTransportationCostRate 
+    Par_ProvisionBiomassHandlingCost
+    Par_CentralStorageOutput;
 
 *######################################################################################
 * Now including the GAMS files that incorporate the results of the farm production
 * problem. Here, we are assuming that the farm production problems are already solved 
 * and the total availability of grains in known
 *#######################################################################################
-$include io/FarmOptimizationResults_grains.gms
+$include "io/FarmOptimizationResults_grains.gms"
 
 *########################################################################################
 * Now including the GAMS files that are used to build the provision model based on
 * the results from the farm management model
 *########################################################################################
 
-$include "model/VariableDeclaration_grains.gms"
+$include "../model/VariableDeclaration_grains.gms"
 
-$include "model/producer/FarmGateBiomassDistributionConstrained_grains.gms"
+$include "../model/producer/FarmGateBiomassDistributionConstrained_grains.gms"
 
-$include "model/storge/before_sale/LocalCSPConstraints_grains.gms"
-$include "model/storge/before_sale/RegionalCSPConstraints_grains.gms"
-$include "model/storge/after_sale/FCIConstraints_grains.gms"
-$include "model/storge/after_sale/RGYConstraints_grains.gms"
+$include "../model/storge/before_sale/LocalCSPConstraints_grains.gms"
+$include "../model/storge/before_sale/RegionalCSPConstraints_grains.gms"
+$include "vmodel/storge/after_sale/FCIConstraints_grains.gms"
+$include "../model/storge/after_sale/RGYConstraints_grains.gms"
 
-$include "model/market/MarketConstraints_grains.gms"
-$include "model/market/LocalMarketConstraints_grains.gms"
-$include "model/market/RegionalMarketConstraints_grains.gms"
-$include "model/market/PrivateTraderConstraints_grains.gms"
+$include "../model/market/MarketConstraints_grains.gms"
+$include "../model/market/LocalMarketConstraints_grains.gms"
+$include "../model/market/RegionalMarketConstraints_grains.gms"
+$include "../model/market/PrivateTraderConstraints_grains.gms"
 
-$include "model/consumer/milling/MillerConstraints_grains.gms"
-$include "model/consumer/pds/TPDSConstraints_grains.gms"
-$include "model/consumer/retailer/RetailConstraints_grains.gms"
+$include "../model/consumer/milling/MillerConstraints_grains.gms"
+$include "../model/consumer/pds/TPDSConstraints_grains.gms"
+$include "../model/consumer/retailer/RetailConstraints_grains.gms"
 
-$include "model/technology/GunnyBagConstraints_grains.gms"
+$include "../model/technology/GunnyBagConstraints_grains.gms"
 
-$include "model/market/ProvisionCostConstraints_grains.gms"
+$include "../model/market/ProvisionCostConstraints_grains.gms"
 
-$include "model/PostHarvestLossConstraints_grains.gms"
+$include "../model/PostHarvestLossConstraints_grains.gms"
 
 ********************************************************************************************
 * Selection of the transportation model which leads to different set of files 
@@ -154,9 +134,9 @@ $include "model/PostHarvestLossConstraints_grains.gms"
 * the number of vehicles required along each leg. The transportation operating cost is calculated
 * using the truck idling time, transport time, diesel fuel cost and so on.
 
-$include "model/transportation/TransportationMassConstraints_grains.gms"
-$include "model/transportation/TransportationConstraints_grains.gms"
-$include "model/transportation/TransportationCostConstraints_grains.gms"
+$include "../model/transportation/TransportationMassConstraints_grains.gms"
+$include "../model/transportation/TransportationConstraints_grains.gms"
+$include "../model/transportation/TransportationCostConstraints_grains.gms"
 
 Model GrainProvisionModelOptimal 
           /FarmGateGrainDistributionModelConstrained_Current,
@@ -192,7 +172,7 @@ Option MIP = cplex;
 
 Solve GrainProvisionModelOptimal using mip maximizing GrainProvisionObjective;
 
-$include "model/PostOptimizationCalculations.gms"
+$include "../model/PostOptimizationCalculations.gms"
 
 
 Display 
