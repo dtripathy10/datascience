@@ -34,7 +34,7 @@ Equations
 * locations and the opearting cost for truck on an hourly basis. The total grain transported is not directly considered in the
 * calculations and it has an impact indirectly by affecting the total number of trips.
 *
-*---------------------------------------------------------------------------------------------------------
+*--------------------------------------------------------------------------------------------------------
 TransportationCostConstraint7A..      FarmLocalCSPTransportationOperatingCost
                                  =e=
                                  sum((HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet,TransportationTypes),
