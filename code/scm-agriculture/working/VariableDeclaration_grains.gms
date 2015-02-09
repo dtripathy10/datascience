@@ -96,9 +96,9 @@ Positive variables
 	FCICAPCapacity The total CAP storage capacity of a particular FCI godown;
 
 
-*=======================================================================================
+*======================================================================================
 * Declaration of the model variables related to the operation modeled in this file
-*=======================================================================================
+*======================================================================================
 Positive variables
 	FarmLocalCSPTruckTripRequirement(SimulationHorizon,TotalFarmNumber,LocalCSPCenterSet,TransportationTypes) The number of total trips for each farm on each day to move grains from the farm to each local CSP location
 	FarmRegionalCSPTruckTripRequirement(SimulationHorizon,TotalFarmNumber,RegionalCSPCenterSet,TransportationTypes) The number of total trips for each farm on each day to move grains from the farm to each Regional CSP location
