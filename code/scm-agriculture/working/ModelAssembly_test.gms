@@ -42,7 +42,8 @@ Sets
   HarvestingHorizonAggregation(HarvestingHorizon) /1,6,11/
   NonHarvestingHorizonAggregation(NonHarvestingHorizon) /
     16, 31, 46, 61, 76, 91, 106, 121, 136, 151, 166, 181, 196, 211, 226, 241, 256, 271, 286, 301, 316, 331, 346
-    /;
+    /
+  ;
 *
 * Declaration of dummy set to adjust the dimensions that are convenient for representation and writting
 *
@@ -83,7 +84,8 @@ Parameter
   Par_ProvisionStorageProcessingCost The processing cost at the storage facilities for the provision model calcualted after the provision problem solution for feedback
   Par_ProvisionTransportationCostRate The transportation cost calculated after the provision model solution for feedback per unit biomass
   Par_ProvisionBiomassHandlingCost The total cost of biomass handling for the biomass provision model
-  Par_CentralStorageOutput The total biomass output from a centralized storage facility;
+  Par_CentralStorageOutput The total biomass output from a centralized storage facility
+  ;
 
 *##############################################################################################################
 * Now including the GAMS files that incorporate the results of the farm production problem.
@@ -164,4 +166,5 @@ Display
   FCIInput.l,FCICAPStorageInput.l, FCICoveredStorageInput.l,FCICoveredStoredGrain.l,FCICAPStoredGrain.l,
   RGYSelector.l, FCISelector.l, MillerSelector.l,
   FCICoveredCapacity.l, FCICAPCapacity.l,
-  FCICAPMillerGrain.l, FCICAPRetailerGrain.l, FCICAPPDSGrain.l, RegionalMarketFCITruckTripRequirement.l, TotalPHLLoss.l;
+  FCICAPMillerGrain.l, FCICAPRetailerGrain.l, FCICAPPDSGrain.l, RegionalMarketFCITruckTripRequirement.l, TotalPHLLoss.l
+  ;
