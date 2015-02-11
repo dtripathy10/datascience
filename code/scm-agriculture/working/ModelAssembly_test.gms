@@ -3,8 +3,8 @@
 $title The main code that integrates all the other code files
 $Ontext
 Conversion:
-1 hectare = 0.01 square kilometer
 1 square meter = 0.0001 hectare
+1 hectare = 0.01 square kilometer
 1 square foot = 0.0929 square meter
 1 acre = 4046.85 square meter
 1 hectare = 2.271 acres
@@ -33,23 +33,16 @@ Scalar tcomp, texec, telapsed;
 * Set Declaration: Most of the sets are read from the Excel spreadsheet containing the problem data
 *############################################################################################################
 
-Sets     SimulationHorizon/1*360/
-         HarvestingHorizon(SimulationHorizon)/1*15/
-         NonHarvestingHorizon(SimulationHorizon) /16*360/
-         NonEnsilageRemovalHorizon(SimulationHorizon) /1*240/
-*         HarvestingHorizonAggregationStep /1*15/
-         HarvestingHorizonAggregationStep /1*5/
-*         HarvestingHorizonAggregationStep /1*3/
-*         HarvestingHorizonAggregationStep /1/
-         NonHarvestingHorizonAggregationStep /1*15/
-*         HarvestingHorizonAggregation(HarvestingHorizon) /1, 6, 11, 16, 21, 26, 31, 36, 41, 46, 51, 56, 61, 66, 71, 76, 81, 86, 91, 96, 101, 106, 111, 116/
-*         HarvestingHorizonAggregation(HarvestingHorizon) /1, 11, 21, 31, 41, 51, 61, 71, 81, 91, 101, 111/
-*          HarvestingHorizonAggregation(HarvestingHorizon) /1,2,3,4,5,6,7,8,9,10,11,12,13,14,15/
-*          HarvestingHorizonAggregation(HarvestingHorizon) /1,4,7,10,13/
-          HarvestingHorizonAggregation(HarvestingHorizon) /1,6,11/
-*          HarvestingHorizonAggregation(HarvestingHorizon) /1, 16/
-*        NonHarvestingHorizonAggregation(NonHarvestingHorizon) /121, 151, 181, 211, 241, 271, 301, 331/
-         NonHarvestingHorizonAggregation(NonHarvestingHorizon) /16, 31, 46, 61, 76, 91, 106, 121, 136, 151, 166, 181, 196, 211, 226, 241, 256, 271, 286, 301, 316, 331, 346/;
+Sets     
+  SimulationHorizon/1*360/
+  HarvestingHorizon(SimulationHorizon)/1*15/
+  NonHarvestingHorizon(SimulationHorizon) /16*360/
+  HarvestingHorizonAggregationStep /1*5/
+  NonHarvestingHorizonAggregationStep /1*15/
+  HarvestingHorizonAggregation(HarvestingHorizon) /1,6,11/
+  NonHarvestingHorizonAggregation(NonHarvestingHorizon) /
+    16, 31, 46, 61, 76, 91, 106, 121, 136, 151, 166, 181, 196, 211, 226, 241, 256, 271, 286, 301, 316, 331, 346
+    /;
 *
 * Declaration of dummy set to adjust the dimensions that are convenient for representation and writting
 *
@@ -82,15 +75,15 @@ $include ScenarioSetup_grains.gms
 * Parameters calculated after the solution of the provision problem
 *#############################################################################################################################
 Parameter
-                 Par_ProvisionStorageCost The storage cost for the provision model calcualted after the provision problem solution for feedback
-                 Par_ProvisionTransportationCost The transportation cost calculated after the provision model solution for feedback
-                 Par_ProvisionStorageCostRateConstrained The storage cost for the provision model calcualted after the provision problem solution for feedback per unit biomass
-                 Par_ProvisionStorageCostRate The storage cost for the provision model calcualted after the provision problem solution for feedback per unit biomass
-                 Par_ProvisionStorageProcessingCostConstrained The processing cost at the storage facilities for the provision model calcualted after the provision problem solution for feedback
-                 Par_ProvisionStorageProcessingCost The processing cost at the storage facilities for the provision model calcualted after the provision problem solution for feedback
-                 Par_ProvisionTransportationCostRate The transportation cost calculated after the provision model solution for feedback per unit biomass
-                 Par_ProvisionBiomassHandlingCost The total cost of biomass handling for the biomass provision model
-                 Par_CentralStorageOutput The total biomass output from a centralized storage facility;
+  Par_ProvisionStorageCost The storage cost for the provision model calcualted after the provision problem solution for feedback
+  Par_ProvisionTransportationCost The transportation cost calculated after the provision model solution for feedback
+  Par_ProvisionStorageCostRateConstrained The storage cost for the provision model calcualted after the provision problem solution for feedback per unit biomass
+  Par_ProvisionStorageCostRate The storage cost for the provision model calcualted after the provision problem solution for feedback per unit biomass
+  Par_ProvisionStorageProcessingCostConstrained The processing cost at the storage facilities for the provision model calcualted after the provision problem solution for feedback
+  Par_ProvisionStorageProcessingCost The processing cost at the storage facilities for the provision model calcualted after the provision problem solution for feedback
+  Par_ProvisionTransportationCostRate The transportation cost calculated after the provision model solution for feedback per unit biomass
+  Par_ProvisionBiomassHandlingCost The total cost of biomass handling for the biomass provision model
+  Par_CentralStorageOutput The total biomass output from a centralized storage facility;
 
 *##############################################################################################################
 * Now including the GAMS files that incorporate the results of the farm production problem.
@@ -134,19 +127,25 @@ $include PostHarvestLossConstraints_grains.gms
 $include TransportationMassConstraints_grains.gms
 $include TransportationConstraints_grains.gms
 $include TransportationCostConstraints_grains.gms
-Model GrainProvisionModelOptimal /FarmGateGrainDistributionModelConstrained_Current,TransportationMassModel,TransportationModel, TransportationCostModel,
-                                 LocalCSPModel,RegionalCSPModel,MarketDemandModel2,
-                                 LocalMarketModel,RegionalMarketModel,PrivateTraderModel,RGYModel,MillerModel,FCIModel,
-                                 TPDSModel,RetailerSModel,GunnyBagModel,ProvisionCostModel,PHLConstraints/;
+
+Model GrainProvisionModelOptimal   /
+  FarmGateGrainDistributionModelConstrained_Current,TransportationMassModel,TransportationModel, TransportationCostModel,
+  LocalCSPModel,RegionalCSPModel,MarketDemandModel2,
+  LocalMarketModel,RegionalMarketModel,PrivateTraderModel,RGYModel,MillerModel,FCIModel,
+  TPDSModel,RetailerSModel,GunnyBagModel,ProvisionCostModel,PHLConstraints
+  /;
+
 *$offtext
 $ontext
 * Option 2: The transportation costs are to be calculated by using only the Rs/km-kg number.
 *
 $include TransportationCostConstraintsSimplified_grains.gms
-Model GrainProvisionModelOptimal /FarmGateGrainDistributionModelConstrained_Current,TransportationCostModel,
-                                 LocalCSPModel,RegionalCSPModel,MarketDemandModel2,
-                                 LocalMarketModel,RegionalMarketModel,PrivateTraderModel,RGYModel,MillerModel,FCIModel,
-                                 TPDSModel,RetailerSModel,GunnyBagModel,ProvisionCostModel,PHLConstraints/;
+Model GrainProvisionModelOptimal /
+  FarmGateGrainDistributionModelConstrained_Current,TransportationCostModel,
+  LocalCSPModel,RegionalCSPModel,MarketDemandModel2,
+  LocalMarketModel,RegionalMarketModel,PrivateTraderModel,RGYModel,MillerModel,FCIModel,
+  TPDSModel,RetailerSModel,GunnyBagModel,ProvisionCostModel,PHLConstraints
+  /;
 $offtext
 *********************************************************************************************************************
 
@@ -156,31 +155,13 @@ Option MIP = cplex;
 
 Solve GrainProvisionModelOptimal using mip maximizing GrainProvisionObjective;
 
-*Display Par_HarvestToFarmGate, HarvestFarmGateLocalMarketGrain.l, HarvestFarmGateRegionalMarketGrain.l, HarvestFarmGateDirectPurchaseGrain.l,
-*        RegionalMarket_GrainDelivered.l, LocalMarket_GrainDelivered.l, FarmGate_GrainDelivered.l,
-*        FarmLocalMarketGunnyBags.l, FarmRegionalMarketGunnyBags.l, FarmDirectPurchaseGunnyBags.l,
-*        TotalGrainDelivered.l, Par_FarmGateTotalGrain, TotalPHLLoss.l, LocalCSPFacilityArea.l, RegionalCSPFacilityArea.l, TransportationFleetSize.l ,
-*        RegionalMarketTotalGrain.l, RegionalMarketFCIGrain.l, RegionalMarketPrivateTraderGrain.l,
-*        LocalMarketTotalGrain.l,
-*        PrivateTraderPurchaseTotal.l,RGYInput.l, RGYCapacity.l, RGYStoredGrain.l, RGYSelector.l
-*        ;
-
 $include PostOptimizationCalculations.gms
 
 
-Display FarmLocalMarketTruckTripRequirement.l, HarvestFarmGateLocalMarketGrain.l, HarvestFarmGateRegionalMarketGrain.l,
-         LocalMarketTotalGrain.l, HarvestFarmGateLocalMarketGrain.l, LocalCSPLocalMarketGrain.l, RegionalCSPLocalMarketGrain.l,
-         FCIInput.l,FCICAPStorageInput.l, FCICoveredStorageInput.l,FCICoveredStoredGrain.l,FCICAPStoredGrain.l,
-         RGYSelector.l, FCISelector.l, MillerSelector.l,
-         FCICoveredCapacity.l, FCICAPCapacity.l,
-         FCICAPMillerGrain.l, FCICAPRetailerGrain.l, FCICAPPDSGrain.l, RegionalMarketFCITruckTripRequirement.l;
-
-
-
-
-
-
-
-*Model GrainProvisionModelOptimal /FarmGateGrainDistributionModel,TransportationVolumeModel,TransportationMassModel,TransportationModel,  TransportationCostModel,
-*                                  LocalCSPModel,RegionalCSPModel,MarketDemandModel2,
-*                                 LocalMarketModel, RegionalMarketModel,PrivateTraderModel,RGYModel,MillerModel,FCIModel,GunnyBagModel,ProvisionCostModel,PHLConstraints/;
+Display 
+  FarmLocalMarketTruckTripRequirement.l, HarvestFarmGateLocalMarketGrain.l, HarvestFarmGateRegionalMarketGrain.l,
+  LocalMarketTotalGrain.l, HarvestFarmGateLocalMarketGrain.l, LocalCSPLocalMarketGrain.l, RegionalCSPLocalMarketGrain.l,
+  FCIInput.l,FCICAPStorageInput.l, FCICoveredStorageInput.l,FCICoveredStoredGrain.l,FCICAPStoredGrain.l,
+  RGYSelector.l, FCISelector.l, MillerSelector.l,
+  FCICoveredCapacity.l, FCICAPCapacity.l,
+  FCICAPMillerGrain.l, FCICAPRetailerGrain.l, FCICAPPDSGrain.l, RegionalMarketFCITruckTripRequirement.l, TotalPHLLoss.l;

@@ -1,0 +1,9 @@
+{
+	"folders":
+	[
+		{
+      "file_exclude_patterns": ["*.~*","*.log","*.lst","*.lxi"],
+			"path": "/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/working"
+		}
+	]
+}

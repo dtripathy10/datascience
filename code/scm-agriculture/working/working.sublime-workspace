@@ -8,11 +8,11 @@
 	"buffers":
 	[
 		{
-			"file": "/C/Users/Debabrata/Downloads/Apps/Sublime Text 2.0.2/Data/Packages/User/Preferences.sublime-settings",
+			"file": "PostHarvestLossConstraints_grains.gms",
 			"settings":
 			{
-				"buffer_size": 517,
-				"line_ending": "Unix"
+				"buffer_size": 6384,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -40,6 +40,10 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Debabrata/Downloads/Apps/Sublime Text 2.0.2/Data/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/working/sample_1.gms",
+		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/working/GunnyBagConstraints_grains.gms",
+		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/working/LocalMarketConstraints_grains.gms",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/test/ModelAssembly_test.gms",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/scenario/ScenarioSetup_grains.gms",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/scm-agriculture.sublime-project~",
@@ -60,7 +64,6 @@
 		"/home/dtripathy/Project/Mathematical-Programming/code/scm-agriculture/model/market/MarketConstraints_grains.gms",
 		"/home/dtripathy/Project/Mathematical-Programming/blog/tools/system_setup.markdown",
 		"/home/dtripathy/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
-		"/C/Users/Debabrata/Downloads/Apps/Sublime Text 2.0.2/Data/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/scm-agriculture.sublime-project",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/project.sublime-project",
 		"/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/model/market/MarketConstraints_grains.gms",
@@ -122,24 +125,25 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/Debabrata/Downloads/Apps/Sublime Text 2.0.2/Data/Packages/User/Preferences.sublime-settings",
+					"file": "PostHarvestLossConstraints_grains.gms",
 					"settings":
 					{
-						"buffer_size": 517,
+						"buffer_size": 6384,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								498,
+								498
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/sublime-gams-master/sublime-gams-master/Gams.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -242,6 +246,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 241.0,
+	"side_bar_width": 361.0,
 	"status_bar_visible": true
 }

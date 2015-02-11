@@ -1,6 +1,6 @@
 $title This file is used when the user wants to simulate/optimize for a given collection area
 *
-* The collection area can be defined in terms of counties or just the total area.
+* The collection area can be defined in terms of countries or just the total area.
 * For counties, the data will be stored in the database and that data will be used.
 * If general area is selected, then the area value is taken from the user and the problem decides the number of farms and farm size
 * using general sampling approach (this can again be a function of which region it is).
@@ -15,23 +15,24 @@ $title This file is used when the user wants to simulate/optimize for a given co
 *##############################################################################################################
 * Adding the necessary sets for the grain problem here. These can be imported from a gdx file in a more efficient code. But that will be addressed later.
 Sets
-         LocalCSPCenterSet /LocalStorage-1/
-         RegionalCSPCenterSet /RegionalStorage-1/
+  LocalCSPCenterSet /LocalStorage-1/
+  RegionalCSPCenterSet /RegionalStorage-1/
 * Individual village market
-         LocalMarketSet /LocalMarket-1/
+  LocalMarketSet /LocalMarket-1/
 * Mandis
-         RegionalMarketSet /RegionalMarket-1/
+  RegionalMarketSet /RegionalMarket-1/
 * One RGY per district
-         RGYSet /RGY-1, RGY-2/
+  RGYSet /RGY-1, RGY-2/
 *FCI godows
-         FCIGodownSet /FCI-1*FCI-5/
+  FCIGodownSet /FCI-1*FCI-5/
 * Miller locations
-         MillerSet /M-1*M-10/
+  MillerSet /M-1*M-10/
 * Retailers
-         RetailerSet /R-1*R-10/
+  RetailerSet /R-1*R-10/
 * Ration shops
-         PDSSet /PDS-1*PDS-5/
-         FarmType /Marginal, Small, Semi_Medium, Medium, Large/;
+  PDSSet /PDS-1*PDS-5/
+  FarmType /Marginal, Small, Semi_Medium, Medium, Large/
+  ;
 
 
 *##############################################################################################################
@@ -69,40 +70,40 @@ Parameter CurrentScenario The parameter that indicates whether we are selecting 
 * Declaration of parameters related to the distances
 *##############################################################################################################
 Parameter
-         FarmSize(TotalFarmNumber) The farm size for the scenario in hectares
-         FarmLocalCSPDistance(TotalFarmNumber,LocalCSPCenterSet)
-         FarmRegionalCSPDistance(TotalFarmNumber,RegionalCSPCenterSet)
-         FarmLocalMarketDistance(TotalFarmNumber,LocalMarketSet)
-         FarmRegionalMarketDistance(TotalFarmNumber,RegionalMarketSet)
-         LocalCSPLocalMarketDistance(LocalCSPCenterSet,LocalMarketSet)
-         LocalCSPRegionalMarketDistance(LocalCSPCenterSet,RegionalMarketSet)
-         RegionalCSPLocalMarketDistance(RegionalCSPCenterSet,LocalMarketSet)
-         RegionalCSPRegionalMarketDistance(RegionalCSPCenterSet,RegionalMarketSet)
-         LocalMarketRGYDistance(LocalMarketSet,RGYSet)
-         RegionalMarketRGYDistance(RegionalMarketSet,RGYSet)
-         RegionalMarketFCIDistance(RegionalMarketSet,FCIGodownSet)
-         RGYMillerDistance(RGYSet,MillerSet)
-         RGYRetailerDistance(RGYSet,RetailerSet)
-         FCIMillerDistance(FCIGodownSet,MillerSet)
-         FCIRetailerDistance(FCIGodownSet,RetailerSet)
-         FCIPDSDistance(FCIGodownSet,PDSSet)
-         MillerRetailerDistance(MillerSet,RetailerSet)
+  FarmSize(TotalFarmNumber) The farm size for the scenario in hectares
+  FarmLocalCSPDistance(TotalFarmNumber,LocalCSPCenterSet)
+  FarmRegionalCSPDistance(TotalFarmNumber,RegionalCSPCenterSet)
+  FarmLocalMarketDistance(TotalFarmNumber,LocalMarketSet)
+  FarmRegionalMarketDistance(TotalFarmNumber,RegionalMarketSet)
+  LocalCSPLocalMarketDistance(LocalCSPCenterSet,LocalMarketSet)
+  LocalCSPRegionalMarketDistance(LocalCSPCenterSet,RegionalMarketSet)
+  RegionalCSPLocalMarketDistance(RegionalCSPCenterSet,LocalMarketSet)
+  RegionalCSPRegionalMarketDistance(RegionalCSPCenterSet,RegionalMarketSet)
+  LocalMarketRGYDistance(LocalMarketSet,RGYSet)
+  RegionalMarketRGYDistance(RegionalMarketSet,RGYSet)
+  RegionalMarketFCIDistance(RegionalMarketSet,FCIGodownSet)
+  RGYMillerDistance(RGYSet,MillerSet)
+  RGYRetailerDistance(RGYSet,RetailerSet)
+  FCIMillerDistance(FCIGodownSet,MillerSet)
+  FCIRetailerDistance(FCIGodownSet,RetailerSet)
+  FCIPDSDistance(FCIGodownSet,PDSSet)
+  MillerRetailerDistance(MillerSet,RetailerSet)
 
 *
 * The values of mean yield and standard deviation have been taken from Pramod Kumar (study number 109) (Table 2.1)
 *
-         AverageGrainYield The average grain yield in kg per ha /1823/
-         GrainYieldStandardDev The standard deviation in the yield of grain in kg per ha /281.78/
+  AverageGrainYield The average grain yield in kg per ha /1823/
+  GrainYieldStandardDev The standard deviation in the yield of grain in kg per ha /281.78/
 
-         GrainProduction(TotalFarmNumber) The total grain production in kg for each farm as a function of the total area and average yield
-         GrainAvailable(TotalFarmNumber) The total grain availability in kg on each farm
+  GrainProduction(TotalFarmNumber) The total grain production in kg for each farm as a function of the total area and average yield
+  GrainAvailable(TotalFarmNumber) The total grain availability in kg on each farm
 *
 * The IIM Ahmadabad report has given the fraction of grain that is sold from each farm as a function of farm type (table 29). That information has been
 * used here in this work
 *
-         FarmGrainFractionForSale(FarmType) The fraction of grain produced that is available for sale from a particular farm /Marginal 0.66, Small 0.84, Semi_Medium 0.81, Medium 0.86, Large 0.80/
+  FarmGrainFractionForSale(FarmType) The fraction of grain produced that is available for sale from a particular farm /Marginal 0.66, Small 0.84, Semi_Medium 0.81, Medium 0.86, Large 0.80/
 
-         MinimumSupportPrice The MSP offered by FCI to buy grain /14/;
+  MinimumSupportPrice The MSP offered by FCI to buy grain /14/;
 
 *
 * Storing the input values of farm size in the desired parameter to be used in the model later. This is done to get rid of the
@@ -114,21 +115,21 @@ GrainProduction(TotalFarmNumber) = FarmSize(TotalFarmNumber)*normal(AverageGrain
 Scalar i;
 
 loop(FarmNumber,
-         if(FarmSize(FarmNumber)<1,
-                 GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Marginal')
-         )
-         if(FarmSize(FarmNumber)>=1 and FarmSize(FarmNumber)<2,
-                 GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Small')
-         )
-         if(FarmSize(FarmNumber)>=2 and FarmSize(FarmNumber)<4,
-                 GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Semi_Medium')
-         )
-         if(FarmSize(FarmNumber)>=4 and FarmSize(FarmNumber)<10,
-                 GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Medium')
-         )
-         if(FarmSize(FarmNumber)>=10,
-                 GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Large')
-         )
+  if(FarmSize(FarmNumber)<1,
+       GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Marginal')
+  )
+  if(FarmSize(FarmNumber)>=1 and FarmSize(FarmNumber)<2,
+       GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Small')
+  )
+  if(FarmSize(FarmNumber)>=2 and FarmSize(FarmNumber)<4,
+       GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Semi_Medium')
+  )
+  if(FarmSize(FarmNumber)>=4 and FarmSize(FarmNumber)<10,
+       GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Medium')
+  )
+  if(FarmSize(FarmNumber)>=10,
+       GrainAvailable(FarmNumber) =  GrainProduction(FarmNumber)*FarmGrainFractionForSale('Large')
+  )
 );
 
 
@@ -161,46 +162,46 @@ Display FarmLocalCSPDistance,FarmRegionalCSPDistance,FarmLocalMarketDistance,Far
 LocalCSPRegionalMarketDistance, RegionalCSPLocalMarketDistance, RegionalCSPRegionalMarketDistance;
 
 Parameter
-           FarmLocalCSPDrivingTime
-           FarmRegionalCSPDrivingTime
-           FarmLocalMarketDrivingTime
-           FarmRegionalMarketDrivingTime
-           LocalCSPLocalMarketDrivingTime
-           LocalCSPRegionalMarketDrivingTime
-           RegionalCSPLocalMarketDrivingTime
-           RegionalCSPRegionalMarketDrivingTime
+  FarmLocalCSPDrivingTime
+  FarmRegionalCSPDrivingTime
+  FarmLocalMarketDrivingTime
+  FarmRegionalMarketDrivingTime
+  LocalCSPLocalMarketDrivingTime
+  LocalCSPRegionalMarketDrivingTime
+  RegionalCSPLocalMarketDrivingTime
+  RegionalCSPRegionalMarketDrivingTime
 
-           LocalMarketRGYDrivingTime
-           RegionalMarketRGYDrivingTime
-           RegionalMarketFCIDrivingTime
-           RGYMillerDrivingTime
-           RGYRetailerDrivingTime
-           FCIMillerDrivingTime
-           FCIRetailerDrivingTime
-           FCIPDSDrivingTime
-           MillerRetailerDrivingTime
+  LocalMarketRGYDrivingTime
+  RegionalMarketRGYDrivingTime
+  RegionalMarketFCIDrivingTime
+  RGYMillerDrivingTime
+  RGYRetailerDrivingTime
+  FCIMillerDrivingTime
+  FCIRetailerDrivingTime
+  FCIPDSDrivingTime
+  MillerRetailerDrivingTime
 
-           FarmLocalCSPTransportationTime
-           FarmRegionalCSPTransportationTime
-           FarmLocalMarketTransportationTime
-           FarmRegionalMarketTransportationTime
-           LocalCSPLocalMarketTransportationTime
-           LocalCSPRegionalMarketTransportationTime
-           RegionalCSPLocalMarketTransportationTime
-           RegionalCSPRegionalMarketTransportationTime
+  FarmLocalCSPTransportationTime
+  FarmRegionalCSPTransportationTime
+  FarmLocalMarketTransportationTime
+  FarmRegionalMarketTransportationTime
+  LocalCSPLocalMarketTransportationTime
+  LocalCSPRegionalMarketTransportationTime
+  RegionalCSPLocalMarketTransportationTime
+  RegionalCSPRegionalMarketTransportationTime
 
-           LocalMarketRGYTransportationTime
-           RegionalMarketRGYTransportationTime
-           RegionalMarketFCITransportationTime
-           RGYMillerTransportationTime
-           RGYRetailerTransportationTime
-           FCIMillerTransportationTime
-           FCIRetailerTransportationTime
-           FCIPDSTransportationTime
-           MillerRetailerTransportationTime
+  LocalMarketRGYTransportationTime
+  RegionalMarketRGYTransportationTime
+  RegionalMarketFCITransportationTime
+  RGYMillerTransportationTime
+  RGYRetailerTransportationTime
+  FCIMillerTransportationTime
+  FCIRetailerTransportationTime
+  FCIPDSTransportationTime
+  MillerRetailerTransportationTime
 
-           TruckIdlingTimePerTrip Idling time of a truck per trip for loading and unloading;
-           ;
+  TruckIdlingTimePerTrip Idling time of a truck per trip for loading and unloading;
+  ;
 
 
 FarmLocalCSPDrivingTime(FarmNumber,LocalCSPCenterSet,TransportationTypes) =
@@ -351,12 +352,12 @@ Display FarmLocalCSPTransportationTime;
 * Temporarily giving some value that will be modified later
 *##############################################################################################################
 Parameter
-         Par_LocalCSPOutpuDensity(LocalCSPCenterSet) The ouput density from each of the local CSPs that perform some preprocessing on grains
-         Par_RegionalCSPOutpuDensity(LocalCSPCenterSet) The ouput density from each of the local CSPs that perform some preprocessing on grains
-         GunnyBagCapacity The capacity of each gunny bag in kgs used for storage and transportation purpose
-         GunnyBagCost_new The cost of a new gunny bag in rupees /37.42/
-         GunnyBagLife The total number of years or harvesting rounds for which a gunny bag can be reused /1/
-         GunnyBagCost The annualized cost of the gunny bag depending on the number of years for which it will be used and assuming no salvage value;
+  Par_LocalCSPOutpuDensity(LocalCSPCenterSet) The ouput density from each of the local CSPs that perform some preprocessing on grains
+  Par_RegionalCSPOutpuDensity(LocalCSPCenterSet) The ouput density from each of the local CSPs that perform some preprocessing on grains
+  GunnyBagCapacity The capacity of each gunny bag in kgs used for storage and transportation purpose
+  GunnyBagCost_new The cost of a new gunny bag in rupees /37.42/
+  GunnyBagLife The total number of years or harvesting rounds for which a gunny bag can be reused /1/
+  GunnyBagCost The annualized cost of the gunny bag depending on the number of years for which it will be used and assuming no salvage value;
 *
 * The density of wheat is based on the bulk density of wheat. It is assumed that wheat is stored in gunny bags and
 * therefore the bulk density in gunny bags would be same as that of the natural bulk density of wheat. The typical
@@ -378,21 +379,21 @@ GunnyBagCost = GunnyBagCost_new/GunnyBagLife;
 * Parameter Declaration: Selection of the case study location (importing data from the pre-defined excel file)
 *##############################################################################################################
 Parameter
-          CollectionDistanceMinimum Minimum distance for biomass collection in km /5/
-          CollectionDistanceMaximum Maximum distance for biomass collection in km
-          CollectionDistanceMean Mean distance of biomass collection
-          CollectionDistanceStd Standard deviation of biomass collection distance for sampling
-          RoadWindingFactor Constant correlating the travelled distance to shortest distance between two points /1.2/
-          StorageDistanceMinimum The minimum distance between the storage facility and refinery in km /10/
-          StorageDistanceMaximum The maximum distance between the storage facility and refinery in km /30/;
+  CollectionDistanceMinimum Minimum distance for biomass collection in km /5/
+  CollectionDistanceMaximum Maximum distance for biomass collection in km
+  CollectionDistanceMean Mean distance of biomass collection
+  CollectionDistanceStd Standard deviation of biomass collection distance for sampling
+  RoadWindingFactor Constant correlating the travelled distance to shortest distance between two points /1.2/
+  StorageDistanceMinimum The minimum distance between the storage facility and refinery in km /10/
+  StorageDistanceMaximum The maximum distance between the storage facility and refinery in km /30/;
 
 
 Parameter
-          CentralStorageProcessing The binary parameter that indicates wether the centralized storage facility has a processing option (such as size reduction and packing)
-          CentralStorageProcessingMandatory The binary parameter that indicates wether the centralized storage processing is mandatory for the farms
-          CentralStorageInputProcessing The binary parameter that indicates whether the biomass processing at the central storage is carried out at the input of the storage
-          CentralStorageOutputProcessing The binary parameter that indicates whether the biomass processing at the central storage is carried out at the output of the storage
-          CentralStorageRefineryRailTransport The binary parameter that indicates where there is rail transport of biomass from central storage to the refinery;
+  CentralStorageProcessing The binary parameter that indicates wether the centralized storage facility has a processing option (such as size reduction and packing)
+  CentralStorageProcessingMandatory The binary parameter that indicates wether the centralized storage processing is mandatory for the farms
+  CentralStorageInputProcessing The binary parameter that indicates whether the biomass processing at the central storage is carried out at the input of the storage
+  CentralStorageOutputProcessing The binary parameter that indicates whether the biomass processing at the central storage is carried out at the output of the storage
+  CentralStorageRefineryRailTransport The binary parameter that indicates where there is rail transport of biomass from central storage to the refinery;
 
 
 *********************************************
@@ -426,22 +427,22 @@ Parameter
 *##############################################################################################################
 
 Parameter
-         LocalMarketDemand Local market demand as a function of time
-         LocalMarketDemand_UpperBound Upper bound on the local market demand as a function of time
-         LocalMarketDemand_LowerBound Lower bound on the local market demand as a function of time
+  LocalMarketDemand Local market demand as a function of time
+  LocalMarketDemand_UpperBound Upper bound on the local market demand as a function of time
+  LocalMarketDemand_LowerBound Lower bound on the local market demand as a function of time
 
-         RegionalMarketDemand Regional market demand as a function of time
-         RegionalMarketDemand_UpperBound Upper bound on the Regional market demand as a function of time
-         RegionalMarketDemand_LowerBound Lower bound on the Regional market demand as a function of time
+  RegionalMarketDemand Regional market demand as a function of time
+  RegionalMarketDemand_UpperBound Upper bound on the Regional market demand as a function of time
+  RegionalMarketDemand_LowerBound Lower bound on the Regional market demand as a function of time
 
-         FarmGatePurchaseDemand The deamand for farm gate purchase at a given farm during a given time horizon
-         FarmGatePurchaseDemand_UpperBound The deamand for farm gate purchase at a given farm during a given time horizon
-         FarmGatePurchaseDemand_LowerBound The deamand for farm gate purchase at a given farm during a given time horizon
+  FarmGatePurchaseDemand The deamand for farm gate purchase at a given farm during a given time horizon
+  FarmGatePurchaseDemand_UpperBound The deamand for farm gate purchase at a given farm during a given time horizon
+  FarmGatePurchaseDemand_LowerBound The deamand for farm gate purchase at a given farm during a given time horizon
 
-         Farm_FarmGateSaleFraction The fraction of the total grain over the whole year that can be sold at the farm gate by a particular farm /0.1/
-         Farm_LocalMarketSaleFraction The Fraction of the total grain over the whole year that can be sold at the local by a particular farm  /0.2/
-         Farm_RegionalMarketSaleFraction The Fraction of the total grain over the whole year that can be sold at the regional market by a particular farm /0.7/
-         ;
+  Farm_FarmGateSaleFraction The fraction of the total grain over the whole year that can be sold at the farm gate by a particular farm /0.1/
+  Farm_LocalMarketSaleFraction The Fraction of the total grain over the whole year that can be sold at the local by a particular farm  /0.2/
+  Farm_RegionalMarketSaleFraction The Fraction of the total grain over the whole year that can be sold at the regional market by a particular farm /0.7/
+  ;
 
 LocalMarketDemand(HarvestingHorizonAggregation,LocalMarketSet) = 10;
 LocalMarketDemand_UpperBound(HarvestingHorizonAggregation,LocalMarketSet) = 1000;
@@ -478,21 +479,21 @@ MillerStorageDryMatterLossRate = SmallScaleStorageData('DryMatterLoss','Steel_Dr
 *################################################################################################################################
 
 Parameter
-         RegionalMarketCapacity(RegionalMarketSet) The total capacity of the regional market (mandi) in terms of the mass of grain that can be handled on a daily basis
-         LocalMarketCapacity(LocalMarketSet) The total capacity of the local market  in terms of the mass of grain that can be handled on a daily basis
-         RGY_Max The maximum capacity in kg in terms of the amount of grain stored of an RGY
-         RGY_Min The minimum capacity in kg in terms of the amount of grain stored of an RGY
-         FCI_Max The maximum capacity in kg in terms of the amount of grain stored of an FIC godown
-         FCI_Min The minimum capacity in kg in terms of the amount of grain stored of an FIC godown
-         MillerProcessingCapacity_Min the minimum capacity in kg in terms of the amount of grain that must be processed by a mill
-         MillerProcessingCapacity_Max the maximum capacity in kg in terms of the amount of grain that can be processed by a mill
-         MillerStorageCapacity_Min the minimum capacity in kg in terms of the amount of grain that must be stored by a mill
-         MillerStorageCapacity_Max the maximum capacity in kg in terms of the amount of grain that can be stored by a mill
-         MillingLoss(MillerSet) The fraction of grain lost during the milling operation
+  RegionalMarketCapacity(RegionalMarketSet) The total capacity of the regional market (mandi) in terms of the mass of grain that can be handled on a daily basis
+  LocalMarketCapacity(LocalMarketSet) The total capacity of the local market  in terms of the mass of grain that can be handled on a daily basis
+  RGY_Max The maximum capacity in kg in terms of the amount of grain stored of an RGY
+  RGY_Min The minimum capacity in kg in terms of the amount of grain stored of an RGY
+  FCI_Max The maximum capacity in kg in terms of the amount of grain stored of an FIC godown
+  FCI_Min The minimum capacity in kg in terms of the amount of grain stored of an FIC godown
+  MillerProcessingCapacity_Min the minimum capacity in kg in terms of the amount of grain that must be processed by a mill
+  MillerProcessingCapacity_Max the maximum capacity in kg in terms of the amount of grain that can be processed by a mill
+  MillerStorageCapacity_Min the minimum capacity in kg in terms of the amount of grain that must be stored by a mill
+  MillerStorageCapacity_Max the maximum capacity in kg in terms of the amount of grain that can be stored by a mill
+  MillingLoss(MillerSet) The fraction of grain lost during the milling operation
 
-         MillerAnnualCost(MillerSet) The fixed annual cost of the miller
-         MillerOperatingCostRate(MillerSet) The operating cost of the milling in terms of Rs per kg
-         MillerStorageCostRate(MillerSet) The cost of developing a storage facility at the miller based on the total amount that is stored at the miller;
+  MillerAnnualCost(MillerSet) The fixed annual cost of the miller
+  MillerOperatingCostRate(MillerSet) The operating cost of the milling in terms of Rs per kg
+  MillerStorageCostRate(MillerSet) The cost of developing a storage facility at the miller based on the total amount that is stored at the miller;
 
 
 *RegionalMarketCapacity(RegionalMarketSet) = 150000;
