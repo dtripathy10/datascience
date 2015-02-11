@@ -5,6 +5,10 @@ Variables
   RegionalMarket_GrainDelivered Total grain delivered at the regional market from all possible sources
   FarmGate_GrainDelivered Total grain delivered (purchased) at the farm gate from all possible sources
 
+  RGY_GrainDelivered Total grain delivered at the local market from all possible sources
+  FCICovered_GrainDelivered Total grain delivered at the regional market from all possible sources
+  FCICAP_GrainDelivered Total grain delivered (purchased) at the farm gate from all possible sources
+
 *  LocalMarket_GrainDelivered(SimulationHorizon,LocalMarketSet) Total grain delivered at the local market from all possible sources
 *  RegionalMarket_GrainDelivered(SimulationHorizon,RegionalMarketSet) Total grain delivered at the regional market from all possible sources
 *  FarmGate_GrainDelivered(FarmNumber) Total grain delivered (purchased) at the farm gate from all possible sources

@@ -80,29 +80,3 @@ Model PrivateTraderModel/
          PrivateTraderBalance6
          PrivateTraderBalance7
          /;
-
-
-$ontext
-PrivateTraderBalance3(HarvestingHorizonAggregation)..
-                       PrivateTraderPurchaseTotal(HarvestingHorizonAggregation)
-                       =e=
-                       sum(RGYSet,PrivateTraderRGYGrain(HarvestingHorizonAggregation,RGYSet))
-                       +
-                       sum(RetailerSet,PrivateTraderRetailerGrain(HarvestingHorizonAggregation,RetailerSet))
-                       ;
-
-PrivateTraderBalance4(NonHarvestingHorizonAggregation)..
-                       PrivateTraderPurchaseTotal(NonHarvestingHorizonAggregation)
-                       =e=
-                       sum(RGYSet,PrivateTraderRGYGrain(NonHarvestingHorizonAggregation,RGYSet))
-                       +
-                       sum(RetailerSet,PrivateTraderRetailerGrain(NonHarvestingHorizonAggregation,RetailerSet))
-                       ;
-
-PrivateTraderBalance5..
-                         sum((NonHarvestingHorizonAggregation,RetailerSet),PrivateTraderRetailerGrain(NonHarvestingHorizonAggregation,RetailerSet))
-                         +
-                         sum((HarvestingHorizonAggregation,RetailerSet),PrivateTraderRetailerGrain(HarvestingHorizonAggregation,RetailerSet))
-                         =g=
-                         0;
-$offtext 

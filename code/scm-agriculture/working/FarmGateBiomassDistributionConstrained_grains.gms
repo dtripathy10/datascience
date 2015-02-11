@@ -1,14 +1,14 @@
 Equations
-                 GrainDivisionC1
-                 GrainDivisionC2
-                 GrainDivisionC3
-                 GrainDivisionC4
-                 GrainDivisionC5
-                 GrainDivisionC6
-                 GrainDivisionC7
-                 GrainDivisionC8
-                 GrainDivisionC9
-                 ;
+  GrainDivisionC1
+  GrainDivisionC2
+  GrainDivisionC3
+  GrainDivisionC4
+  GrainDivisionC5
+  GrainDivisionC6
+  GrainDivisionC7
+  GrainDivisionC8 
+  GrainDivisionC9
+  ;
 
 *
 * First calculating the Grain made available at the farm gate by the farm and tagging it to the

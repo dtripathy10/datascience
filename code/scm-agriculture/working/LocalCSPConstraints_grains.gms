@@ -2,21 +2,21 @@
 * Constraints related to biomass balance at the central storage facility
 *-----------------------------------------------------------------------
 Equations
-                 LocalCSPBalance1
-                 LocalCSPBalance2
-                 LocalCSPBalance3
-                 LocalCSPBalance4
-                 LocalCSPBalance5
-                 LocalCSPBalance6
-                 LocalCSPBalance7
-                 LocalCSPBalance8
-                 LocalCSPBalance9
-                 LocalCSPBalance10
-                 LocalCSPBalance11
-                 LocalCSPBalance12
-                 LocalCSPBalance13
-                 LocalCSPBalance14
-                 ;
+  LocalCSPBalance1
+  LocalCSPBalance2
+  LocalCSPBalance3
+  LocalCSPBalance4
+  LocalCSPBalance5
+  LocalCSPBalance6
+  LocalCSPBalance7
+  LocalCSPBalance8
+  LocalCSPBalance9
+  LocalCSPBalance10
+  LocalCSPBalance11
+  LocalCSPBalance12
+  LocalCSPBalance13
+  LocalCSPBalance14
+  ;
 
 *
 * First calculating the total input to the central storage facility
@@ -231,18 +231,18 @@ LocalCSPBalance14(NonHarvestingHorizonAggregation,LocalCSPCenterSet)
 
 
 Model LocalCSPModel /
-                 LocalCSPBalance1
-                 LocalCSPBalance2
-                 LocalCSPBalance3
-                 LocalCSPBalance4
-                 LocalCSPBalance5
-                 LocalCSPBalance6
-                 LocalCSPBalance7
-                 LocalCSPBalance8
-                 LocalCSPBalance9
-                 LocalCSPBalance10
-                 LocalCSPBalance11
-                 LocalCSPBalance12
-                 LocalCSPBalance13
-                 LocalCSPBalance14
-                 /;
+  LocalCSPBalance1
+  LocalCSPBalance2
+  LocalCSPBalance3
+  LocalCSPBalance4
+  LocalCSPBalance5
+  LocalCSPBalance6
+  LocalCSPBalance7
+  LocalCSPBalance8
+  LocalCSPBalance9
+  LocalCSPBalance10
+  LocalCSPBalance11
+  LocalCSPBalance12
+  LocalCSPBalance13
+  LocalCSPBalance14
+  /;

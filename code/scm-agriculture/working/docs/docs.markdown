@@ -1,3 +1,7 @@
+################################################
+Total number of files : 25
+#################################################
+
 ## Main File
 + ModelAssembly_test.gms
 + ScenarioSetup_grains.gms
@@ -39,6 +43,8 @@
 ###### Objective
 
 + ProvisionCostConstraints_grains.gms
++ PostHarvestLossConstraints_grains.gms
+
 
 ###### Result
 
