@@ -22,12 +22,12 @@ Equations
 * First calculating the total input to the central storage facility
 *
 LocalCSPBalance1(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
-                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
-                 LocalCSPInput(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
-                 =e=
-                 ( HarvestFarmGateLocalCSPGrain(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
-                 )
-                 *(1-TransportationDryMatterLossRate);
+  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
+  LocalCSPInput(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
+  =e=
+  ( HarvestFarmGateLocalCSPGrain(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
+  )
+  *(1-TransportationDryMatterLossRate);
 
 *
 * Doing the accounting for the centralized storage (input - output balance)

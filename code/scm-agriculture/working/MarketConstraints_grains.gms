@@ -1,26 +1,26 @@
 $title Refinery variables and constraints
 
 Equations
-                 DemandConstraint1
-                 DemandConstraint2
-                 DemandConstraint3
-                 DemandConstraint4
-                 DemandConstraint5
-                 DemandConstraint6
-                 DemandConstraint7
-                 DemandConstraint8
-                 DemandConstraint9
-                 DemandConstraint10
-                 DemandConstraint11
-                 DemandConstraint12
+  DemandConstraint1
+  DemandConstraint2
+  DemandConstraint3
+  DemandConstraint4
+  DemandConstraint5
+  DemandConstraint6
+  DemandConstraint7
+  DemandConstraint8
+  DemandConstraint9
+  DemandConstraint10
+  DemandConstraint11
+  DemandConstraint12
 
-                 DemandConstraint13
-                 DemandConstraint14
-                 DemandConstraint15
-                 DemandConstraint16
-                 DemandConstraint17
-                 DemandConstraint18
-                 ;
+  DemandConstraint13
+  DemandConstraint14
+  DemandConstraint15
+  DemandConstraint16
+  DemandConstraint17
+  DemandConstraint18
+  ;
 
 *
 * Demand constraints:

@@ -1,3 +1,6 @@
+Positive variables
+  FCIPurchase
+  ;
 *------------------------------------------------------------------------
 * Constraints related to biomass balance at the central storage facility
 *------------------------------------------------------------------------
@@ -24,26 +27,42 @@ Equations
     FCIBalance20
     FCIBalance21
     FCIBalance22
+
+    FCIBalance23
+    FCIBalance24
     ;
+* #########################################################################################################################
+* FCI total purchase
 
+FCIBalance23(HarvestingHorizonAggregation,FCIGodownSet)..
+  FCIPurchase(HarvestingHorizonAggregation,FCIGodownSet)
+  =e=
+  sum(RegionalMarketSet,RegionalMarketFCIGrain(HarvestingHorizonAggregation,RegionalMarketSet,FCIGodownSet))
+  ;
 
-*
-* First calculating the total input to the central storage facility
-*
+FCIBalance24(NonHarvestingHorizonAggregation,FCIGodownSet)..
+  FCIPurchase(NonHarvestingHorizonAggregation,FCIGodownSet)
+  =e=
+  sum(RegionalMarketSet,RegionalMarketFCIGrain(NonHarvestingHorizonAggregation,RegionalMarketSet,FCIGodownSet))
+  ;
+
+* #########################################################################################################################
+* First calculating the total input to the FCI excluded the loss due to transportaion
+
 FCIBalance1(HarvestingHorizonAggregation,FCIGodownSet)..
-    FCIInput(HarvestingHorizonAggregation,FCIGodownSet)
-    =e=
-    sum(RegionalMarketSet,RegionalMarketFCIGrain(HarvestingHorizonAggregation,RegionalMarketSet,FCIGodownSet))
-    *(1-TransportationDryMatterLossRate)
-    ;
+  FCIInput(HarvestingHorizonAggregation,FCIGodownSet)
+  =e=
+  sum(RegionalMarketSet,RegionalMarketFCIGrain(HarvestingHorizonAggregation,RegionalMarketSet,FCIGodownSet))
+  *(1-TransportationDryMatterLossRate)
+  ;
 
 FCIBalance2(NonHarvestingHorizonAggregation,FCIGodownSet)..
-    FCIInput(NonHarvestingHorizonAggregation,FCIGodownSet)
-    =e=
-    sum(RegionalMarketSet,RegionalMarketFCIGrain(NonHarvestingHorizonAggregation,RegionalMarketSet,FCIGodownSet))
-    *(1-TransportationDryMatterLossRate)
-    ;
-
+  FCIInput(NonHarvestingHorizonAggregation,FCIGodownSet)
+  =e=
+  sum(RegionalMarketSet,RegionalMarketFCIGrain(NonHarvestingHorizonAggregation,RegionalMarketSet,FCIGodownSet))
+  *(1-TransportationDryMatterLossRate)
+  ;
+*##########################################################################################################################
 FCIBalance3(HarvestingHorizonAggregation,FCIGodownSet)..
     FCIInput(HarvestingHorizonAggregation,FCIGodownSet)
     =e=
@@ -59,6 +78,8 @@ FCIBalance4(NonHarvestingHorizonAggregation,FCIGodownSet)..
     +
     FCICoveredStorageInput(NonHarvestingHorizonAggregation,FCIGodownSet)
     ;
+
+*##########################################################################################################################
 
 *===============================================================================================
 * Doing the accounting for the FCI storage facility for biomass stored in buildings (covered)
@@ -302,4 +323,7 @@ Model FCIModel /
     FCIBalance20
     FCIBalance21
     FCIBalance22
+
+    FCIBalance23
+    FCIBalance24
     /;
