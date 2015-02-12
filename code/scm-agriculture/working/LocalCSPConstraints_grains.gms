@@ -33,14 +33,14 @@ LocalCSPBalance1(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
 * Doing the accounting for the centralized storage (input - output balance)
 *
 LocalCSPBalance2(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation2)
-                                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and ord(HarvestingHorizonAggregation)=ord(HarvestingHorizonAggregation2)
-                                 )..
-                         LocalCSPStoredGrain(HarvestingHorizonAggregation,FarmNumber,
-                                         LocalCSPCenterSet,HarvestingHorizonAggregation2)
-                         =e=
-                         LocalCSPInput(HarvestingHorizonAggregation2,FarmNumber,LocalCSPCenterSet)
-                         *card(HarvestingHorizonAggregationStep);
+  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
+  and ord(HarvestingHorizonAggregation)=ord(HarvestingHorizonAggregation2)
+  )..
+  LocalCSPStoredGrain(HarvestingHorizonAggregation,FarmNumber,
+  LocalCSPCenterSet,HarvestingHorizonAggregation2)
+  =e=
+  LocalCSPInput(HarvestingHorizonAggregation2,FarmNumber,LocalCSPCenterSet)
+  *card(HarvestingHorizonAggregationStep);
 
 
 LocalCSPBalance3(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation2)

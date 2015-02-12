@@ -5,39 +5,40 @@ Total number of files : 25
 
 
 =================================Main File======================================
-## Main File
+## {X} Main File
 + ModelAssembly_test.gms
 + ScenarioSetup_grains.gms
 
 ========================Set and Parameter Declaration file===========================
-## Set and Parameter Declaration file
+## {X} Set and Parameter Declaration file
 + StorageTransportationData_grains.gms
 + MachineData_grains.gms
 + FarmOptimizationResults_grains.gms
 
 =========================Variable Decalaration file==================================
-## Variable Decalaration file
+## {X} Variable Decalaration file
 + VariableDeclaration_grains.gms
 
 =========================Constrains===============================================
 ## Constrains
 
-#### Farmer:
+#### {X} Farmer:
   + FarmGateBiomassDistributionConstrained_grains.gms
 
 #### Storage before sale:
   + LocalCSPConstraints_grains.gms
   + RegionalCSPConstraints_grains.gms
 
-#### Intermediate market
+#### {X} Intermediate market
   + MarketConstraints_grains.gms
   + LocalMarketConstraints_grains.gms
   + RegionalMarketConstraints_grains.gms
-  + PrivateTraderConstraints_grains.gms
 
 #### Storage after sale:
   + FCIConstraints_grains.gms
   + RGYConstraints_grains.gms
+  + PrivateTraderConstraints_grains.gms
+
 
 #### Grains processor
   + MillerConstraints_grains.gms

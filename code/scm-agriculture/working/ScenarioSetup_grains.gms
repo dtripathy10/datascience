@@ -42,10 +42,12 @@ Parameter  GrainPurchasePrice_Input, FarmSize_Input;
 $CALL GDXXRW.EXE Grains_PricesAndDistances.xls Dset=GrainPurchasePriceSet rng=GrainPrice!B1:D1 Cdim=1 Dset=SimulationSteps rng=GrainPrice!A2:A361 Rdim=1 Par=GrainPurchasePrice_Input rng=GrainPrice!A1:D361 Dset=FarmArea rng=FarmData!B13 Cdim=1 Dset=TotalFarmNumber rng=FarmData!A14:A300 Rdim=1 Par=FarmSize_Input rng=FarmData!A13:B300;
 $GDXIN Grains_PricesAndDistances.gdx
 
-Set GrainPurchasePriceSet(*)
-    SimulationSteps(*)
-    TotalFarmNumber(*)
-    FarmArea(*);
+Set 
+  GrainPurchasePriceSet(*)
+  SimulationSteps(*)
+  TotalFarmNumber(*)
+  FarmArea(*)
+  ;
 
 $LOAD GrainPurchasePriceSet=GrainPurchasePriceSet
 $LOAD SimulationSteps = SimulationSteps
@@ -62,8 +64,10 @@ Display RegionalMarketSet;
 *##############################################################################################################
 * Declaring the parameters that impact which model is to be simulated (current or potential)
 *##############################################################################################################
-Parameter CurrentScenario The parameter that indicates whether we are selecting the current wheat supply chain or not /1/
-          FutureScenario The parameter that indicates whether we are selecting the future wheat supply chain or not /0/;
+Parameter 
+  CurrentScenario The parameter that indicates whether we are selecting the current wheat supply chain or not /1/
+  FutureScenario The parameter that indicates whether we are selecting the future wheat supply chain or not /0/
+  ;
 
 
 *##############################################################################################################
@@ -357,7 +361,8 @@ Parameter
   GunnyBagCapacity The capacity of each gunny bag in kgs used for storage and transportation purpose
   GunnyBagCost_new The cost of a new gunny bag in rupees /37.42/
   GunnyBagLife The total number of years or harvesting rounds for which a gunny bag can be reused /1/
-  GunnyBagCost The annualized cost of the gunny bag depending on the number of years for which it will be used and assuming no salvage value;
+  GunnyBagCost The annualized cost of the gunny bag depending on the number of years for which it will be used and assuming no salvage value
+  ;
 *
 * The density of wheat is based on the bulk density of wheat. It is assumed that wheat is stored in gunny bags and
 * therefore the bulk density in gunny bags would be same as that of the natural bulk density of wheat. The typical
@@ -385,7 +390,8 @@ Parameter
   CollectionDistanceStd Standard deviation of biomass collection distance for sampling
   RoadWindingFactor Constant correlating the travelled distance to shortest distance between two points /1.2/
   StorageDistanceMinimum The minimum distance between the storage facility and refinery in km /10/
-  StorageDistanceMaximum The maximum distance between the storage facility and refinery in km /30/;
+  StorageDistanceMaximum The maximum distance between the storage facility and refinery in km /30/
+  ;
 
 
 Parameter
@@ -393,7 +399,8 @@ Parameter
   CentralStorageProcessingMandatory The binary parameter that indicates wether the centralized storage processing is mandatory for the farms
   CentralStorageInputProcessing The binary parameter that indicates whether the biomass processing at the central storage is carried out at the input of the storage
   CentralStorageOutputProcessing The binary parameter that indicates whether the biomass processing at the central storage is carried out at the output of the storage
-  CentralStorageRefineryRailTransport The binary parameter that indicates where there is rail transport of biomass from central storage to the refinery;
+  CentralStorageRefineryRailTransport The binary parameter that indicates where there is rail transport of biomass from central storage to the refinery
+  ;
 
 
 *********************************************
@@ -405,11 +412,12 @@ Parameter
 
 
 Parameter
-         GrainMoisture(SimulationHorizon) The moisture of the grain harvested at at any time;
+  GrainMoisture(SimulationHorizon) The moisture of the grain harvested at at any time;
 *
 * Giving a temporary value to the grain moisture
 *
-GrainMoisture(SimulationHorizon) = 0.15;
+  GrainMoisture(SimulationHorizon) = 0.15
+  ;
 
 *         CentralStorageProcessingData The data (attributes) for the processing machine that is selected by the user is stored in this parameter to be used for further calculations
 *         CentralStorageSmallScaleProcessingData  The data (attributes) for the processing machine that is selected by the user is stored in this parameter to be used for further calculations
@@ -417,9 +425,9 @@ GrainMoisture(SimulationHorizon) = 0.15;
 
 
 Parameter
-         CentralStorageProcessing Binary parameter indicating whether there is processing at the local CSP /0/
-         CentralStorageOutputProcessing Binary parameter indicating whether there is processing at the the output of the facility - this requires the first parameter to be selected 1 /0/
-         ;
+  CentralStorageProcessing Binary parameter indicating whether there is processing at the local CSP /0/
+  CentralStorageOutputProcessing Binary parameter indicating whether there is processing at the the output of the facility - this requires the first parameter to be selected 1 /0/
+  ;
 
 
 *##############################################################################################################
@@ -493,7 +501,8 @@ Parameter
 
   MillerAnnualCost(MillerSet) The fixed annual cost of the miller
   MillerOperatingCostRate(MillerSet) The operating cost of the milling in terms of Rs per kg
-  MillerStorageCostRate(MillerSet) The cost of developing a storage facility at the miller based on the total amount that is stored at the miller;
+  MillerStorageCostRate(MillerSet) The cost of developing a storage facility at the miller based on the total amount that is stored at the miller
+  ;
 
 
 *RegionalMarketCapacity(RegionalMarketSet) = 150000;
@@ -536,8 +545,10 @@ FCIStorageCostRateMonthly = FCIStorageCostRate/NumberOfMonthsInFCIStorage;
 FCIGodownCAPLossRate = 6;
 FCIGodownCoveredLossRate = 0.1;
 
-Parameter PDSDemand
-          RetailerDemand;
+Parameter 
+  PDSDemand
+  RetailerDemand
+  ;
 
 PDSDemand(HarvestingHorizonAggregation,PDSSet)=100;
 PDSDemand(NonHarvestingHorizonAggregation,PDSSet)=100;
@@ -548,4 +559,6 @@ PDSDemand('1',PDSSet)=0;
 RetailerDemand('1',RetailerSet)=0;
 
 
-Display RegionalMarketFCIDistance,FCIMillerDistance,FCIRetailerDistance, FCIPDSDistance, RegionalMarketFCITransportationTime;
+Display 
+  RegionalMarketFCIDistance,FCIMillerDistance,FCIRetailerDistance, FCIPDSDistance, RegionalMarketFCITransportationTime
+  ;

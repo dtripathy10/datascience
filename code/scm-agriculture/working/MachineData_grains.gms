@@ -2,34 +2,35 @@
 Parameter FuelConsumptionFactor The average annual fuel consumption factor conversting the machine rated hp into fuel consumption in gal per hour /0.0438/
 * Taken from ASAE EP496.3 (Nebraska Tractor Test data) and also used in IBSAL model
 * Please note that the original equation uses 0.06 as the factor for gasoline and diesel consumption (assumed here) is 73% of gasoline consumption
-          AverageBalingDensity The average of packing density for all options which is used as an approximation for central storage to refinery transportation constraint
-          AverageBalingThroughput The average value of the packing machine throughput used to calculate the operating cost of tractors
+  AverageBalingDensity The average of packing density for all options which is used as an approximation for central storage to refinery transportation constraint
+  AverageBalingThroughput The average value of the packing machine throughput used to calculate the operating cost of tractors
 
-          LoseBiomassDensity The average density of lose biomass
+  LoseBiomassDensity The average density of lose biomass
 
-          MinimumHarvestingCutFraction The minimum harvesting cut fraction for the given harvesting machines
+  MinimumHarvestingCutFraction The minimum harvesting cut fraction for the given harvesting machines
 
-          TractorData Data for tractors used in farm operations
-          HarvesterData  Data for harvesting operation
-          FieldLoaderData Data associated with field loaders that are used for energy cane
-          RakeData  Data for raking operation operation
-          BalerData  Data for baling operation
-          PelletizerData
-          LoaderData
-          GrinderData
-          ChopperData
-          HandlingMachineData
-          StorageProcessorData
-          StorageSmallScaleProcessorData
-          DryerData
-          StorageData
-          SmallScaleStorageData
-          StorageRefineryDistanceData
-          StorageRegionalDistanceData
-          StorageSmallScaleRefineryData
-          StorageSmallScaleRegionalData
-          InFieldTransportationData Data for biomass in-field transportation
-          TransportationData Data for biomass transportation;
+  TractorData Data for tractors used in farm operations
+  HarvesterData  Data for harvesting operation
+  FieldLoaderData Data associated with field loaders that are used for energy cane
+  RakeData  Data for raking operation operation
+  BalerData  Data for baling operation
+  PelletizerData
+  LoaderData
+  GrinderData
+  ChopperData
+  HandlingMachineData
+  StorageProcessorData
+  StorageSmallScaleProcessorData
+  DryerData
+  StorageData
+  SmallScaleStorageData
+  StorageRefineryDistanceData
+  StorageRegionalDistanceData
+  StorageSmallScaleRefineryData
+  StorageSmallScaleRegionalData
+  InFieldTransportationData Data for biomass in-field transportation
+  TransportationData Data for biomass transportation
+  ;
 
 *
 * Note on the calculation of the costs:
@@ -76,29 +77,30 @@ $ CALL GDXXRW.EXE Grains_attributes.xlsx Dset=TractorTypes rng=Tractor!B2:N2 Cdi
 $GDXIN Grains_attributes.gdx
 
 Set TractorTypes(*) Type of Tractors
-    TractorAttributes(*) Attributes associated with a tractor
-    FieldLoaderTypes(*) Type of field loaders
-    FieldLoaderAttributes(*) The attributes associated with field loaders
-    LoaderTypes(*) The types of loading machiens available
-    LoaderAttributes(*) The attributes associated with a loading machine
-    HandlingMachineTypes(*) The types of biomass handling machines
-    HandlingMachineAttributes(*) The attributes associates with a biomass handling machine
-    GrinderTypes(*) The different types of size reduction machines available
-    GrinderAttributes(*) The attributes associated with a size reduction machine
-    ChopperTypes(*) The different types of chopping machines available
-    ChopperAttributes(*) The attributes associated with a chopping machine
-    StorageProcessorTypes(*) The different types of processing machines available at the centralized storage facility
-    StorageSmallScaleProcessorTypes(*)
-    StorageProcessorAttributes(*) The attributes associated with a processing machines at the centralized storage facility
-    StorageSmallScaleProcessorAttributes(*)
-    DryerTypes(*) The different types of drying machines available
-    DryerAttributes(*) The attributes of a drying machine
-    InFieldTransportationTypes(*) The types of transportation options available
-    InFieldTransportationAttributes(*) The attributes of a transportation option
-    TransportationTypes(*) The types of transportation options available
-    TransportationAttributes(*) The attributes of a transportation option
-    SmallScaleStorageTypes(*) The different types of storage options available
-    SmallScaleStorageAttributes(*) The different attributes associated with each storage option;
+  TractorAttributes(*) Attributes associated with a tractor
+  FieldLoaderTypes(*) Type of field loaders
+  FieldLoaderAttributes(*) The attributes associated with field loaders
+  LoaderTypes(*) The types of loading machiens available
+  LoaderAttributes(*) The attributes associated with a loading machine
+  HandlingMachineTypes(*) The types of biomass handling machines
+  HandlingMachineAttributes(*) The attributes associates with a biomass handling machine
+  GrinderTypes(*) The different types of size reduction machines available
+  GrinderAttributes(*) The attributes associated with a size reduction machine
+  ChopperTypes(*) The different types of chopping machines available
+  ChopperAttributes(*) The attributes associated with a chopping machine
+  StorageProcessorTypes(*) The different types of processing machines available at the centralized storage facility
+  StorageSmallScaleProcessorTypes(*)
+  StorageProcessorAttributes(*) The attributes associated with a processing machines at the centralized storage facility
+  StorageSmallScaleProcessorAttributes(*)
+  DryerTypes(*) The different types of drying machines available
+  DryerAttributes(*) The attributes of a drying machine
+  InFieldTransportationTypes(*) The types of transportation options available
+  InFieldTransportationAttributes(*) The attributes of a transportation option
+  TransportationTypes(*) The types of transportation options available
+  TransportationAttributes(*) The attributes of a transportation option
+  SmallScaleStorageTypes(*) The different types of storage options available
+  SmallScaleStorageAttributes(*) The different attributes associated with each storage option
+  ;
 
 * Assigning the sets imported from the GDX (Excel) file to the sets in GAMS code
 *
@@ -146,10 +148,12 @@ $LOAD InFieldTransportationData
 $LOAD TransportationData
 $GDXIN
 
-
 Set
-         PackingTypes The different types of packing options /Baling, Pelletization, Grinding, Chopping/
-         CentralizedStorageProcessingTypes The different types of processing and packing options at the centralized storage facility /Pelletization, Grinding/;
+  PackingTypes The different types of packing options /Baling, Pelletization, Grinding, Chopping/
+  CentralizedStorageProcessingTypes The different types of processing and packing options at the centralized storage facility /Pelletization, Grinding/
+  ;
 
-Display TractorData, FieldLoaderData, LoaderData, GrinderData, ChopperData, StorageProcessorData,
-        HandlingMachineData, DryerData, SmallScaleStorageData, InFieldTransportationData, TransportationData; 
+Display 
+  TractorData, FieldLoaderData, LoaderData, GrinderData, ChopperData, StorageProcessorData,
+  HandlingMachineData, DryerData, SmallScaleStorageData, InFieldTransportationData, TransportationData
+  ; 
