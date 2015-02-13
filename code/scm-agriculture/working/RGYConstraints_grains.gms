@@ -1,5 +1,6 @@
 Positive variables
   RGYPurchase
+  RGYTotalOutput
   ;
 *------------------------------------------------------------------------
 * Constraints related to biomass balance at the central storage facility
@@ -20,68 +21,84 @@ Equations
 
   RGYBalance13
   RGYBalance14
+  RGYBalance15
   ;
 
+* RGY total output
+RGYBalance15(RGYSet)..
+  RGYTotalOutput =e=
+    sum(HarvestingHorizonAggregation,
+      sum(MillerSet,
+        RGYMillerGrain(HarvestingHorizonAggregation,RGYSet,MillerSet)
+      ) * card(HarvestingHorizonAggregationStep) +
+      sum(RetailerSet,
+        RGYRetailerGrain(HarvestingHorizonAggregation,RGYSet,RetailerSet)
+      ) * card(HarvestingHorizonAggregationStep)
+    ) +
+    sum(NonHarvestingHorizonAggregation,
+      sum(MillerSet,
+        RGYMillerGrain(NonHarvestingHorizonAggregation,RGYSet,MillerSet)
+      ) * card(NonHarvestingHorizonAggregationStep) +
+      sum(RetailerSet,
+        RGYRetailerGrain(NonHarvestingHorizonAggregation,RGYSet,RetailerSet)
+      ) * card(NonHarvestingHorizonAggregationStep)
+    )
+  ;
 * RGY total purchae
 RGYBalance13(HarvestingHorizonAggregation,RGYSet)..
-  RGYPurchase(HarvestingHorizonAggregation,RGYSet)
-  =e=
-  sum(LocalMarketSet,LocalMarketPrivateTraderRGYGrain(HarvestingHorizonAggregation,LocalMarketSet,RGYSet))
-  +
-  sum(RegionalMarketSet,RegionalMarketPrivateTraderRGYGrain(HarvestingHorizonAggregation,RegionalMarketSet,RGYSet))
+  RGYPurchase(HarvestingHorizonAggregation,RGYSet) =e=
+    sum(LocalMarketSet,
+      LocalMarketPrivateTraderRGYGrain(HarvestingHorizonAggregation,LocalMarketSet,RGYSet)
+    ) +
+    sum(RegionalMarketSet,
+      RegionalMarketPrivateTraderRGYGrain(HarvestingHorizonAggregation,RegionalMarketSet,RGYSet)
+    )
   ;
 
 RGYBalance14(NonHarvestingHorizonAggregation,RGYSet)..
-  RGYPurchase(NonHarvestingHorizonAggregation,RGYSet)
-  =e=
-  sum(LocalMarketSet,LocalMarketPrivateTraderRGYGrain(NonHarvestingHorizonAggregation,LocalMarketSet,RGYSet))
-  +
-  sum(RegionalMarketSet,RegionalMarketPrivateTraderRGYGrain(NonHarvestingHorizonAggregation,RegionalMarketSet,RGYSet))
+  RGYPurchase(NonHarvestingHorizonAggregation,RGYSet) =e=
+    sum(LocalMarketSet,
+      LocalMarketPrivateTraderRGYGrain(NonHarvestingHorizonAggregation,LocalMarketSet,RGYSet)
+    ) +
+    sum(RegionalMarketSet,
+      RegionalMarketPrivateTraderRGYGrain(NonHarvestingHorizonAggregation,RegionalMarketSet,RGYSet)
+    )
   ;
 
-
-*
 * First calculating the total input to the central storage facility
-*
 RGYBalance1(HarvestingHorizonAggregation,RGYSet)..
-  RGYInput(HarvestingHorizonAggregation,RGYSet)
-  =e=
-  sum(LocalMarketSet,LocalMarketPrivateTraderRGYGrain(HarvestingHorizonAggregation,LocalMarketSet,RGYSet))
-  *(1-TransportationDryMatterLossRate)
-  +
-  sum(RegionalMarketSet,RegionalMarketPrivateTraderRGYGrain(HarvestingHorizonAggregation,RegionalMarketSet,RGYSet))
-  *(1-TransportationDryMatterLossRate)
+  RGYInput(HarvestingHorizonAggregation,RGYSet) =e=
+    sum(LocalMarketSet,
+      LocalMarketPrivateTraderRGYGrain(HarvestingHorizonAggregation,LocalMarketSet,RGYSet)
+    ) * (1-TransportationDryMatterLossRate) +
+    sum(RegionalMarketSet,
+      RegionalMarketPrivateTraderRGYGrain(HarvestingHorizonAggregation,RegionalMarketSet,RGYSet)
+    ) * (1-TransportationDryMatterLossRate)
   ;
 
 RGYBalance2(NonHarvestingHorizonAggregation,RGYSet)..
-  RGYInput(NonHarvestingHorizonAggregation,RGYSet)
-  =e=
-  sum(LocalMarketSet,LocalMarketPrivateTraderRGYGrain(NonHarvestingHorizonAggregation,LocalMarketSet,RGYSet))
-  *(1-TransportationDryMatterLossRate)
-  +
-  sum(RegionalMarketSet,RegionalMarketPrivateTraderRGYGrain(NonHarvestingHorizonAggregation,RegionalMarketSet,RGYSet))
-  *(1-TransportationDryMatterLossRate)
+  RGYInput(NonHarvestingHorizonAggregation,RGYSet) =e=
+    sum(LocalMarketSet,
+      LocalMarketPrivateTraderRGYGrain(NonHarvestingHorizonAggregation,LocalMarketSet,RGYSet)
+    ) * (1-TransportationDryMatterLossRate) +
+    sum(RegionalMarketSet,
+      RegionalMarketPrivateTraderRGYGrain(NonHarvestingHorizonAggregation,RegionalMarketSet,RGYSet)
+    ) * (1-TransportationDryMatterLossRate)
   ;
 
-*
 * Doing the accounting for the RGY storage facility
-*
 RGYBalance3(HarvestingHorizonAggregation,RGYSet)..
-  RGYStoredGrain(HarvestingHorizonAggregation,RGYSet)
-  =e=
-  sum(HarvestingHorizonAggregation2
-    $(ord(HarvestingHorizonAggregation2)=ord(HarvestingHorizonAggregation)-1),
-    RGYStoredGrain(HarvestingHorizonAggregation2,RGYSet)
-  -
-  sum(MillerSet,RGYMillerGrain(HarvestingHorizonAggregation2,RGYSet,MillerSet)) *
-    card(HarvestingHorizonAggregationStep)
-  -
-  sum(RetailerSet,RGYRetailerGrain(HarvestingHorizonAggregation2,RGYSet,RetailerSet))
-    *card(HarvestingHorizonAggregationStep)
-    )*(1-(RGYDryMatterLossRate/365)*card(HarvestingHorizonAggregationStep))
-  +
-  RGYInput(HarvestingHorizonAggregation,RGYSet)
-    *card(HarvestingHorizonAggregationStep)
+  RGYStoredGrain(HarvestingHorizonAggregation,RGYSet) =e=
+    sum(HarvestingHorizonAggregation2 $(ord(HarvestingHorizonAggregation2)=ord(HarvestingHorizonAggregation)-1),
+      RGYStoredGrain(HarvestingHorizonAggregation2,RGYSet) -
+      sum(MillerSet,
+        RGYMillerGrain(HarvestingHorizonAggregation2,RGYSet,MillerSet)
+      ) * card(HarvestingHorizonAggregationStep) -
+      sum(RetailerSet,
+        RGYRetailerGrain(HarvestingHorizonAggregation2,RGYSet,RetailerSet)
+      ) * card(HarvestingHorizonAggregationStep)
+    ) * (1-(RGYDryMatterLossRate/365) * card(HarvestingHorizonAggregationStep)) + 
+          RGYInput(HarvestingHorizonAggregation,RGYSet) * card(HarvestingHorizonAggregationStep)
   ;
 
 RGYBalance4(HarvestingHorizonAggregation,RGYSet)..
@@ -182,4 +199,5 @@ Model RGYModel /
 
   RGYBalance13
   RGYBalance14
+  RGYBalance15
   /;
