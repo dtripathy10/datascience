@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+      "file_exclude_patterns": ["*.~*","*.log","*.lst","*.lxi","*.gdx","*.xls",
+          "*.xlsx","*.gpr","working.sublime-workspace"],
+      "path": "sample"
+    },
+     {
+      "file_exclude_patterns": ["*.~*","*.log","*.lst","*.lxi","*.gdx","*.xls",
+          "*.xlsx","*.gpr","working.sublime-workspace"],
+          "folder_exclude_patterns": ["docs"],
+      "path": "docs"
+    },
+    {
+      "file_exclude_patterns": ["*.~*","*.log","*.lst","*.lxi","*.gdx","*.xls",
+          "*.xlsx","*.gpr","working.sublime-workspace","*.markdown"],
+          "folder_exclude_patterns": ["sample","docs"],
+			"path": "/C/Users/Debabrata/Downloads/Project/code/scm-agriculture/working"
+		}
+    
+	]
+}
