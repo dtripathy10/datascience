@@ -5,7 +5,7 @@
       "folder_exclude_patterns": ["bin1"],
 			"file_exclude_patterns": ["*.sublime-workspace","*.gitignore"],
 			"name": "Data Science",
-			"path": "/C/Users/dtripathy/Downloads/Project/datascience"
+			"path": "/C/Users/dtripathy/Downloads/datascience"
 		},
     { 
       "folder_exclude_patterns": ["bin1"],
