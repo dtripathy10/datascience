@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{blindtext}
+\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=10mm,
+ right=10mm,
+ top=10mm,
+ bottom=10mm,
+ }
+ 
+\title{\bf Mathematical Notation} 
+\author {Debabrata Tripathy}
+\date{\today}
+ 
+\usepackage{amsmath,amssymb, amsthm, graphicx, epsfig, fancyhdr}
+
+\usepackage{bm}
+%\usepackage[fleqn]{amsmath}
+
+\usepackage[explicit]{titlesec}
+\usepackage{lipsum}
+\titleformat{\section}
+  {\bfseries}{\thesection}{1em}{\MakeUppercase{#1}}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.2}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Probability Notation}
+
+
+\begin{enumerate}
+
+\item \(\textbf{X:} \  \text{a Random Variable(RV). It is a Set.}\)
+
+\item \(\textbf{Probability of happening k:} \  \mathbb{P}\left ( X={k} \right ) \)
+
+\item \(\textbf{Probability of not happening k:} \  \mathbb{P}\left ( X={k}' \right ) \)
+
+\item \(\textbf{Pdf:} \  \mathbb{P}\left ( X=x \right )\sim P_{X}\left ( x \right )\)
+
+\item \(\textbf{Cdf:} \  \mathbb{P}\left ( X\leq x \right )\sim F_{X}\left ( x \right )\)
+
+\item \(\textbf{Joint Pdf:} \  \mathbb{P}\left (\bigcap_{i = 1}^{n} \left ( X_{i}=x_{i}  \right )\right )\sim P_{ X_{1},X_{2},\cdot \cdot \cdot ,X_{n}}\left ( x_{1},x_{2},\cdot \cdot \cdot ,x_{n}\right )\)
+
+\item \(\textbf{Joint Union:}\  \mathbb{P}\left (\bigcup_{i = 1}^{n} \left ( X_{i}=x_{i}  \right )\right )\sim U_{ X_{1},X_{2},\cdot \cdot \cdot ,X_{n}}\left ( x_{1},x_{2},\cdot \cdot \cdot ,x_{n}\right)\)
+
+\item \(\textbf{Expected Value of X:} \   E\left [ X \right]\)
+
+\item \( \textbf{Expected value of kth power of X:} \   E\left [ X^{k} \right]\)
+
+\item \(\textbf{Variance of X:} \   \sigma ^{2} \left [ X \right]\)
+
+\item \(\textbf{Standard deviation of X:} \   \sigma \left [ X \right]\)
+
+\item \(\textbf{Pdf with given parameter Theta :} \   P_{ X_{1},X_{2},\cdot \cdot \cdot ,X_{n}}\left ( x_{1},x_{2},\cdot \cdot \cdot ,x_{n} ; \Theta _{i} \right )\)
+
+\item \(\textbf{Conditional Probability:} \   P_{ X_{1},X_{2},\cdot \cdot \cdot ,X_{n},Y_{1},Y_{2},\cdot \cdot \cdot ,Y_{n}}\left ( x_{1},x_{2},\cdot \cdot \cdot ,x_{n} \mid y_{1},y_{2},\cdot \cdot \cdot ,y_{n}\right )\)
+
+
+\end{enumerate}
+
+\section*{Formula}
+
+\begin{enumerate}
+
+\item Suppose \(\Omega = \left \{  \text{set of all possible mutually exclusive outcomes} \right \}, E \subseteq \Omega \)
+
+\end{enumerate}
+
+\end{document}
