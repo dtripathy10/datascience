@@ -1,6 +1,7 @@
 *Copyright © 2012 The Board of Trustees of the University of Illinois. All Rights Reserved
 
-$title The main code that integrates all the other code files
+$title "The main code that integrates all the other code files"
+
 $Ontext
 Conversion:
 1 square meter = 0.0001 hectare
@@ -33,7 +34,7 @@ Scalar tcomp, texec, telapsed;
 * Set Declaration: Most of the sets are read from the Excel spreadsheet containing the problem data
 *############################################################################################################
 
-Sets     
+Sets
   SimulationHorizon/1*360/
   HarvestingHorizon(SimulationHorizon)/1*15/
   NonHarvestingHorizon(SimulationHorizon) /16*360/
@@ -76,15 +77,15 @@ $include ScenarioSetup_grains.gms
 * Parameters calculated after the solution of the provision problem
 *#############################################################################################################################
 Parameter
-  Par_ProvisionStorageCost The storage cost for the provision model calcualted after the provision problem solution for feedback
-  Par_ProvisionTransportationCost The transportation cost calculated after the provision model solution for feedback
-  Par_ProvisionStorageCostRateConstrained The storage cost for the provision model calcualted after the provision problem solution for feedback per unit biomass
-  Par_ProvisionStorageCostRate The storage cost for the provision model calcualted after the provision problem solution for feedback per unit biomass
-  Par_ProvisionStorageProcessingCostConstrained The processing cost at the storage facilities for the provision model calcualted after the provision problem solution for feedback
-  Par_ProvisionStorageProcessingCost The processing cost at the storage facilities for the provision model calcualted after the provision problem solution for feedback
-  Par_ProvisionTransportationCostRate The transportation cost calculated after the provision model solution for feedback per unit biomass
-  Par_ProvisionBiomassHandlingCost The total cost of biomass handling for the biomass provision model
-  Par_CentralStorageOutput The total biomass output from a centralized storage facility
+  Par_ProvisionStorageCost "The storage cost for the provision model calcualted after the provision problem solution for feedback"
+  Par_ProvisionTransportationCost "The transportation cost calculated after the provision model solution for feedback"
+  Par_ProvisionStorageCostRateConstrained "The storage cost for the provision model calcualted after the provision problem solution for feedback per unit biomass"
+  Par_ProvisionStorageCostRate "The storage cost for the provision model calcualted after the provision problem solution for feedback per unit biomass"
+  Par_ProvisionStorageProcessingCostConstrained "The processing cost at the storage facilities for the provision model calcualted after the provision problem solution for feedback"
+  Par_ProvisionStorageProcessingCost "The processing cost at the storage facilities for the provision model calcualted after the provision problem solution for feedback"
+  Par_ProvisionTransportationCostRate "The transportation cost calculated after the provision model solution for feedback per unit biomass"
+  Par_ProvisionBiomassHandlingCost "The total cost of biomass handling for the biomass provision model"
+  Par_CentralStorageOutput "The total biomass output from a centralized storage facility"
   ;
 
 *##############################################################################################################
@@ -159,7 +160,7 @@ Solve GrainProvisionModelOptimal using mip maximizing GrainProvisionObjective;
 $include PostOptimizationCalculations.gms
 
 
-Display 
+Display
   FarmLocalMarketTruckTripRequirement.l, HarvestFarmGateLocalMarketGrain.l, HarvestFarmGateRegionalMarketGrain.l,
   LocalMarketTotalGrain.l, HarvestFarmGateLocalMarketGrain.l, LocalCSPLocalMarketGrain.l, RegionalCSPLocalMarketGrain.l,
   FCIInput.l,FCICAPStorageInput.l, FCICoveredStorageInput.l,FCICoveredStoredGrain.l,FCICAPStoredGrain.l,

@@ -1,29 +1,30 @@
 {
 	"folders":
 	[
-		{	
-      "folder_exclude_patterns": ["bin1"],
-			"file_exclude_patterns": ["*.sublime-workspace","*.gitignore"],
-			"name": "Data Science",
-			"path": "/C/Users/dtripathy/Downloads/datascience"
-		},
+		 // {	
+   //     "folder_exclude_patterns": ["bin1"],
+			// "file_exclude_patterns": ["*.sublime-workspace","*.gitignore"],
+		 // 	"name": "Data Science",
+		 // 	"path": "/C/Users/Debabrata/Downloads/datascience"
+		 // },
+  //   { 
+  //     "folder_exclude_patterns": ["bin1"],
+  //     "file_exclude_patterns": ["*.sublime-workspace","*.gitignore"],
+  //     "name": "Desktop",
+  //     "path": "project/desktop"
+  //   },
+  //   { 
+  //     "folder_exclude_patterns": ["bin1"],
+  //     "file_exclude_patterns": ["*.sublime-workspace","*.gitignore"],
+  //     "name": "UTSP Vlab",
+  //     "path": "project/utsp-vlab"
+  //   },
     { 
-      "folder_exclude_patterns": ["bin1"],
-      "file_exclude_patterns": ["*.sublime-workspace","*.gitignore"],
-      "name": "Desktop",
-      "path": "project/desktop"
-    },
-    { 
-      "folder_exclude_patterns": ["bin1"],
-      "file_exclude_patterns": ["*.sublime-workspace","*.gitignore"],
-      "name": "UTSP Vlab",
-      "path": "project/utsp-vlab"
-    },
-    { 
-      "folder_exclude_patterns": ["bin1"],
-      "file_exclude_patterns": ["*.sublime-workspace","*.gitignore"],
+      "folder_exclude_patterns": ["report","bin","output","sample"],
+      "file_exclude_patterns": ["*.sublime-workspace","*.gitignore","*.l*","*.~*","*.gdx",
+        "*.xl*","*.md","*.gpr","*.markdown"],
       "name": "SCM Agriculture",
-      "path": "project/scm-agriculture"
+      "path": "project/scm-agriculture/src"
     }
 	],
 
@@ -38,11 +39,16 @@
         "name": "desktop",
         "cmd": ["project\\desktop\\bin\\build.bat"],
         "working_dir": "$project_path"
+      },
+      {
+        "name": "scm-agriculture",
+        "cmd": ["project\\scm-agriculture\\bin\\build.bat"],
+        "working_dir": "$project_path"
       }
     ],
 
     "settings": {
-  		"color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
+  		//"color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
   		"font_face": "Courier New",
   		"font_size": 12,
   		"line_padding_bottom": 5,
