@@ -50,7 +50,7 @@
     "settings": {
   		//"color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
   		"font_face": "Courier New",
-  		"font_size": 12,
+  		"font_size": 10,
   		"line_padding_bottom": 5,
   		"line_padding_top": 5,
   		"rulers":
@@ -61,7 +61,7 @@
   		"soda_folder_icons": true,
   		"tab_size": 2,
   		"translate_tabs_to_spaces": true,
-  		"theme": "Soda Light 3.sublime-theme"
+  		"theme": "Soda Dark 3.sublime-theme"
       //"theme": "Soda Light.sublime-theme"
 	}
 }

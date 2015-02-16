@@ -1,4 +1,4 @@
-$title This file is used when the user wants to simulate/optimize for a given collection area
+$title "This file is used when the user wants to simulate/optimize for a given collection area"
 *
 * The collection area can be defined in terms of countries or just the total area.
 * For counties, the data will be stored in the database and that data will be used.

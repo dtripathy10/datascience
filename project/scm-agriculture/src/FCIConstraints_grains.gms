@@ -1,9 +1,7 @@
 Positive variables
   FCIPurchase
   ;
-*------------------------------------------------------------------------
-* Constraints related to biomass balance at the central storage facility
-*------------------------------------------------------------------------
+  
 Equations
   FCIBalance1
   FCIBalance2
