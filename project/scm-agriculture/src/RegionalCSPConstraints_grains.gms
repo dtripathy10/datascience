@@ -1,64 +1,64 @@
 *------------------------------------------------------------------------
 * Constraints related to biomass balance at the central storage facility
-*-----------------------------------------------------------------------
+*------------------------------------------------------------------------
 Equations
-  RegionalCSPBalance1
-  RegionalCSPBalance2
-  RegionalCSPBalance3
-  RegionalCSPBalance4
-  RegionalCSPBalance5
-  RegionalCSPBalance6
-  RegionalCSPBalance7
-  RegionalCSPBalance8
-  RegionalCSPBalance9
-  RegionalCSPBalance10
-  RegionalCSPBalance11
-  RegionalCSPBalance12
-  RegionalCSPBalance13
-  RegionalCSPBalance14
-  ;
+                 RegionalCSPBalance1
+                 RegionalCSPBalance2
+                 RegionalCSPBalance3
+                 RegionalCSPBalance4
+                 RegionalCSPBalance5
+                 RegionalCSPBalance6
+                 RegionalCSPBalance7
+                 RegionalCSPBalance8
+                 RegionalCSPBalance9
+                 RegionalCSPBalance10
+                 RegionalCSPBalance11
+                 RegionalCSPBalance12
+                 RegionalCSPBalance13
+                 RegionalCSPBalance14
+                 ;
 
 *
 * First calculating the total input to the central storage facility
 *
-RegionalCSPBalance1(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+RegionalCSPBalance1(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
-                 RegionalCSPInput(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+                 RegionalCSPInput(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                  =e=
-                 ( HarvestFarmGateRegionalCSPGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+                 ( HarvestFarmGateRegionalCSPGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                  )
                  *(1-TransportationDryMatterLossRate);
 
 *
 * Doing the accounting for the centralized storage (input - output balance)
 *
-RegionalCSPBalance2(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
+RegionalCSPBalance2(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                                  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
                                                  and ord(HarvestingHorizonAggregation)=ord(HarvestingHorizonAggregation2)
                                  )..
-                         RegionalCSPStoredGrain(HarvestingHorizonAggregation,FarmNumber,
+                         RegionalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,
                                          RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                          =e=
-                         RegionalCSPInput(HarvestingHorizonAggregation2,FarmNumber,RegionalCSPCenterSet)
+                         RegionalCSPInput(HarvestingHorizonAggregation2,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                          *card(HarvestingHorizonAggregationStep);
 
 
-RegionalCSPBalance3(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
+RegionalCSPBalance3(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                                  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
                                                  and ord(HarvestingHorizonAggregation)>ord(HarvestingHorizonAggregation2)
                                  )..
-                         RegionalCSPStoredGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
+                         RegionalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                          =e=
                          sum(HarvestingHorizonAggregation3
                                  $(ord(HarvestingHorizonAggregation3)=ord(HarvestingHorizonAggregation)-1),
-                                 RegionalCSPStoredGrain(HarvestingHorizonAggregation3,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
+                                 RegionalCSPStoredGrain(HarvestingHorizonAggregation3,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                                  -
                                  sum(LocalMarketSet,
-                                         RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation3,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation2)
+                                         RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation3,DistrictSelected,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation2)
                                  )*card(HarvestingHorizonAggregationStep)
                                  -
-                                 sum(RegionalMarketSet,
-                                         RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation3,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation2)
+                                 sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                         RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation3,DistrictSelected,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation2)
                                  )*card(HarvestingHorizonAggregationStep)
                          )
                          *(1-(RegionalCSPDryMatterLossRate/365)*card(HarvestingHorizonAggregationStep));
@@ -66,17 +66,17 @@ RegionalCSPBalance3(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet
 *
 * Calculating the volume of the biomass contributed by each farm to the central storage facility
 *
-RegionalCSPBalance4(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+RegionalCSPBalance4(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                                  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and Par_FarmPackingDensity(FarmNumber)
+                                                 and Par_FarmPackingDensity(DistrictSelected,FarmNumber)
                                  )..
-                                 RegionalCSPStoredGrainVolume(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+                                 RegionalCSPStoredGrainVolume(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                                  =e=
                                  sum(HarvestingHorizonAggregation2,
-                                         RegionalCSPStoredGrain(HarvestingHorizonAggregation,FarmNumber,
+                                         RegionalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,
                                                                          RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                                  )
-                                 /Par_FarmPackingDensity(FarmNumber);
+                                 /Par_FarmPackingDensity(DistrictSelected,FarmNumber);
 
 *
 * Calculating the total biomass stored at the central storage facility by summing the biomass amount contributed by each farm to the
@@ -86,8 +86,8 @@ RegionalCSPBalance5(HarvestingHorizonAggregation,RegionalCSPCenterSet)
                          $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
                          RegionalCSPStoredGrainTotal(HarvestingHorizonAggregation,RegionalCSPCenterSet)
                          =e=
-                         sum((FarmNumber,HarvestingHorizonAggregation2),
-                                 RegionalCSPStoredGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
+                         sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation2),
+                                 RegionalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                          );
 
 *
@@ -95,8 +95,8 @@ RegionalCSPBalance5(HarvestingHorizonAggregation,RegionalCSPCenterSet)
 *
 RegionalCSPBalance6(HarvestingHorizonAggregation,RegionalCSPCenterSet)
                          $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
-                         sum((FarmNumber),
-                                 RegionalCSPStoredGrainVolume(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+                         sum((DistrictSelected,FarmNumber),
+                                 RegionalCSPStoredGrainVolume(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                          )
                          =l=
                          RegionalCSPFacilityArea(RegionalCSPCenterSet)*RegionalCSPFacilityHeight;
@@ -104,30 +104,30 @@ RegionalCSPBalance6(HarvestingHorizonAggregation,RegionalCSPCenterSet)
 
 * The amount of grain moved to the refinery on a day (tagged by the day it was harvested), must be less
 * that the total biomass delivered to the central storage on the day of tagging!!!! (Confusing explanation)
-RegionalCSPBalance7(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
+RegionalCSPBalance7(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                          $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
                                                  and ord(HarvestingHorizonAggregation)>=ord(HarvestingHorizonAggregation2)
                          )..
                          sum(LocalMarketSet,
-                                 RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation2)
+                                 RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation2)
                          )*card(HarvestingHorizonAggregationStep)
                          +
-                         sum(RegionalMarketSet,
-                                 RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation2)
+                         sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                 RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation2)
                          )*card(HarvestingHorizonAggregationStep)
                          =l=
-                         RegionalCSPStoredGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2);
+                         RegionalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2);
 
-RegionalCSPBalance8(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
+RegionalCSPBalance8(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                     $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
                                                  and ord(HarvestingHorizonAggregation)<ord(HarvestingHorizonAggregation2)
                      )..
                      sum(LocalMarketSet,
-                                 RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation2)
+                                 RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation2)
                      )*card(HarvestingHorizonAggregationStep)
                      +
-                     sum(RegionalMarketSet,
-                                 RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation2)
+                     sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                 RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation2)
                      )*card(HarvestingHorizonAggregationStep)
                     =e=
                     0;
@@ -142,76 +142,76 @@ RegionalCSPBalance8(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet
 RegionalCSPBalance9(RegionalCSPCenterSet).. RegionalCSPFacilityArea(RegionalCSPCenterSet) =l= RegionalCSPFacilityAreaLimit*RegionalCSPFacilitySelector(RegionalCSPCenterSet);
 
 
-RegionalCSPBalance10(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+RegionalCSPBalance10(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
                  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
                                                  and ord(NonHarvestingHorizonAggregation)=1
                  )..
-                 RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+                 RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
                  =e=
                  sum(HarvestingHorizonAggregation2 $(ord(HarvestingHorizonAggregation2)=card(HarvestingHorizonAggregation2)),
-                         RegionalCSPStoredGrain(HarvestingHorizonAggregation2,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+                         RegionalCSPStoredGrain(HarvestingHorizonAggregation2,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
                          -
                          sum(LocalMarketSet,
-                                 RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation2,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
+                                 RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation2,DistrictSelected,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
                          )*card(HarvestingHorizonAggregationStep)
                          -
-                         sum(RegionalMarketSet,
-                                 RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation2,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
+                         sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                 RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation2,DistrictSelected,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
                          )*card(HarvestingHorizonAggregationStep)
                  )
                  *(1-(RegionalCSPDryMatterLossRate/365));
 
 
-RegionalCSPBalance11(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+RegionalCSPBalance11(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
                  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
                                                  and ord(NonHarvestingHorizonAggregation)>1
                  )..
-                 RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+                 RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
                  =e=
                  sum(NonHarvestingHorizonAggregation2
                          $(ord(NonHarvestingHorizonAggregation2)=ord(NonHarvestingHorizonAggregation)-1),
-                         RegionalCSPStoredGrain(NonHarvestingHorizonAggregation2,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+                         RegionalCSPStoredGrain(NonHarvestingHorizonAggregation2,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
                          -
                          sum(LocalMarketSet,
-                                 RegionalCSPLocalMarketGrain(NonHarvestingHorizonAggregation2,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
+                                 RegionalCSPLocalMarketGrain(NonHarvestingHorizonAggregation2,DistrictSelected,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
                          )*card(NonHarvestingHorizonAggregationStep)
                          -
-                         sum(RegionalMarketSet,
-                                 RegionalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation2,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
+                         sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                 RegionalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation2,DistrictSelected,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
                          )*card(NonHarvestingHorizonAggregationStep)
                   )
                  *(1-(RegionalCSPDryMatterLossRate/365));
 
 
 * Amount of biomass moved from storage to refinery must be less than the biomass available for moving
-RegionalCSPBalance12(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+RegionalCSPBalance12(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
                  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
                  )..
                  sum(LocalMarketSet,
-                         RegionalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
+                         RegionalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
                  )*card(NonHarvestingHorizonAggregationStep)
                  +
-                 sum(RegionalMarketSet,
-                         RegionalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
+                 sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
+                         RegionalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
                  )*card(NonHarvestingHorizonAggregationStep)
                  =l=
-                 RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation);
+                 RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation);
 
 
 *
 * Constraint to enforce complete removal of the stored grain from the central storage facilty at the end of the simulation horizon
 *
-RegionalCSPBalance13(RegionalCSPCenterSet,FarmNumber)$((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
+RegionalCSPBalance13(RegionalCSPCenterSet,DistrictSelected,FarmNumber)$((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
                  sum((NonHarvestingHorizonAggregation,HarvestingHorizonAggregation)
                          $(ord(NonHarvestingHorizonAggregation)=card(NonHarvestingHorizonAggregation)),
-                         RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+                         RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
                          -
                          sum(LocalMarketSet,
-                                 RegionalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
+                                 RegionalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
                          )*card(NonHarvestingHorizonAggregationStep)
                          -
-                         sum(RegionalMarketSet,
-                                 RegionalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
+                         sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                 RegionalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
                          )*card(NonHarvestingHorizonAggregationStep)
                  )
                  =g= 0;
@@ -225,25 +225,334 @@ RegionalCSPBalance14(NonHarvestingHorizonAggregation,RegionalCSPCenterSet)
                          $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
                          RegionalCSPStoredGrainTotal(NonHarvestingHorizonAggregation,RegionalCSPCenterSet)
                          =e=
-                         sum((FarmNumber,HarvestingHorizonAggregation),
-                                 RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+                         sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation),
+                                 RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
+                         );
+
+
+$ontext
+
+
+CentralStorageBalance14(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                         $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
+                         CentrallyStoredBiomassTotal(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                         =e=
+                         sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation),
+                                 CentrallyStoredBiomass(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
                          );
 
 
 
+
+CentralStorageBalance15.. sum((HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                                 $(not(CountyStorageLocationCorrelation(CentralizedStorageLocations))
+                                                 or not(FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations))
+                                 ),
+                                 CentralStorageOutputToRefinery(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                         )
+                         =l=
+                         0;
+
+CentralStorageBalance16.. sum((NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
+                                 $(not(CountyStorageLocationCorrelation(CentralizedStorageLocations))
+                                                 or not(FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations))
+                                 ),
+                                 CentralStorageOutputToRefinery(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
+                         )
+                         =l=
+                         0;
+
+
+
+*===========================================================================================
+*===========================================================================================
+* Constraints for the case where biomass processing is done at the storage input
+*===========================================================================================
+*===========================================================================================
+
+
+CentralStorageBalance17(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)=1)..
+                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 =e=
+                 CentralStorageProcessingOutput(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 *card(HarvestingHorizonAggregationStep);
+
+CentralStorageBalance18(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)>1)..
+                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 =e=
+                 sum(HarvestingHorizonAggregation2$(ord(HarvestingHorizonAggregation2)=ord(HarvestingHorizonAggregation)-1),
+                         CentralStorageProcessedBiomass(HarvestingHorizonAggregation2,CentralizedStorageLocations)
+                         -
+                         CentralStorageOutputToRefineryProcessed(HarvestingHorizonAggregation2,CentralizedStorageLocations)
+                         *card(HarvestingHorizonAggregationStep)
+                         -
+                         CentralStorageOutputToRegionalProcessed(HarvestingHorizonAggregation2,CentralizedStorageLocations)
+                         *card(HarvestingHorizonAggregationStep)
+                         +
+                         CentralStorageProcessingOutput(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                         *card(HarvestingHorizonAggregationStep)
+                 )
+                 *(1-(CentralStorageDryMatterLossRate/365)*card(HarvestingHorizonAggregationStep));
+
+
+CentralStorageBalance19(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)>1)..
+                 CentralStorageOutputToRefineryProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 *card(HarvestingHorizonAggregationStep)
+                 =l=
+                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations);
+
+
+CentralStorageBalance20(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
+                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 /CentralStorageProcessingData('BulkDensity')
+                 =l=
+                 CentralStorageFacilityArea(CentralizedStorageLocations)*CentralStorageFacilityHeight;
+
+
+CentralStorageBalance21(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(NonHarvestingHorizonAggregation)=1)..
+                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 =e=
+                 sum(HarvestingHorizonAggregation $(ord(HarvestingHorizonAggregation)=card(HarvestingHorizonAggregation)),
+                         CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                         - CentralStorageOutputToRefineryProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                          *card(HarvestingHorizonAggregationStep)
+                         - CentralStorageOutputToRegionalProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                          *card(HarvestingHorizonAggregationStep)
+                 )
+                 *(1-(CentralStorageDryMatterLossRate/365)*card(HarvestingHorizonAggregationStep));
+
+
+CentralStorageBalance22(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(NonHarvestingHorizonAggregation)>1)..
+                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 =e=
+                 sum(NonHarvestingHorizonAggregation2$(ord(NonHarvestingHorizonAggregation2)=ord(NonHarvestingHorizonAggregation)-1),
+                         CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation2,CentralizedStorageLocations)
+                         -
+                         CentralStorageOutputToRefineryProcessed(NonHarvestingHorizonAggregation2,CentralizedStorageLocations)
+                         *card(NonHarvestingHorizonAggregationStep)
+                         -
+                         CentralStorageOutputToRegionalProcessed(NonHarvestingHorizonAggregation2,CentralizedStorageLocations)
+                         *card(NonHarvestingHorizonAggregationStep)
+                 )
+                 *(1-(CentralStorageDryMatterLossRate/365)*card(NonHarvestingHorizonAggregationStep));
+
+
+CentralStorageBalance23(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
+                 CentralStorageOutputToRefineryProcessed(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 *card(NonHarvestingHorizonAggregationStep)
+                 =l=
+                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations);
+
+
+CentralStorageBalance24(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
+                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 /CentralStorageProcessingData('BulkDensity')
+                 =l=
+                 CentralStorageFacilityArea(CentralizedStorageLocations)*CentralStorageFacilityHeight;
+
+
+CentralStorageBalance25(CentralizedStorageLocations)$(CentralizedStorageSizePredefined)..
+                         CentralStorageFacilityArea(CentralizedStorageLocations) =l= CentralizedStorageSize(CentralizedStorageLocations);
+
+
+*
+* Constraints that enforce a time limit on storage of biomass after it has been harvested and has arrived at the storage facility.
+* This constraint will be used to model scenarios related to perishable biomass (such as sugarcane and Type I energy cane) that must be processed
+* within a certain amount of time.
+*
+CentralStorageBalance26(DistrictSelected,FarmNumber,CentralizedStorageLocations)$(BiomassStorageTimeLimitSelector)..
+                 sum((HarvestingHorizonAggregation,HarvestingHorizonAggregation2)
+                                         $((ord(HarvestingHorizonAggregation)-ord(HarvestingHorizonAggregation2))*card(HarvestingHorizonAggregationStep)
+                                           >
+                                           BiomassStorageTimeLimit),
+                                         CentrallyStoredBiomass(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,
+                                         CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                 ) =l= 0;
+
+CentralStorageBalance27(DistrictSelected,FarmNumber,CentralizedStorageLocations)$(BiomassStorageTimeLimitSelector)..
+                 sum((NonHarvestingHorizonAggregation,HarvestingHorizonAggregation)
+                                         $(ord(NonHarvestingHorizonAggregation)*card(NonHarvestingHorizonAggregationStep)-ord(HarvestingHorizonAggregation)*card(HarvestingHorizonAggregationStep)
+                                           >
+                                           BiomassStorageTimeLimit),
+                                         CentrallyStoredBiomass(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,
+                                         CentralizedStorageLocations,HarvestingHorizonAggregation)
+                 ) =l= 0;
+
+CentralStorageBalance28(HarvestingHorizonAggregation,CountySelect
+ed,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                         $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
+                                                 and ord(HarvestingHorizonAggregation)>=ord(HarvestingHorizonAggregation2) and
+                                 CountyStorageLocationCorrelation(CentralizedStorageLocations)
+                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
+                         )..
+                         CentralStorageOutputToRegional(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                         *card(HarvestingHorizonAggregationStep)
+                         =l=
+                         CentrallyStoredBiomass(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2);
+
+CentralStorageBalance29(HarvestingHorizonAggregation,CountySelect
+ed,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                         $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
+                                                 and ord(HarvestingHorizonAggregation)>=ord(HarvestingHorizonAggregation2) and
+                                 CountyStorageLocationCorrelation(CentralizedStorageLocations)
+                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
+                         )..
+                         CentralStorageOutputToRefinery(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                         *card(HarvestingHorizonAggregationStep)
+                         +
+                         CentralStorageOutputToRegional(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                         *card(HarvestingHorizonAggregationStep)
+                         =l=
+                         CentrallyStoredBiomass(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2);
+
+CentralStorageBalance30(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                    $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
+                                                 and ord(HarvestingHorizonAggregation)<ord(HarvestingHorizonAggregation2)
+                      and CountyStorageLocationCorrelation(CentralizedStorageLocations)
+                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
+                    )..
+                    CentralStorageOutputToRegional(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                    =e=
+                    0;
+
+CentralStorageBalance31(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
+                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
+                                                 and CountyStorageLocationCorrelation(CentralizedStorageLocations)
+                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
+                 )..
+                 CentralStorageOutputToRegional(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
+                 *card(NonHarvestingHorizonAggregationStep)
+                 =l=
+                 CentrallyStoredBiomass(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation);
+
+CentralStorageBalance32(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
+                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
+                                                 and CountyStorageLocationCorrelation(CentralizedStorageLocations)
+                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
+                 )..
+                 CentralStorageOutputToRefinery(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
+                 *card(NonHarvestingHorizonAggregationStep)
+                 +
+                 CentralStorageOutputToRegional(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
+                 *card(NonHarvestingHorizonAggregationStep)
+                 =l=
+                 CentrallyStoredBiomass(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation);
+
+CentralStorageBalance33.. sum((HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                                 $(not(CountyStorageLocationCorrelation(CentralizedStorageLocations))
+                                                 or not(FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations))
+                                 ),
+                                 CentralStorageOutputToRegional(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
+                         )
+                         =l=
+                         0;
+
+CentralStorageBalance34.. sum((NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
+                                 $(not(CountyStorageLocationCorrelation(CentralizedStorageLocations))
+                                                 or not(FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations))
+                                 ),
+                                 CentralStorageOutputToRegional(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
+                         )
+                         =l=
+                         0;
+
+CentralStorageBalance35(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)>1)..
+                 CentralStorageOutputToRegionalProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 *card(HarvestingHorizonAggregationStep)
+                 =l=
+                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations);
+
+CentralStorageBalanc36(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)>1)..
+                 CentralStorageOutputToRefineryProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 *card(HarvestingHorizonAggregationStep)
+                 +
+                 CentralStorageOutputToRegionalProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
+                 *card(HarvestingHorizonAggregationStep)
+                 =l=
+                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations);
+
+CentralStorageBalance37(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
+                 CentralStorageOutputToRegionalProcessed(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 *card(NonHarvestingHorizonAggregationStep)
+                 =l=
+                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations);
+
+CentralStorageBalance38(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
+                 CentralStorageOutputToRefineryProcessed(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 *card(NonHarvestingHorizonAggregationStep)
+                 +
+                 CentralStorageOutputToRegionalProcessed(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
+                 *card(NonHarvestingHorizonAggregationStep)
+                 =l=
+                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations);
+
+Model CentralizedStorageModel /
+                 CentralStorageBalance1
+                 CentralStorageBalance2
+                 CentralStorageBalance3
+                 CentralStorageBalance4
+                 CentralStorageBalance5
+                 CentralStorageBalance6
+                 CentralStorageBalance7
+                 CentralStorageBalance8
+                 CentralStorageBalance9
+                 CentralStorageBalance10
+                 CentralStorageBalance11
+                 CentralStorageBalance12
+                 CentralStorageBalance13
+                 CentralStorageBalance14
+                 CentralStorageBalance15
+                 CentralStorageBalance16
+                 CentralStorageBalance17
+                 CentralStorageBalance18
+                 CentralStorageBalance19
+                 CentralStorageBalance20
+                 CentralStorageBalance21
+                 CentralStorageBalance22
+                 CentralStorageBalance23
+                 CentralStorageBalance24
+                 CentralStorageBalance26
+                 CentralStorageBalance27
+                 CentralStorageBalance28
+                 CentralStorageBalance29
+                 CentralStorageBalance30
+                 CentralStorageBalance31
+                 CentralStorageBalance32
+                 CentralStorageBalance33
+                 CentralStorageBalance34
+                 CentralStorageBalance35
+                 CentralStorageBalance36
+                 CentralStorageBalance37
+                 CentralStorageBalance38
+                 /;
+
+$offtext
+
 Model RegionalCSPModel /
-  RegionalCSPBalance1
-  RegionalCSPBalance2
-  RegionalCSPBalance3
-  RegionalCSPBalance4
-  RegionalCSPBalance5
-  RegionalCSPBalance6
-  RegionalCSPBalance7
-  RegionalCSPBalance8
-  RegionalCSPBalance9
-  RegionalCSPBalance10
-  RegionalCSPBalance11
-  RegionalCSPBalance12
-  RegionalCSPBalance13
-  RegionalCSPBalance14
-  /;
+                 RegionalCSPBalance1
+                 RegionalCSPBalance2
+                 RegionalCSPBalance3
+                 RegionalCSPBalance4
+                 RegionalCSPBalance5
+                 RegionalCSPBalance6
+                 RegionalCSPBalance7
+                 RegionalCSPBalance8
+                 RegionalCSPBalance9
+                 RegionalCSPBalance10
+                 RegionalCSPBalance11
+                 RegionalCSPBalance12
+                 RegionalCSPBalance13
+                 RegionalCSPBalance14
+                 /;

@@ -79,7 +79,7 @@ RGYBalance5(NonHarvestingHorizonAggregation,RGYSet)$(ord(NonHarvestingHorizonAgg
         RGYRetailerGrain(HarvestingHorizonAggregation,RGYSet,RetailerSet)
       ) * card(HarvestingHorizonAggregationStep)
     )*(1-(RGYDryMatterLossRate/365)*card(HarvestingHorizonAggregationStep)) +
-    RGYInput(NonHarvestingHorizonAggregation,RGYSet) * card(NonHarvestingHorizonAggregationStep)
+      RGYInput(NonHarvestingHorizonAggregation,RGYSet) * card(NonHarvestingHorizonAggregationStep)
   ;
 
 RGYBalance6(NonHarvestingHorizonAggregation,RGYSet)$(ord(NonHarvestingHorizonAggregation)>1)..

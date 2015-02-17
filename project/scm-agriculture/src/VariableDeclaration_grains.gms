@@ -1,6 +1,3 @@
-*#############################################################################################################################
-* Variables declaration for CENTRAL STORAGE FACILITIES
-*#############################################################################################################################
 
 Variable 
   GrainProvisionObjective "The second phase objective function"
@@ -11,6 +8,7 @@ Positive variables
   LocalCSPFacilityArea(LocalCSPCenterSet) "Total area of each local CSP facility in square meters"
   LocalCSPStorageCost(LocalCSPCenterSet) "Total cost of grain storage at the local centralized storage facility"
   LocalCSPGrainHandlingCost(LocalCSPCenterSet) "Total cost of the handling of grains related to loading unloading activities at the local centralized storage"
+
   RegionalCSPFacilityArea(RegionalCSPCenterSet) "Total area of each Regional CSP facility in square meters"
   RegionalCSPStorageCost(RegionalCSPCenterSet) "Total cost of grain storage at the Regional centralized storage facility"
   RegionalCSPGrainHandlingCost(RegionalCSPCenterSet) "Total cost of the handling of grains related to loading unloading activities at the Regional centralized storage"
@@ -27,17 +25,17 @@ Binary Variables
 Positive variables
   FarmGateGrainAvailable  "Grain available at the farm gate for removal at any time during the simulation horizon"
 
-  HarvestFarmGateLocalCSPGrain(SimulationHorizon,FarmNumber,LocalCSPCenterSet)
-  HarvestFarmGateRegionalCSPGrain(SimulationHorizon,FarmNumber,RegionalCSPCenterSet)
-  HarvestFarmGateLocalMarketGrain(SimulationHorizon,FarmNumber,LocalMarketSet)
-  HarvestFarmGateRegionalMarketGrain(SimulationHorizon,FarmNumber,RegionalMarketSet)
-  HarvestFarmGateDirectPurchaseGrain(SimulationHorizon,FarmNumber)
+  HarvestFarmGateLocalCSPGrain(SimulationHorizon,DistrictSelected,FarmNumber,LocalCSPCenterSet)
+  HarvestFarmGateRegionalCSPGrain(SimulationHorizon,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
+  HarvestFarmGateLocalMarketGrain(SimulationHorizon,DistrictSelected,FarmNumber,LocalMarketSet)
+  HarvestFarmGateRegionalMarketGrain(SimulationHorizon,DistrictSelected,FarmNumber,RegionalMarketSet)
+  HarvestFarmGateDirectPurchaseGrain(SimulationHorizon,DistrictSelected,FarmNumber)
 
-  HarvestFarmGateLocalCSPGrainVolume(SimulationHorizon,FarmNumber,LocalCSPCenterSet)
-  HarvestFarmGateRegionalCSPGrainVolume(SimulationHorizon,FarmNumber,RegionalCSPCenterSet)
-  HarvestFarmGateRegionalMarketGrainVolume(SimulationHorizon,FarmNumber,RegionalMarketSet)
-  HarvestFarmGateLocalMarketGrainVolume(SimulationHorizon,FarmNumber,LocalMarketSet)
-  HarvestFarmGateDirectPurchaseGrainVolume(SimulationHorizon,FarmNumber)
+  HarvestFarmGateLocalCSPGrainVolume(SimulationHorizon,DistrictSelected,FarmNumber,LocalCSPCenterSet)
+  HarvestFarmGateRegionalCSPGrainVolume(SimulationHorizon,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
+  HarvestFarmGateRegionalMarketGrainVolume(SimulationHorizon,DistrictSelected,FarmNumber,RegionalMarketSet)
+  HarvestFarmGateLocalMarketGrainVolume(SimulationHorizon,DistrictSelected,FarmNumber,LocalMarketSet)
+  HarvestFarmGateDirectPurchaseGrainVolume(SimulationHorizon,DistrictSelected,FarmNumber)
 
   LocalCSPLocalMarketGrain "Total amount of grain that is moved from a particular local CSP to the local market"
   LocalCSPRegionalMarketGrain "Total amount of grain that is moved from a particular local CSP to the regional market"
@@ -96,19 +94,15 @@ Positive variables
   FCICoveredRetailerGrain "Amount of grain removed from the covered storage facility in a particular FCI godown to be sent to a particular retailer"
   FCICoveredPDSGrain "Amount of grain removed from the covered storage facility in a particular FCI godown to be sent to a particular PDS outlet"
   FCICoveredCapacity "The total covered (indoor) storage capacity of a particular FCI godown"
-  FCICAPCapacity The "total CAP storage capacity of a particular FCI godown"
+  FCICAPCapacity "The total CAP storage capacity of a particular FCI godown"
   ;
 
-
-*======================================================================================
-* Declaration of the model variables related to the operation modeled in this file
-*======================================================================================
 Positive variables
-  FarmLocalCSPTruckTripRequirement(SimulationHorizon,TotalFarmNumber,LocalCSPCenterSet,TransportationTypes) "The number of total trips for each farm on each day to move grains from the farm to each local CSP location"
-  FarmRegionalCSPTruckTripRequirement(SimulationHorizon,TotalFarmNumber,RegionalCSPCenterSet,TransportationTypes) "The number of total trips for each farm on each day to move grains from the farm to each Regional CSP location"
+  FarmLocalCSPTruckTripRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalCSPCenterSet,TransportationTypes) "The number of total trips for each farm on each day to move grains from the farm to each local CSP location"
+  FarmRegionalCSPTruckTripRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalCSPCenterSet,TransportationTypes) "The number of total trips for each farm on each day to move grains from the farm to each Regional CSP location"
 
-  FarmLocalMarketTruckTripRequirement(SimulationHorizon,TotalFarmNumber,LocalMarketSet,TransportationTypes) "The number of total trips for each farm on each day to move grains from the farm to each local market location"
-  FarmRegionalMarketTruckTripRequirement(SimulationHorizon,TotalFarmNumber,RegionalMarketSet,TransportationTypes) "The number of total trips for each farm on each day to move grains from the farm to each Regional market location"
+  FarmLocalMarketTruckTripRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalMarketSet,TransportationTypes) "The number of total trips for each farm on each day to move grains from the farm to each local market location"
+  FarmRegionalMarketTruckTripRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalMarketSet,TransportationTypes) "The number of total trips for each farm on each day to move grains from the farm to each Regional market location"
 
   LocalCSPLocalMarketTruckTripRequirement(SimulationHorizon,LocalCSPCenterSet,LocalMarketSet,TransportationTypes) "The number of total trips between each local CSP and local market to move grains on a daily basis"
   LocalCSPRegionalMarketTruckTripRequirement(SimulationHorizon,LocalCSPCenterSet,RegionalMarketSet,TransportationTypes) "The number of total trips between each local CSP and regional market to move grains on a daily basis"
@@ -116,7 +110,7 @@ Positive variables
   RegionalCSPLocalMarketTruckTripRequirement(SimulationHorizon,RegionalCSPCenterSet,LocalMarketSet,TransportationTypes) "The number of total trips between each regional CSP and local market to move grains on a daily basis"
   RegionalCSPRegionalMarketTruckTripRequirement(SimulationHorizon,RegionalCSPCenterSet,RegionalMarketSet,TransportationTypes) "The number of total trips between each regional CSP and regional market to move grains on a daily basis"
 
-  FarmDirectPurchaseTruckTripRequirement(SimulationHorizon,TotalFarmNumber,TransportationTypes) "The number of total trips for each farm on each day to move biomass from the farm to the regional market (includes direct movement from the harvest and movement from on-farm open and covered storage)"
+  FarmDirectPurchaseTruckTripRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,TransportationTypes) "The number of total trips for each farm on each day to move biomass from the farm to the regional market (includes direct movement from the harvest and movement from on-farm open and covered storage)"
 
   LocalMarketRGYTruckTripRequirement(SimulationHorizon,LocalMarketSet,RGYSet,TransportationTypes) "The number of total trips between each local market and each RGY facility to move grains on a daily basis"
   RegionalMarketRGYTruckTripRequirement(SimulationHorizon,RegionalMarketSet,RGYSet,TransportationTypes) "The number of total trips between each regional market and each RGY facility to move grains on a daily basis"
@@ -133,11 +127,11 @@ Positive variables
   ;
 
 Integer variables
-  FarmLocalCSPTruckRequirement(SimulationHorizon,TotalFarmNumber,LocalCSPCenterSet,TransportationTypes) "The number of total trucks for each farm on each day to move grains from the farm to each local CSP location"
-  FarmRegionalCSPTruckRequirement(SimulationHorizon,TotalFarmNumber,RegionalCSPCenterSet,TransportationTypes) "The number of total trucks for each farm on each day to move grains from the farm to each Regional CSP location"
+  FarmLocalCSPTruckRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalCSPCenterSet,TransportationTypes) "The number of total trucks for each farm on each day to move grains from the farm to each local CSP location"
+  FarmRegionalCSPTruckRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalCSPCenterSet,TransportationTypes) "The number of total trucks for each farm on each day to move grains from the farm to each Regional CSP location"
 
-  FarmLocalMarketTruckRequirement(SimulationHorizon,TotalFarmNumber,LocalMarketSet,TransportationTypes) "The number of total trucks for each farm on each day to move grains from the farm to each local market location"
-  FarmRegionalMarketTruckRequirement(SimulationHorizon,TotalFarmNumber,RegionalMarketSet,TransportationTypes) "The number of total trucks for each farm on each day to move grains from the farm to each Regional market location"
+  FarmLocalMarketTruckRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalMarketSet,TransportationTypes) "The number of total trucks for each farm on each day to move grains from the farm to each local market location"
+  FarmRegionalMarketTruckRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalMarketSet,TransportationTypes) "The number of total trucks for each farm on each day to move grains from the farm to each Regional market location"
 
   LocalCSPLocalMarketTruckRequirement(SimulationHorizon,LocalCSPCenterSet,LocalMarketSet,TransportationTypes) "The number of total trucks between each local CSP and local market to move grains on a daily basis"
   LocalCSPRegionalMarketTruckRequirement(SimulationHorizon,LocalCSPCenterSet,RegionalMarketSet,TransportationTypes) "The number of total trucks between each local CSP and regional market to move grains on a daily basis"
@@ -145,7 +139,7 @@ Integer variables
   RegionalCSPLocalMarketTruckRequirement(SimulationHorizon,RegionalCSPCenterSet,LocalMarketSet,TransportationTypes) "The number of total trucks between each regional CSP and local market to move grains on a daily basis"
   RegionalCSPRegionalMarketTruckRequirement(SimulationHorizon,RegionalCSPCenterSet,RegionalMarketSet,TransportationTypes) "The number of total trucks between each regional CSP and regional market to move grains on a daily basis"
 
-  FarmDirectPurchaseTruckRequirement(SimulationHorizon,TotalFarmNumber,TransportationTypes) "The number of total trucks for each farm on each day to move biomass from the farm to the regional market (includes direct movement from the harvest and movement from on-farm open and covered storage)"
+  FarmDirectPurchaseTruckRequirement(SimulationHorizon,DistrictSelected,TotalFarmNumber,TransportationTypes) "The number of total trucks for each farm on each day to move biomass from the farm to the regional market (includes direct movement from the harvest and movement from on-farm open and covered storage)"
 
   LocalMarketRGYTruckRequirement(SimulationHorizon,LocalMarketSet,RGYSet,TransportationTypes) "The number of total trips between each local market and each RGY facility to move grains on a daily basis"
   RegionalMarketRGYTruckRequirement(SimulationHorizon,RegionalMarketSet,RGYSet,TransportationTypes) "The number of total trips between each regional market and each RGY facility to move grains on a daily basis"
@@ -163,49 +157,48 @@ Integer variables
   TransportationFleetSize(TransportationTypes) "The optimized transportation fleet size bounded by MaximumTransportationFleetSize"
   ;
 
-
 * PostCentralStorageProcessingBiomassForm The form of the biomass after processing at the centralized storage facility;
 * Variables corresponding to gunny bags required for transportation. Ideally, these should be defined as integer variables, but they are defined
 * as continuous variable for the sake of computatoinal simplicity.
 *
 Integer variables
-   FarmLocalCSPGunnyBags(SimulationHorizon,TotalFarmNumber,LocalCSPCenterSet) "The number of gunny bags required to transport grains between given different locations"
-   FarmRegionalCSPGunnyBags(SimulationHorizon,TotalFarmNumber,RegionalCSPCenterSet) "The number of gunny bags required to transport grains between given different locations"
+  FarmLocalCSPGunnyBags(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalCSPCenterSet) "The number of gunny bags required to transport grains between given different locations"
+  FarmRegionalCSPGunnyBags(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalCSPCenterSet) "The number of gunny bags required to transport grains between given different locations"
 
-   FarmLocalMarketGunnyBags(SimulationHorizon,TotalFarmNumber,LocalMarketSet) "The number of gunny bags required to transport grains between given different locations"
-   FarmRegionalMarketGunnyBags(SimulationHorizon,TotalFarmNumber,RegionalMarketSet) "The number of gunny bags required to transport grains between given different locations"
+  FarmLocalMarketGunnyBags(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalMarketSet) "The number of gunny bags required to transport grains between given different locations"
+  FarmRegionalMarketGunnyBags(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalMarketSet) "The number of gunny bags required to transport grains between given different locations"
 
-   LocalCSPLocalMarketGunnyBags(SimulationHorizon,LocalCSPCenterSet,LocalMarketSet) "The number of gunny bags required to transport grains between given different locations"
-   LocalCSPRegionalMarketGunnyBags(SimulationHorizon,LocalCSPCenterSet,RegionalMarketSet) "The number of gunny bags required to transport grains between given different locations"
+  LocalCSPLocalMarketGunnyBags(SimulationHorizon,LocalCSPCenterSet,LocalMarketSet) "The number of gunny bags required to transport grains between given different locations"
+  LocalCSPRegionalMarketGunnyBags(SimulationHorizon,LocalCSPCenterSet,RegionalMarketSet) "The number of gunny bags required to transport grains between given different locations"
 
-   RegionalCSPLocalMarketGunnyBags(SimulationHorizon,RegionalCSPCenterSet,LocalMarketSet) "The number of gunny bags required to transport grains between given different locations"
-   RegionalCSPRegionalMarketGunnyBags(SimulationHorizon,RegionalCSPCenterSet,RegionalMarketSet) "The number of gunny bags required to transport grains between given different locations"
+  RegionalCSPLocalMarketGunnyBags(SimulationHorizon,RegionalCSPCenterSet,LocalMarketSet) "The number of gunny bags required to transport grains between given different locations"
+  RegionalCSPRegionalMarketGunnyBags(SimulationHorizon,RegionalCSPCenterSet,RegionalMarketSet) "The number of gunny bags required to transport grains between given different locations"
 
-   FarmDirectPurchaseGunnyBags(SimulationHorizon,TotalFarmNumber) "The number of gunny bags required to transport grains between given different locations"
-   ;
+  FarmDirectPurchaseGunnyBags(SimulationHorizon,DistrictSelected,TotalFarmNumber) "The number of gunny bags required to transport grains between given different locations"
+  ;
 
 *=======================================================================================
 * Declaration of the bounds (if any) on the variables declared above
 *=======================================================================================
-FarmLocalCSPTruckTripRequirement.up(SimulationHorizon,TotalFarmNumber,LocalCSPCenterSet,TransportationTypes) = MaximumTransportationFleetSize;
-FarmRegionalCSPTruckTripRequirement.up(SimulationHorizon,TotalFarmNumber,RegionalCSPCenterSet,TransportationTypes) = MaximumTransportationFleetSize;
-FarmLocalMarketTruckTripRequirement.up(SimulationHorizon,TotalFarmNumber,LocalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
-FarmRegionalMarketTruckTripRequirement.up(SimulationHorizon,TotalFarmNumber,RegionalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
+FarmLocalCSPTruckTripRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalCSPCenterSet,TransportationTypes) = MaximumTransportationFleetSize;
+FarmRegionalCSPTruckTripRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalCSPCenterSet,TransportationTypes) = MaximumTransportationFleetSize;
+FarmLocalMarketTruckTripRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
+FarmRegionalMarketTruckTripRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
 LocalCSPLocalMarketTruckTripRequirement.up(SimulationHorizon,LocalCSPCenterSet,LocalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
 LocalCSPRegionalMarketTruckTripRequirement.up(SimulationHorizon,LocalCSPCenterSet,RegionalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
 RegionalCSPLocalMarketTruckTripRequirement.up(SimulationHorizon,RegionalCSPCenterSet,LocalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
 RegionalCSPRegionalMarketTruckTripRequirement.up(SimulationHorizon,RegionalCSPCenterSet,RegionalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
-FarmDirectPurchaseTruckTripRequirement.up(SimulationHorizon,TotalFarmNumber,TransportationTypes) = MaximumTransportationFleetSize;
+FarmDirectPurchaseTruckTripRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,TransportationTypes) = MaximumTransportationFleetSize;
 
-FarmLocalCSPTruckRequirement.up(SimulationHorizon,TotalFarmNumber,LocalCSPCenterSet,TransportationTypes) = MaximumTransportationFleetSize;
-FarmRegionalCSPTruckRequirement.up(SimulationHorizon,TotalFarmNumber,RegionalCSPCenterSet,TransportationTypes) = MaximumTransportationFleetSize;
-FarmLocalMarketTruckRequirement.up(SimulationHorizon,TotalFarmNumber,LocalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
-FarmRegionalMarketTruckRequirement.up(SimulationHorizon,TotalFarmNumber,RegionalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
+FarmLocalCSPTruckRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalCSPCenterSet,TransportationTypes) = MaximumTransportationFleetSize;
+FarmRegionalCSPTruckRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalCSPCenterSet,TransportationTypes) = MaximumTransportationFleetSize;
+FarmLocalMarketTruckRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
+FarmRegionalMarketTruckRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
 LocalCSPLocalMarketTruckRequirement.up(SimulationHorizon,LocalCSPCenterSet,LocalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
 LocalCSPRegionalMarketTruckRequirement.up(SimulationHorizon,LocalCSPCenterSet,RegionalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
 RegionalCSPLocalMarketTruckRequirement.up(SimulationHorizon,RegionalCSPCenterSet,LocalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
 RegionalCSPRegionalMarketTruckRequirement.up(SimulationHorizon,RegionalCSPCenterSet,RegionalMarketSet,TransportationTypes) = MaximumTransportationFleetSize;
-FarmDirectPurchaseTruckRequirement.up(SimulationHorizon,TotalFarmNumber,TransportationTypes) = MaximumTransportationFleetSize;
+FarmDirectPurchaseTruckRequirement.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,TransportationTypes) = MaximumTransportationFleetSize;
 LocalMarketRGYTruckRequirement.up(SimulationHorizon,LocalMarketSet,RGYSet,TransportationTypes) = MaximumTransportationFleetSize;
 RegionalMarketRGYTruckRequirement.up(SimulationHorizon,RegionalMarketSet,RGYSet,TransportationTypes) = MaximumTransportationFleetSize;
 RegionalMarketFCITruckRequirement.up(SimulationHorizon,RegionalMarketSet,FCIGodownSet,TransportationTypes) = MaximumTransportationFleetSize;
@@ -216,20 +209,17 @@ FCIMillerTruckRequirement.up(SimulationHorizon,FCIGodownSet,MillerSet,Transporta
 FCIRetailerTruckRequirement.up(SimulationHorizon,FCIGodownSet,RetailerSet,TransportationTypes) = MaximumTransportationFleetSize;
 FCIPDSTruckRequirement.up(SimulationHorizon,FCIGodownSet,PDSSet,TransportationTypes) = MaximumTransportationFleetSize;
 
-
 TransportationFleetSize.up(TransportationTypes)=MaximumTransportationFleetSize;
 
-FarmLocalCSPGunnyBags.up(SimulationHorizon,TotalFarmNumber,LocalCSPCenterSet) = 1000;
-FarmRegionalCSPGunnyBags.up(SimulationHorizon,TotalFarmNumber,RegionalCSPCenterSet) = 1000;
-FarmLocalMarketGunnyBags.up(SimulationHorizon,TotalFarmNumber,LocalMarketSet) = 1000;
-FarmRegionalMarketGunnyBags.up(SimulationHorizon,TotalFarmNumber,RegionalMarketSet) = 1000;
+FarmLocalCSPGunnyBags.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalCSPCenterSet) = 1000;
+FarmRegionalCSPGunnyBags.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalCSPCenterSet) = 1000;
+FarmLocalMarketGunnyBags.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,LocalMarketSet) = 1000;
+FarmRegionalMarketGunnyBags.up(SimulationHorizon,DistrictSelected,TotalFarmNumber,RegionalMarketSet) = 1000;
 LocalCSPLocalMarketGunnyBags.up(SimulationHorizon,LocalCSPCenterSet,LocalMarketSet) = 1000;
 LocalCSPRegionalMarketGunnyBags.up(SimulationHorizon,LocalCSPCenterSet,RegionalMarketSet) = 1000;
 RegionalCSPLocalMarketGunnyBags.up(SimulationHorizon,RegionalCSPCenterSet,LocalMarketSet) = 1000;
 RegionalCSPRegionalMarketGunnyBags.up(SimulationHorizon,RegionalCSPCenterSet,RegionalMarketSet) = 1000;
-FarmDirectPurchaseGunnyBags.up(SimulationHorizon,TotalFarmNumber) = 1000;
-
-
+FarmDirectPurchaseGunnyBags.up(SimulationHorizon,DistrictSelected,TotalFarmNumber) = 1000;
 
 *#############################################################################################################################
 * Variables declaration for cost calculation
@@ -282,7 +272,6 @@ Positive variables
 
   TotalFarmIncome "The total income of farmers by selling grains"
   ;
-
 
 Variable
   DummyCost "A dummy variable that is included in the cost function to ensure that proper numbers of variables in the solution are reported that do not have any cost component in the objective function (such as the godown capacity of an already existing FCI godown)"

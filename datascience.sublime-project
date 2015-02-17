@@ -20,7 +20,7 @@
   //     "path": "project/utsp-vlab"
   //   },
     { 
-      "folder_exclude_patterns": ["report","bin","output","sample"],
+      "folder_exclude_patterns": ["report","bin","output","sample","data"],
       "file_exclude_patterns": ["*.sublime-workspace","*.gitignore","*.l*","*.~*","*.gdx",
         "*.xl*","*.md","*.gpr","*.markdown"],
       "name": "SCM Agriculture",
@@ -53,14 +53,15 @@
   		"font_size": 10,
   		"line_padding_bottom": 5,
   		"line_padding_top": 5,
-  		"rulers":
-  		[
-  			100
-  		],
+  		// "rulers":
+  		// [
+  		// 	160
+  		// ],
   		"soda_classic_tabs": true,
   		"soda_folder_icons": true,
   		"tab_size": 2,
-  		"translate_tabs_to_spaces": true,
+    "translate_tabs_to_spaces": true,
+      "detect_indentation": false,
   		"theme": "Soda Dark 3.sublime-theme"
       //"theme": "Soda Light.sublime-theme"
 	}

@@ -23,53 +23,53 @@ Equations
 
 
 
-*================================================================================================================================================================
+*=================================================================================================================================================================
 * Modeling the constraints that calculate the total number of gunny bags required to transport material
 *=================================================================================================================================================================
-GunnyBagConstraint1(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)..
-                 FarmLocalCSPGunnyBags(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
+GunnyBagConstraint1(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet)..
+                 FarmLocalCSPGunnyBags(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet)
                  =g=
-                 HarvestFarmGateLocalCSPGrain(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
+                 HarvestFarmGateLocalCSPGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet)
                  *(1+GrainMoisture(HarvestingHorizonAggregation))
                  * card(HarvestingHorizonAggregationStep)
                  /
                  GunnyBagCapacity
                  ;
 
-GunnyBagConstraint2(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)..
-                 FarmRegionalCSPGunnyBags(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+GunnyBagConstraint2(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)..
+                 FarmRegionalCSPGunnyBags(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                  =g=
-                 HarvestFarmGateRegionalCSPGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+                 HarvestFarmGateRegionalCSPGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                  *(1+GrainMoisture(HarvestingHorizonAggregation))
                  * card(HarvestingHorizonAggregationStep)
                  /
                  GunnyBagCapacity
                  ;
 
-GunnyBagConstraint3(HarvestingHorizonAggregation,FarmNumber,LocalMarketSet)..
-                 FarmLocalMarketGunnyBags(HarvestingHorizonAggregation,FarmNumber,LocalMarketSet)
+GunnyBagConstraint3(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalMarketSet)..
+                 FarmLocalMarketGunnyBags(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalMarketSet)
                  =g=
-                 HarvestFarmGateLocalMarketGrain(HarvestingHorizonAggregation,FarmNumber,LocalMarketSet)
+                 HarvestFarmGateLocalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalMarketSet)
                  *(1+GrainMoisture(HarvestingHorizonAggregation))
                  * card(HarvestingHorizonAggregationStep)
                  /
                  GunnyBagCapacity
                  ;
 
-GunnyBagConstraint4(HarvestingHorizonAggregation,FarmNumber,RegionalMarketSet)..
-                 FarmRegionalMarketGunnyBags(HarvestingHorizonAggregation,FarmNumber,RegionalMarketSet)
+GunnyBagConstraint4(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalMarketSet)$(connectselected(DistrictSelected,RegionalMarketSet))..
+                 FarmRegionalMarketGunnyBags(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalMarketSet)
                  =g=
-                 HarvestFarmGateRegionalMarketGrain(HarvestingHorizonAggregation,FarmNumber,RegionalMarketSet)
+                 HarvestFarmGateRegionalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalMarketSet)
                  *(1+GrainMoisture(HarvestingHorizonAggregation))
                  * card(HarvestingHorizonAggregationStep)
                  /
                  GunnyBagCapacity
                  ;
 
-GunnyBagConstraint5(HarvestingHorizonAggregation,FarmNumber)..
-                 FarmDirectPurchaseGunnyBags(HarvestingHorizonAggregation,FarmNumber)
+GunnyBagConstraint5(HarvestingHorizonAggregation,DistrictSelected,FarmNumber)..
+                 FarmDirectPurchaseGunnyBags(HarvestingHorizonAggregation,DistrictSelected,FarmNumber)
                  =g=
-                 HarvestFarmGateDirectPurchaseGrain(HarvestingHorizonAggregation,FarmNumber)
+                 HarvestFarmGateDirectPurchaseGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber)
                  *(1+GrainMoisture(HarvestingHorizonAggregation))
                  * card(HarvestingHorizonAggregationStep)
                  /
@@ -79,8 +79,8 @@ GunnyBagConstraint5(HarvestingHorizonAggregation,FarmNumber)..
 GunnyBagConstraint6(HarvestingHorizonAggregation,LocalCSPCenterSet,LocalMarketSet)$(not(CentralStorageProcessing))..
                                  LocalCSPLocalMarketGunnyBags(HarvestingHorizonAggregation,LocalCSPCenterSet,LocalMarketSet)
                                  =g=
-                                 sum((FarmNumber,HarvestingHorizonAggregation2),
-                                         LocalCSPLocalMarketGrain(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet,LocalMarketSet,
+                                 sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation2),
+                                         LocalCSPLocalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,LocalMarketSet,
                                                          HarvestingHorizonAggregation2)
                                          *(1+GrainMoisture(HarvestingHorizonAggregation))
                                  )
@@ -92,8 +92,8 @@ GunnyBagConstraint6(HarvestingHorizonAggregation,LocalCSPCenterSet,LocalMarketSe
 GunnyBagConstraint7(HarvestingHorizonAggregation,LocalCSPCenterSet,RegionalMarketSet)$(not(CentralStorageProcessing))..
                                  LocalCSPRegionalMarketGunnyBags(HarvestingHorizonAggregation,LocalCSPCenterSet,RegionalMarketSet)
                                  =g=
-                                 sum((FarmNumber,HarvestingHorizonAggregation2),
-                                         LocalCSPRegionalMarketGrain(HarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet,RegionalMarketSet,
+                                 sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation2)$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                         LocalCSPRegionalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,RegionalMarketSet,
                                                          HarvestingHorizonAggregation2)
                                          *(1+GrainMoisture(HarvestingHorizonAggregation))
                                  )
@@ -106,8 +106,8 @@ GunnyBagConstraint7(HarvestingHorizonAggregation,LocalCSPCenterSet,RegionalMarke
 GunnyBagConstraint8(HarvestingHorizonAggregation,RegionalCSPCenterSet,LocalMarketSet)$(not(CentralStorageProcessing))..
                                  RegionalCSPLocalMarketGunnyBags(HarvestingHorizonAggregation,RegionalCSPCenterSet,LocalMarketSet)
                                  =g=
-                                 sum((FarmNumber,HarvestingHorizonAggregation2),
-                                         RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,
+                                 sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation2),
+                                         RegionalCSPLocalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,
                                                          HarvestingHorizonAggregation2)
                                          *(1+GrainMoisture(HarvestingHorizonAggregation))
                                  )
@@ -119,8 +119,8 @@ GunnyBagConstraint8(HarvestingHorizonAggregation,RegionalCSPCenterSet,LocalMarke
 GunnyBagConstraint9(HarvestingHorizonAggregation,RegionalCSPCenterSet,RegionalMarketSet)$(not(CentralStorageProcessing))..
                                  RegionalCSPRegionalMarketGunnyBags(HarvestingHorizonAggregation,RegionalCSPCenterSet,RegionalMarketSet)
                                  =g=
-                                 sum((FarmNumber,HarvestingHorizonAggregation2),
-                                         RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,
+                                 sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation2)$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                         RegionalCSPRegionalMarketGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,
                                                          HarvestingHorizonAggregation2)
                                          *(1+GrainMoisture(HarvestingHorizonAggregation))
                                  )
@@ -133,10 +133,10 @@ GunnyBagConstraint9(HarvestingHorizonAggregation,RegionalCSPCenterSet,RegionalMa
 * Gunny bag calculations for the non-harvesting horizon
 *
 
-GunnyBagConstraint10(NonHarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)..
-                 FarmLocalCSPGunnyBags(NonHarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
+GunnyBagConstraint10(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet)..
+                 FarmLocalCSPGunnyBags(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet)
                  =g=
-                 HarvestFarmGateLocalCSPGrain(NonHarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet)
+                 HarvestFarmGateLocalCSPGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet)
                  *(1+GrainMoisture(NonHarvestingHorizonAggregation))
                  * card(NonHarvestingHorizonAggregationStep)
                  /
@@ -144,40 +144,40 @@ GunnyBagConstraint10(NonHarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSe
                  ;
 
 
-GunnyBagConstraint11(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)..
-                 FarmRegionalCSPGunnyBags(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+GunnyBagConstraint11(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)..
+                 FarmRegionalCSPGunnyBags(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                  =g=
-                 HarvestFarmGateRegionalCSPGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet)
+                 HarvestFarmGateRegionalCSPGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
                  *(1+GrainMoisture(NonHarvestingHorizonAggregation))
                  * card(NonHarvestingHorizonAggregationStep)
                  /
                  GunnyBagCapacity
                  ;
 
-GunnyBagConstraint12(NonHarvestingHorizonAggregation,FarmNumber,LocalMarketSet)..
-                 FarmLocalMarketGunnyBags(NonHarvestingHorizonAggregation,FarmNumber,LocalMarketSet)
+GunnyBagConstraint12(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalMarketSet)..
+                 FarmLocalMarketGunnyBags(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalMarketSet)
                  =g=
-                 HarvestFarmGateLocalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,LocalMarketSet)
+                 HarvestFarmGateLocalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalMarketSet)
                  *(1+GrainMoisture(NonHarvestingHorizonAggregation))
                  * card(NonHarvestingHorizonAggregationStep)
                  /
                  GunnyBagCapacity
                  ;
 
-GunnyBagConstraint13(NonHarvestingHorizonAggregation,FarmNumber,RegionalMarketSet)..
-                 FarmRegionalMarketGunnyBags(NonHarvestingHorizonAggregation,FarmNumber,RegionalMarketSet)
+GunnyBagConstraint13(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalMarketSet)$(connectselected(DistrictSelected,RegionalMarketSet))..
+                 FarmRegionalMarketGunnyBags(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalMarketSet)
                  =g=
-                 HarvestFarmGateRegionalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalMarketSet)
+                 HarvestFarmGateRegionalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalMarketSet)
                  *(1+GrainMoisture(NonHarvestingHorizonAggregation))
                  * card(NonHarvestingHorizonAggregationStep)
                  /
                  GunnyBagCapacity
                  ;
 
-GunnyBagConstraint14(NonHarvestingHorizonAggregation,FarmNumber)..
-                 FarmDirectPurchaseGunnyBags(NonHarvestingHorizonAggregation,FarmNumber)
+GunnyBagConstraint14(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber)..
+                 FarmDirectPurchaseGunnyBags(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber)
                  =g=
-                 HarvestFarmGateDirectPurchaseGrain(NonHarvestingHorizonAggregation,FarmNumber)
+                 HarvestFarmGateDirectPurchaseGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber)
                  *(1+GrainMoisture(NonHarvestingHorizonAggregation))
                  * card(NonHarvestingHorizonAggregationStep)
                  /
@@ -187,8 +187,8 @@ GunnyBagConstraint14(NonHarvestingHorizonAggregation,FarmNumber)..
 GunnyBagConstraint15(NonHarvestingHorizonAggregation,LocalCSPCenterSet,LocalMarketSet)$(not(CentralStorageProcessing))..
                                  LocalCSPLocalMarketGunnyBags(NonHarvestingHorizonAggregation,LocalCSPCenterSet,LocalMarketSet)
                                  =g=
-                                 sum((FarmNumber,HarvestingHorizonAggregation),
-                                         LocalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet,LocalMarketSet,
+                                 sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation),
+                                         LocalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,LocalMarketSet,
                                                          HarvestingHorizonAggregation)
                                          *(1+GrainMoisture(NonHarvestingHorizonAggregation))
                                  )
@@ -200,8 +200,8 @@ GunnyBagConstraint15(NonHarvestingHorizonAggregation,LocalCSPCenterSet,LocalMark
 GunnyBagConstraint16(NonHarvestingHorizonAggregation,LocalCSPCenterSet,RegionalMarketSet)$(not(CentralStorageProcessing))..
                                  LocalCSPRegionalMarketGunnyBags(NonHarvestingHorizonAggregation,LocalCSPCenterSet,RegionalMarketSet)
                                  =g=
-                                 sum((FarmNumber,HarvestingHorizonAggregation),
-                                         LocalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,LocalCSPCenterSet,RegionalMarketSet,
+                                 sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation)$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                         LocalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,RegionalMarketSet,
                                                          HarvestingHorizonAggregation)
                                          *(1+GrainMoisture(NonHarvestingHorizonAggregation))
                                  )
@@ -214,8 +214,8 @@ GunnyBagConstraint16(NonHarvestingHorizonAggregation,LocalCSPCenterSet,RegionalM
 GunnyBagConstraint17(NonHarvestingHorizonAggregation,RegionalCSPCenterSet,LocalMarketSet)$(not(CentralStorageProcessing))..
                                  RegionalCSPLocalMarketGunnyBags(NonHarvestingHorizonAggregation,RegionalCSPCenterSet,LocalMarketSet)
                                  =g=
-                                 sum((FarmNumber,HarvestingHorizonAggregation),
-                                         RegionalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,
+                                 sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation),
+                                         RegionalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,LocalMarketSet,
                                                          HarvestingHorizonAggregation)
                                          *(1+GrainMoisture(NonHarvestingHorizonAggregation))
                                  )
@@ -227,8 +227,8 @@ GunnyBagConstraint17(NonHarvestingHorizonAggregation,RegionalCSPCenterSet,LocalM
 GunnyBagConstraint18(NonHarvestingHorizonAggregation,RegionalCSPCenterSet,RegionalMarketSet)$(not(CentralStorageProcessing))..
                                  RegionalCSPRegionalMarketGunnyBags(NonHarvestingHorizonAggregation,RegionalCSPCenterSet,RegionalMarketSet)
                                  =g=
-                                 sum((FarmNumber,HarvestingHorizonAggregation),
-                                         RegionalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,
+                                 sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation)$(connectselected(DistrictSelected,RegionalMarketSet)),
+                                         RegionalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,RegionalMarketSet,
                                                          HarvestingHorizonAggregation)
                                          *(1+GrainMoisture(NonHarvestingHorizonAggregation))
                                  )
