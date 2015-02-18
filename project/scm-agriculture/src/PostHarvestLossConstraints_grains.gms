@@ -1,12 +1,15 @@
 * This file includes the constraints on post harvest losses that may be included in the model
 
 Variables
-         LocalMarket_GrainDelivered Total grain delivered at the local market from all possible sources
-         RegionalMarket_GrainDelivered Total grain delivered at the regional market from all possible sources
-         FarmGate_GrainDelivered Total grain delivered (purchased) at the farm gate from all possible sources
-         TotalGrainDelivered The total grain delivered to all possible markets
-         TotalPHLLoss The total post harvest loss in the supply chain in percentage
-         ;
+  LocalMarket_GrainDelivered Total grain delivered at the local market from all possible sources
+  RegionalMarket_GrainDelivered Total grain delivered at the regional market from all possible sources
+  FarmGate_GrainDelivered Total grain delivered (purchased) at the farm gate from all possible sources
+  TotalGrainDelivered The total grain delivered to all possible markets
+  TotalPHLLoss The total post harvest loss in the supply chain in percentage
+
+
+  Miller_Transportation_Loss
+  ;
 
 Equations
          PHLConstraint1
@@ -20,6 +23,55 @@ Equations
          PHLConstraint9
          ;
 
+*miller loss
+
+PHLConstraint10..
+  Miller_Transportation_Loss =e=
+  sum((HarvestingHorizonAggregation,MillerSet), MillerPurchase(HarvestingHorizonAggregation,MillerGodownSet)*card(HarvestingHorizonAggregationStep)) +
+    sum((NonHarvestingHorizonAggregation,MillerGodownSet), MillerPurchase(NonHarvestingHorizonAggregation,MillerSet)*card(NonHarvestingHorizonAggregationStep))
+  -
+  sum((HarvestingHorizonAggregation,FCIGodownSet), FCIInput(HarvestingHorizonAggregation,FCIGodownSet)*card(HarvestingHorizonAggregationStep)) +
+  sum((NonHarvestingHorizonAggregation,FCIGodownSet), FCIInput(NonHarvestingHorizonAggregation,FCIGodownSet)*card(NonHarvestingHorizonAggregationStep))
+  ;
+
+* retail loss
+
+* pdu loss
+PHLConstraint10..
+  FCI_Transportation_Loss =e=
+  sum((HarvestingHorizonAggregation,FCIGodownSet), FCIPurchase(HarvestingHorizonAggregation,FCIGodownSet)*card(HarvestingHorizonAggregationStep)) +
+    sum((NonHarvestingHorizonAggregation,FCIGodownSet), FCIPurchase(NonHarvestingHorizonAggregation,FCIGodownSet)*card(NonHarvestingHorizonAggregationStep))
+  -
+  sum((HarvestingHorizonAggregation,FCIGodownSet), FCIInput(HarvestingHorizonAggregation,FCIGodownSet)*card(HarvestingHorizonAggregationStep)) +
+  sum((NonHarvestingHorizonAggregation,FCIGodownSet), FCIInput(NonHarvestingHorizonAggregation,FCIGodownSet)*card(NonHarvestingHorizonAggregationStep))
+  ;
+
+PHLConstraint11..
+  RGY_Transportation_Loss =e=
+    sum((HarvestingHorizonAggregation,RGYSet), 
+      RGYPurchase(HarvestingHorizonAggregation,RGYSet)*card(HarvestingHorizonAggregationStep)
+    ) +
+    sum((NonHarvestingHorizonAggregation,RGYSet), 
+      RGYPurchase(NonHarvestingHorizonAggregation,RGYSet)*card(NonHarvestingHorizonAggregationStep)
+    ) -
+    sum((HarvestingHorizonAggregation,RGYSet), 
+      RGYInput(HarvestingHorizonAggregation,RGYSet)*card(HarvestingHorizonAggregationStep)
+    ) +
+    sum((NonHarvestingHorizonAggregation,RGYSet), 
+      RGYInput(NonHarvestingHorizonAggregation,RGYSet)*card(NonHarvestingHorizonAggregationStep)
+    )
+  ;
+
+PHLConstraint12..
+  RGY_Storage_Loss =e=
+    sum((HarvestingHorizonAggregation,RGYSet), 
+      RGYInput(HarvestingHorizonAggregation,RGYSet)*card(HarvestingHorizonAggregationStep)
+    ) +
+    sum((NonHarvestingHorizonAggregation,RGYSet), 
+      RGYInput(NonHarvestingHorizonAggregation,RGYSet)*card(NonHarvestingHorizonAggregationStep)
+    ) -
+    RGYTotalOutput
+  ;
 PHLConstraint1(HarvestingHorizonAggregation,LocalMarketSet)..
                          LocalMarket_GrainDelivered(HarvestingHorizonAggregation,LocalMarketSet) =e=
                          sum((DistrictSelected,FarmNumber),

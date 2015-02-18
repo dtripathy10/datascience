@@ -61,8 +61,8 @@
   		"soda_folder_icons": true,
   		"tab_size": 2,
     "translate_tabs_to_spaces": true,
-      "detect_indentation": false,
-  		"theme": "Soda Dark 3.sublime-theme"
+      "detect_indentation": false
+  		//"theme": "Soda Dark 3.sublime-theme"
       //"theme": "Soda Light.sublime-theme"
 	}
 }
