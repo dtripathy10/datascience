@@ -14,4 +14,4 @@
 
 ##### Windows command
 
-+ `set HTTP_PROXY=http://debabratatripathy:debu!linux@netmon.iitb.ac.in:80`
++ `set HTTP_PROXY=http://debabratatripathy:xyz@netmon.iitb.ac.in:80`
