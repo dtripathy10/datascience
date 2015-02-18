@@ -1,47 +1,33 @@
-*------------------------------------------------------------------------
-* Constraints related to biomass balance at the central storage facility
-*------------------------------------------------------------------------
+
 Equations
-                 RegionalCSPBalance1
-                 RegionalCSPBalance2
-                 RegionalCSPBalance3
-                 RegionalCSPBalance4
-                 RegionalCSPBalance5
-                 RegionalCSPBalance6
-                 RegionalCSPBalance7
-                 RegionalCSPBalance8
-                 RegionalCSPBalance9
-                 RegionalCSPBalance10
-                 RegionalCSPBalance11
-                 RegionalCSPBalance12
-                 RegionalCSPBalance13
-                 RegionalCSPBalance14
-                 ;
+  RegionalCSPBalance1 "calculating the total input to the central storage facility"
+  RegionalCSPBalance2
+  RegionalCSPBalance3
+  RegionalCSPBalance4
+  RegionalCSPBalance5
+  RegionalCSPBalance6
+  RegionalCSPBalance7
+  RegionalCSPBalance8
+  RegionalCSPBalance9
+  RegionalCSPBalance10
+  RegionalCSPBalance11
+  RegionalCSPBalance12
+  RegionalCSPBalance13
+  RegionalCSPBalance14
+  ;
 
-*
-* First calculating the total input to the central storage facility
-*
-RegionalCSPBalance1(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
-                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
-                 RegionalCSPInput(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
-                 =e=
-                 ( HarvestFarmGateRegionalCSPGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
-                 )
-                 *(1-TransportationDryMatterLossRate);
+RegionalCSPBalance1(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet) $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
+  RegionalCSPInput(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet) =e=
+    HarvestFarmGateRegionalCSPGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet) * (1-TransportationDryMatterLossRate)
+  ;
 
-*
-* Doing the accounting for the centralized storage (input - output balance)
-*
 RegionalCSPBalance2(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
-                                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and ord(HarvestingHorizonAggregation)=ord(HarvestingHorizonAggregation2)
-                                 )..
-                         RegionalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,
-                                         RegionalCSPCenterSet,HarvestingHorizonAggregation2)
-                         =e=
-                         RegionalCSPInput(HarvestingHorizonAggregation2,DistrictSelected,FarmNumber,RegionalCSPCenterSet)
-                         *card(HarvestingHorizonAggregationStep);
-
+  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
+    and ord(HarvestingHorizonAggregation) = ord(HarvestingHorizonAggregation2)
+  )..
+    RegionalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2) =e=
+      RegionalCSPInput(HarvestingHorizonAggregation2,DistrictSelected,FarmNumber,RegionalCSPCenterSet) * card(HarvestingHorizonAggregationStep)
+  ;
 
 RegionalCSPBalance3(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation2)
                                  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
@@ -229,330 +215,19 @@ RegionalCSPBalance14(NonHarvestingHorizonAggregation,RegionalCSPCenterSet)
                                  RegionalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,RegionalCSPCenterSet,HarvestingHorizonAggregation)
                          );
 
-
-$ontext
-
-
-CentralStorageBalance14(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                         $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
-                         CentrallyStoredBiomassTotal(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                         =e=
-                         sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation),
-                                 CentrallyStoredBiomass(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                         );
-
-
-
-
-CentralStorageBalance15.. sum((HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                                 $(not(CountyStorageLocationCorrelation(CentralizedStorageLocations))
-                                                 or not(FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations))
-                                 ),
-                                 CentralStorageOutputToRefinery(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                         )
-                         =l=
-                         0;
-
-CentralStorageBalance16.. sum((NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                                 $(not(CountyStorageLocationCorrelation(CentralizedStorageLocations))
-                                                 or not(FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations))
-                                 ),
-                                 CentralStorageOutputToRefinery(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                         )
-                         =l=
-                         0;
-
-
-
-*===========================================================================================
-*===========================================================================================
-* Constraints for the case where biomass processing is done at the storage input
-*===========================================================================================
-*===========================================================================================
-
-
-CentralStorageBalance17(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)=1)..
-                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 =e=
-                 CentralStorageProcessingOutput(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 *card(HarvestingHorizonAggregationStep);
-
-CentralStorageBalance18(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)>1)..
-                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 =e=
-                 sum(HarvestingHorizonAggregation2$(ord(HarvestingHorizonAggregation2)=ord(HarvestingHorizonAggregation)-1),
-                         CentralStorageProcessedBiomass(HarvestingHorizonAggregation2,CentralizedStorageLocations)
-                         -
-                         CentralStorageOutputToRefineryProcessed(HarvestingHorizonAggregation2,CentralizedStorageLocations)
-                         *card(HarvestingHorizonAggregationStep)
-                         -
-                         CentralStorageOutputToRegionalProcessed(HarvestingHorizonAggregation2,CentralizedStorageLocations)
-                         *card(HarvestingHorizonAggregationStep)
-                         +
-                         CentralStorageProcessingOutput(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                         *card(HarvestingHorizonAggregationStep)
-                 )
-                 *(1-(CentralStorageDryMatterLossRate/365)*card(HarvestingHorizonAggregationStep));
-
-
-CentralStorageBalance19(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)>1)..
-                 CentralStorageOutputToRefineryProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 *card(HarvestingHorizonAggregationStep)
-                 =l=
-                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations);
-
-
-CentralStorageBalance20(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
-                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 /CentralStorageProcessingData('BulkDensity')
-                 =l=
-                 CentralStorageFacilityArea(CentralizedStorageLocations)*CentralStorageFacilityHeight;
-
-
-CentralStorageBalance21(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(NonHarvestingHorizonAggregation)=1)..
-                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 =e=
-                 sum(HarvestingHorizonAggregation $(ord(HarvestingHorizonAggregation)=card(HarvestingHorizonAggregation)),
-                         CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                         - CentralStorageOutputToRefineryProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                          *card(HarvestingHorizonAggregationStep)
-                         - CentralStorageOutputToRegionalProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                          *card(HarvestingHorizonAggregationStep)
-                 )
-                 *(1-(CentralStorageDryMatterLossRate/365)*card(HarvestingHorizonAggregationStep));
-
-
-CentralStorageBalance22(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(NonHarvestingHorizonAggregation)>1)..
-                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 =e=
-                 sum(NonHarvestingHorizonAggregation2$(ord(NonHarvestingHorizonAggregation2)=ord(NonHarvestingHorizonAggregation)-1),
-                         CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation2,CentralizedStorageLocations)
-                         -
-                         CentralStorageOutputToRefineryProcessed(NonHarvestingHorizonAggregation2,CentralizedStorageLocations)
-                         *card(NonHarvestingHorizonAggregationStep)
-                         -
-                         CentralStorageOutputToRegionalProcessed(NonHarvestingHorizonAggregation2,CentralizedStorageLocations)
-                         *card(NonHarvestingHorizonAggregationStep)
-                 )
-                 *(1-(CentralStorageDryMatterLossRate/365)*card(NonHarvestingHorizonAggregationStep));
-
-
-CentralStorageBalance23(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
-                 CentralStorageOutputToRefineryProcessed(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 *card(NonHarvestingHorizonAggregationStep)
-                 =l=
-                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations);
-
-
-CentralStorageBalance24(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
-                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 /CentralStorageProcessingData('BulkDensity')
-                 =l=
-                 CentralStorageFacilityArea(CentralizedStorageLocations)*CentralStorageFacilityHeight;
-
-
-CentralStorageBalance25(CentralizedStorageLocations)$(CentralizedStorageSizePredefined)..
-                         CentralStorageFacilityArea(CentralizedStorageLocations) =l= CentralizedStorageSize(CentralizedStorageLocations);
-
-
-*
-* Constraints that enforce a time limit on storage of biomass after it has been harvested and has arrived at the storage facility.
-* This constraint will be used to model scenarios related to perishable biomass (such as sugarcane and Type I energy cane) that must be processed
-* within a certain amount of time.
-*
-CentralStorageBalance26(DistrictSelected,FarmNumber,CentralizedStorageLocations)$(BiomassStorageTimeLimitSelector)..
-                 sum((HarvestingHorizonAggregation,HarvestingHorizonAggregation2)
-                                         $((ord(HarvestingHorizonAggregation)-ord(HarvestingHorizonAggregation2))*card(HarvestingHorizonAggregationStep)
-                                           >
-                                           BiomassStorageTimeLimit),
-                                         CentrallyStoredBiomass(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,
-                                         CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                 ) =l= 0;
-
-CentralStorageBalance27(DistrictSelected,FarmNumber,CentralizedStorageLocations)$(BiomassStorageTimeLimitSelector)..
-                 sum((NonHarvestingHorizonAggregation,HarvestingHorizonAggregation)
-                                         $(ord(NonHarvestingHorizonAggregation)*card(NonHarvestingHorizonAggregationStep)-ord(HarvestingHorizonAggregation)*card(HarvestingHorizonAggregationStep)
-                                           >
-                                           BiomassStorageTimeLimit),
-                                         CentrallyStoredBiomass(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,
-                                         CentralizedStorageLocations,HarvestingHorizonAggregation)
-                 ) =l= 0;
-
-CentralStorageBalance28(HarvestingHorizonAggregation,CountySelect
-ed,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                         $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and ord(HarvestingHorizonAggregation)>=ord(HarvestingHorizonAggregation2) and
-                                 CountyStorageLocationCorrelation(CentralizedStorageLocations)
-                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
-                         )..
-                         CentralStorageOutputToRegional(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                         *card(HarvestingHorizonAggregationStep)
-                         =l=
-                         CentrallyStoredBiomass(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2);
-
-CentralStorageBalance29(HarvestingHorizonAggregation,CountySelect
-ed,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                         $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and ord(HarvestingHorizonAggregation)>=ord(HarvestingHorizonAggregation2) and
-                                 CountyStorageLocationCorrelation(CentralizedStorageLocations)
-                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
-                         )..
-                         CentralStorageOutputToRefinery(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                         *card(HarvestingHorizonAggregationStep)
-                         +
-                         CentralStorageOutputToRegional(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                         *card(HarvestingHorizonAggregationStep)
-                         =l=
-                         CentrallyStoredBiomass(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2);
-
-CentralStorageBalance30(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                    $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and ord(HarvestingHorizonAggregation)<ord(HarvestingHorizonAggregation2)
-                      and CountyStorageLocationCorrelation(CentralizedStorageLocations)
-                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
-                    )..
-                    CentralStorageOutputToRegional(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                    =e=
-                    0;
-
-CentralStorageBalance31(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and CountyStorageLocationCorrelation(CentralizedStorageLocations)
-                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
-                 )..
-                 CentralStorageOutputToRegional(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                 *card(NonHarvestingHorizonAggregationStep)
-                 =l=
-                 CentrallyStoredBiomass(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation);
-
-CentralStorageBalance32(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and CountyStorageLocationCorrelation(CentralizedStorageLocations)
-                                                 and FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations)
-                 )..
-                 CentralStorageOutputToRefinery(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                 *card(NonHarvestingHorizonAggregationStep)
-                 +
-                 CentralStorageOutputToRegional(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                 *card(NonHarvestingHorizonAggregationStep)
-                 =l=
-                 CentrallyStoredBiomass(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation);
-
-CentralStorageBalance33.. sum((HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                                 $(not(CountyStorageLocationCorrelation(CentralizedStorageLocations))
-                                                 or not(FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations))
-                                 ),
-                                 CentralStorageOutputToRegional(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation2)
-                         )
-                         =l=
-                         0;
-
-CentralStorageBalance34.. sum((NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                                 $(not(CountyStorageLocationCorrelation(CentralizedStorageLocations))
-                                                 or not(FarmStorageLocationCorrelation(DistrictSelected,FarmNumber,CentralizedStorageLocations))
-                                 ),
-                                 CentralStorageOutputToRegional(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,CentralizedStorageLocations,HarvestingHorizonAggregation)
-                         )
-                         =l=
-                         0;
-
-CentralStorageBalance35(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)>1)..
-                 CentralStorageOutputToRegionalProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 *card(HarvestingHorizonAggregationStep)
-                 =l=
-                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations);
-
-CentralStorageBalanc36(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing and ord(HarvestingHorizonAggregation)>1)..
-                 CentralStorageOutputToRefineryProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 *card(HarvestingHorizonAggregationStep)
-                 +
-                 CentralStorageOutputToRegionalProcessed(HarvestingHorizonAggregation,CentralizedStorageLocations)
-                 *card(HarvestingHorizonAggregationStep)
-                 =l=
-                 CentralStorageProcessedBiomass(HarvestingHorizonAggregation,CentralizedStorageLocations);
-
-CentralStorageBalance37(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
-                 CentralStorageOutputToRegionalProcessed(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 *card(NonHarvestingHorizonAggregationStep)
-                 =l=
-                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations);
-
-CentralStorageBalance38(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 $(CentralStorageProcessing and CentralStorageInputProcessing)..
-                 CentralStorageOutputToRefineryProcessed(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 *card(NonHarvestingHorizonAggregationStep)
-                 +
-                 CentralStorageOutputToRegionalProcessed(NonHarvestingHorizonAggregation,CentralizedStorageLocations)
-                 *card(NonHarvestingHorizonAggregationStep)
-                 =l=
-                 CentralStorageProcessedBiomass(NonHarvestingHorizonAggregation,CentralizedStorageLocations);
-
-Model CentralizedStorageModel /
-                 CentralStorageBalance1
-                 CentralStorageBalance2
-                 CentralStorageBalance3
-                 CentralStorageBalance4
-                 CentralStorageBalance5
-                 CentralStorageBalance6
-                 CentralStorageBalance7
-                 CentralStorageBalance8
-                 CentralStorageBalance9
-                 CentralStorageBalance10
-                 CentralStorageBalance11
-                 CentralStorageBalance12
-                 CentralStorageBalance13
-                 CentralStorageBalance14
-                 CentralStorageBalance15
-                 CentralStorageBalance16
-                 CentralStorageBalance17
-                 CentralStorageBalance18
-                 CentralStorageBalance19
-                 CentralStorageBalance20
-                 CentralStorageBalance21
-                 CentralStorageBalance22
-                 CentralStorageBalance23
-                 CentralStorageBalance24
-                 CentralStorageBalance26
-                 CentralStorageBalance27
-                 CentralStorageBalance28
-                 CentralStorageBalance29
-                 CentralStorageBalance30
-                 CentralStorageBalance31
-                 CentralStorageBalance32
-                 CentralStorageBalance33
-                 CentralStorageBalance34
-                 CentralStorageBalance35
-                 CentralStorageBalance36
-                 CentralStorageBalance37
-                 CentralStorageBalance38
-                 /;
-
-$offtext
-
 Model RegionalCSPModel /
-                 RegionalCSPBalance1
-                 RegionalCSPBalance2
-                 RegionalCSPBalance3
-                 RegionalCSPBalance4
-                 RegionalCSPBalance5
-                 RegionalCSPBalance6
-                 RegionalCSPBalance7
-                 RegionalCSPBalance8
-                 RegionalCSPBalance9
-                 RegionalCSPBalance10
-                 RegionalCSPBalance11
-                 RegionalCSPBalance12
-                 RegionalCSPBalance13
-                 RegionalCSPBalance14
-                 /;
+  RegionalCSPBalance1
+  RegionalCSPBalance2
+  RegionalCSPBalance3
+  RegionalCSPBalance4
+  RegionalCSPBalance5
+  RegionalCSPBalance6
+  RegionalCSPBalance7
+  RegionalCSPBalance8
+  RegionalCSPBalance9
+  RegionalCSPBalance10
+  RegionalCSPBalance11
+  RegionalCSPBalance12
+  RegionalCSPBalance13
+  RegionalCSPBalance14
+  /;

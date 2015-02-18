@@ -1,8 +1,8 @@
 :: It contains the necessary plugins of sublime text
 
-PATH=%PATH%;C:\Users\Debabrata\AppData\Local\Programs\Git\bin
+PATH=%PATH%;C:\Program Files (x86)\Git\bin
 
-cd "C:\Users\Debabrata\Downloads\Apps\Sublime Text 2.0.2 x64\Data\Packages"
+cd "C:\Users\ADMIN\AppData\Roaming\Sublime Text 2\Packages"
 
 :: Install soda-theme
 git clone https://github.com/buymeasoda/soda-theme/ "Theme - Soda"
