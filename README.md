@@ -15,3 +15,5 @@
 ##### Windows command
 
 + `set HTTP_PROXY=http://debabratatripathy:xyz@netmon.iitb.ac.in:80`
+
++ `echo %HTTP_PROXY%`
