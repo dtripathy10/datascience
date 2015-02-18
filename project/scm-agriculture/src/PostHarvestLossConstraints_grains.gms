@@ -9,6 +9,10 @@ Variables
 
 
   Miller_Transportation_Loss
+  Retail_Transportation_Loss 
+  RGY_Transportation_Loss 
+  TPDS_Transportation_Loss 
+  FCI_Transportation_Loss 
   ;
 
 Equations
@@ -27,16 +31,45 @@ Equations
 
 PHLConstraint10..
   Miller_Transportation_Loss =e=
-  sum((HarvestingHorizonAggregation,MillerSet), MillerPurchase(HarvestingHorizonAggregation,MillerGodownSet)*card(HarvestingHorizonAggregationStep)) +
-    sum((NonHarvestingHorizonAggregation,MillerGodownSet), MillerPurchase(NonHarvestingHorizonAggregation,MillerSet)*card(NonHarvestingHorizonAggregationStep))
+  sum((HarvestingHorizonAggregation,MillerSet), MillerPurchase(HarvestingHorizonAggregation,MillerSet)*card(HarvestingHorizonAggregationStep)) +
+    sum((NonHarvestingHorizonAggregation,MillerSet), MillerPurchase(NonHarvestingHorizonAggregation,MillerSet)*card(NonHarvestingHorizonAggregationStep))
   -
-  sum((HarvestingHorizonAggregation,FCIGodownSet), FCIInput(HarvestingHorizonAggregation,FCIGodownSet)*card(HarvestingHorizonAggregationStep)) +
-  sum((NonHarvestingHorizonAggregation,FCIGodownSet), FCIInput(NonHarvestingHorizonAggregation,FCIGodownSet)*card(NonHarvestingHorizonAggregationStep))
+  sum((HarvestingHorizonAggregation,MillerSet), MillerInput(HarvestingHorizonAggregation,MillerSet)*card(HarvestingHorizonAggregationStep)) +
+  sum((NonHarvestingHorizonAggregation,MillerSet),MillerInput(NonHarvestingHorizonAggregation,MillerSet)*card(NonHarvestingHorizonAggregationStep))
   ;
 
-* retail loss
+* Retail loss
 
-* pdu loss
+PHLConstraint10..
+  Retail_Transportation_Loss =e=
+  sum((HarvestingHorizonAggregation,RetailSet), RetailPurchase(HarvestingHorizonAggregation,RetailSet)*card(HarvestingHorizonAggregationStep)) +
+    sum((NonHarvestingHorizonAggregation,RetailSet), RetailPurchase(NonHarvestingHorizonAggregation,RetailSet)*card(NonHarvestingHorizonAggregationStep))
+  -
+  sum((HarvestingHorizonAggregation,RetailrSet), RetailInput(HarvestingHorizonAggregation,RetailSet)*card(HarvestingHorizonAggregationStep)) +
+  sum((NonHarvestingHorizonAggregation,RetailSet),RetailInput(NonHarvestingHorizonAggregation,RetailSet)*card(NonHarvestingHorizonAggregationStep))
+  ;
+
+* TPDS loss
+PHLConstraint10..
+  TPDS_Transportation_Loss =e=
+  sum((HarvestingHorizonAggregation,TPDSSet), TPDSPurchase(HarvestingHorizonAggregation,TPDSSet)*card(HarvestingHorizonAggregationStep)) +
+    sum((NonHarvestingHorizonAggregation,TPDSSet), TPDSPurchase(NonHarvestingHorizonAggregation,TPDSSet)*card(NonHarvestingHorizonAggregationStep))
+  -
+  sum((HarvestingHorizonAggregation,TPDSSet), MillerInput(HarvestingHorizonAggregation,TPDSSet)*card(HarvestingHorizonAggregationStep)) +
+  sum((NonHarvestingHorizonAggregation,TPDSSet),MillerInput(NonHarvestingHorizonAggregation,TPDSSet)*card(NonHarvestingHorizonAggregationStep))
+  ;
+
+* RGY loss
+PHLConstraint10..
+  RGY_Transportation_Loss =e=
+  sum((HarvestingHorizonAggregation,RGYSet), RGYPurchase(HarvestingHorizonAggregation,RGYSet)*card(HarvestingHorizonAggregationStep)) +
+    sum((NonHarvestingHorizonAggregation,RGYSet), RGYPurchase(NonHarvestingHorizonAggregation,RGYSet)*card(NonHarvestingHorizonAggregationStep))
+  -
+  sum((HarvestingHorizonAggregation,RGYSet), RGYInput(HarvestingHorizonAggregation,RGYSet)*card(HarvestingHorizonAggregationStep)) +
+  sum((NonHarvestingHorizonAggregation,RGYSet),RGYInput(NonHarvestingHorizonAggregation,RGYSet)*card(NonHarvestingHorizonAggregationStep))
+  ;
+
+* FCI loss  
 PHLConstraint10..
   FCI_Transportation_Loss =e=
   sum((HarvestingHorizonAggregation,FCIGodownSet), FCIPurchase(HarvestingHorizonAggregation,FCIGodownSet)*card(HarvestingHorizonAggregationStep)) +
