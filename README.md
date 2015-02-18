@@ -10,3 +10,8 @@
 
 + [non linear optimzation without constraints](https://github.com/dtripathy10/Mathematical-Optimization/blob/master/code/sample/non_linear.gms)
 
+
+
+##### Windows command
+
++ `set HTTP_PROXY=http://debabratatripathy:debu!linux@netmon.iitb.ac.in:80`
