@@ -32,8 +32,7 @@ in our model. Hence, the total expense due to IHT is calculated as a function of
 $offtext
 
 Parameter 
-  FuelConsumptionFactor "The average annual fuel consumption factor conversting the machine rated hp into fuel consumption in gal per hour" 
-                        /0.0438/
+  FuelConsumptionFactor "The average annual fuel consumption factor conversting the machine rated hp into fuel consumption in gal per hour" /0.0438/
   AverageBalingDensity "The average of packing density for all options which is used as an approximation for central storage to refinery transportation constraint"
   AverageBalingThroughput "The average value of the packing machine throughput used to calculate the operating cost of tractors"
   LoseBiomassDensity "The average density of lose biomass"
