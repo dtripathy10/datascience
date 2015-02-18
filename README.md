@@ -18,5 +18,8 @@
 
 + `echo %HTTP_PROXY%`
 
-+ `PATH=%PATH%;C:\Program Files (x86)\Git\bin` 
++ `PATH=%PATH%;C:\Program Files (x86)\Git\bin`
+
++ `set` : To see the list of global variable
+
 
