@@ -36,7 +36,7 @@ Sets
   HarvestingHorizonAggregationStep /1*5/
   NonHarvestingHorizonAggregationStep /1*15/
   HarvestingHorizonAggregation(HarvestingHorizon) /1,6,11/
-  NonHarvestingHorizonAggregation(NonHarvestingHorizon) /16, 31, 46, 61, 76, 91, 106, 121, 136, 151, 166, 181, 196, 211, 226, 241,256,271, 
+  NonHarvestingHorizonAggregation(NonHarvestingHorizon) /16, 31, 46, 61, 76, 91, 106, 121, 136, 151, 166, 181, 196, 211, 226, 241,256,271,
                                     286, 301, 316, 331, 346/
   ;
 
@@ -89,7 +89,7 @@ $include TransportationConstraints_grains.gms
 $include TransportationCostConstraints_grains.gms
 
 Model GrainProvisionModelOptimal /
-  FarmGateGrainDistributionModelConstrained_Current,TransportationMassModel,TransportationModel, 
+  FarmGateGrainDistributionModelConstrained_Current,TransportationMassModel,TransportationModel,
   TransportationCostModel,LocalCSPModel,RegionalCSPModel,MarketDemandModel2,
   LocalMarketModel,RegionalMarketModel,PrivateTraderModel,RGYModel,MillerModel,FCIModel,
   TPDSModel,RetailerSModel,GunnyBagModel,ProvisionCostModel,PHLConstraints
@@ -100,7 +100,7 @@ Solve GrainProvisionModelOptimal using mip maximizing GrainProvisionObjective;
 
 $include PostOptimizationCalculations.gms
 
-Display 
+Display
   FarmLocalMarketTruckTripRequirement.l, HarvestFarmGateLocalMarketGrain.l, HarvestFarmGateRegionalMarketGrain.l,
   LocalMarketTotalGrain.l, HarvestFarmGateLocalMarketGrain.l, LocalCSPLocalMarketGrain.l, RegionalCSPLocalMarketGrain.l,
   FCIInput.l,FCICAPStorageInput.l, FCICoveredStorageInput.l,FCICoveredStoredGrain.l,FCICAPStoredGrain.l,

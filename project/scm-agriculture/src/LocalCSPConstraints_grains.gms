@@ -1,6 +1,6 @@
 
 Equations
-  LocalCSPBalance1
+  LocalCSPBalance1 "calculating the total input to the central storage facility"
   LocalCSPBalance2
   LocalCSPBalance3
   LocalCSPBalance4
@@ -12,54 +12,44 @@ Equations
   LocalCSPBalance10
   LocalCSPBalance11
   LocalCSPBalance12
-  LocalCSPBalance13
+  LocalCSPBalance13 "Constraint to enforce complete removal of the stored grain from the central storage facilty at the end of the simulation horizon"
   LocalCSPBalance14
   ;
 
-*
-* First calculating the total input to the central storage facility
-*
 LocalCSPBalance1(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet)
-                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
-                 LocalCSPInput(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet)
-                 =e=
-                 ( HarvestFarmGateLocalCSPGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet)
-                 )
-                 *(1-TransportationDryMatterLossRate);
+  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
+    LocalCSPInput(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet) =e=
+      HarvestFarmGateLocalCSPGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet) * 
+      (1-TransportationDryMatterLossRate)
+    ;
 
-*
-* Doing the accounting for the centralized storage (input - output balance)
-*
 LocalCSPBalance2(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation2)
-                                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and ord(HarvestingHorizonAggregation)=ord(HarvestingHorizonAggregation2)
-                                 )..
-                         LocalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,
-                                         LocalCSPCenterSet,HarvestingHorizonAggregation2)
-                         =e=
-                         LocalCSPInput(HarvestingHorizonAggregation2,DistrictSelected,FarmNumber,LocalCSPCenterSet)
-                         *card(HarvestingHorizonAggregationStep);
+  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing) and 
+    ord(HarvestingHorizonAggregation)=ord(HarvestingHorizonAggregation2)
+  )..
+    LocalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation2) =e=
+      LocalCSPInput(HarvestingHorizonAggregation2,DistrictSelected,FarmNumber,LocalCSPCenterSet) *
+       card(HarvestingHorizonAggregationStep)
+    ;
 
 
 LocalCSPBalance3(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation2)
-                                 $((not(CentralStorageProcessing) or CentralStorageOutputProcessing)
-                                                 and ord(HarvestingHorizonAggregation)>ord(HarvestingHorizonAggregation2)
-                                 )..
-                         LocalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation2)
-                         =e=
-                         sum(HarvestingHorizonAggregation3
-                                 $(ord(HarvestingHorizonAggregation3)=ord(HarvestingHorizonAggregation)-1),
-                                 LocalCSPStoredGrain(HarvestingHorizonAggregation3,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation2)
-                                 -
-                                 sum(LocalMarketSet,
-                                         LocalCSPLocalMarketGrain(HarvestingHorizonAggregation3,DistrictSelected,FarmNumber,LocalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation2)
-                                 )*card(HarvestingHorizonAggregationStep)
-                                 -
-                                 sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
-                                         LocalCSPRegionalMarketGrain(HarvestingHorizonAggregation3,DistrictSelected,FarmNumber,LocalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation2)
-                                 )*card(HarvestingHorizonAggregationStep)
-                         )
-                         *(1-(LocalCSPDryMatterLossRate/365)*card(HarvestingHorizonAggregationStep));
+  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing) and 
+    ord(HarvestingHorizonAggregation)>ord(HarvestingHorizonAggregation2)
+  )..
+    LocalCSPStoredGrain(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation2) =e=
+      sum(HarvestingHorizonAggregation3
+      $(ord(HarvestingHorizonAggregation3) = ord(HarvestingHorizonAggregation)-1),
+        LocalCSPStoredGrain(HarvestingHorizonAggregation3,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation2) -
+        sum(LocalMarketSet,
+          LocalCSPLocalMarketGrain(HarvestingHorizonAggregation3,DistrictSelected,FarmNumber,LocalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation2)
+        ) * card(HarvestingHorizonAggregationStep) -
+        sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
+          LocalCSPRegionalMarketGrain(HarvestingHorizonAggregation3,DistrictSelected,FarmNumber,LocalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation2)
+        ) * card(HarvestingHorizonAggregationStep)
+      ) * 
+      (1-(LocalCSPDryMatterLossRate/365) * card(HarvestingHorizonAggregationStep))
+    ;
 
 *
 * Calculating the volume of the biomass contributed by each farm to the central storage facility
@@ -76,10 +66,7 @@ LocalCSPBalance4(HarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalC
                                  )
                                  /Par_FarmPackingDensity(DistrictSelected,FarmNumber);
 
-*
-* Calculating the total biomass stored at the central storage facility by summing the biomass amount contributed by each farm to the
-* storage facility
-*
+
 LocalCSPBalance5(HarvestingHorizonAggregation,LocalCSPCenterSet)
                          $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
                          LocalCSPStoredGrainTotal(HarvestingHorizonAggregation,LocalCSPCenterSet)
@@ -195,52 +182,41 @@ LocalCSPBalance12(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,Lo
                  =l=
                  LocalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation);
 
+LocalCSPBalance13(LocalCSPCenterSet,DistrictSelected,FarmNumber)
+  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
+    sum((NonHarvestingHorizonAggregation,HarvestingHorizonAggregation)
+    $(ord(NonHarvestingHorizonAggregation)=card(NonHarvestingHorizonAggregation)),
+      LocalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation) -
+      sum(LocalMarketSet,
+        LocalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
+      ) * card(NonHarvestingHorizonAggregationStep) -
+      sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
+        LocalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
+      ) * card(NonHarvestingHorizonAggregationStep)
+    ) =l= 0
+  ;
 
-*
-* Constraint to enforce complete removal of the stored grain from the central storage facilty at the end of the simulation horizon
-*
-LocalCSPBalance13(LocalCSPCenterSet,DistrictSelected,FarmNumber)$((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
-                 sum((NonHarvestingHorizonAggregation,HarvestingHorizonAggregation)
-                         $(ord(NonHarvestingHorizonAggregation)=card(NonHarvestingHorizonAggregation)),
-                         LocalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation)
-                         -
-                         sum(LocalMarketSet,
-                                 LocalCSPLocalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,LocalMarketSet,HarvestingHorizonAggregation)
-                         )*card(NonHarvestingHorizonAggregationStep)
-                         -
-                         sum(RegionalMarketSet$(connectselected(DistrictSelected,RegionalMarketSet)),
-                                 LocalCSPRegionalMarketGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,RegionalMarketSet,HarvestingHorizonAggregation)
-                         )*card(NonHarvestingHorizonAggregationStep)
-                 )
-                 =l= 0;
-
-
-*
-* Calculating the total biomass stored at the central storage facility by summing the biomass amount contributed by each farm to the
-* storage facility
-*
 LocalCSPBalance14(NonHarvestingHorizonAggregation,LocalCSPCenterSet)
-                         $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
-                         LocalCSPStoredGrainTotal(NonHarvestingHorizonAggregation,LocalCSPCenterSet)
-                         =e=
-                         sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation),
-                                 LocalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation)
-                         );
-
+  $((not(CentralStorageProcessing) or CentralStorageOutputProcessing))..
+    LocalCSPStoredGrainTotal(NonHarvestingHorizonAggregation,LocalCSPCenterSet) =e=
+      sum((DistrictSelected,FarmNumber,HarvestingHorizonAggregation),
+        LocalCSPStoredGrain(NonHarvestingHorizonAggregation,DistrictSelected,FarmNumber,LocalCSPCenterSet,HarvestingHorizonAggregation)
+      )
+    ;
 
 Model LocalCSPModel /
-                 LocalCSPBalance1
-                 LocalCSPBalance2
-                 LocalCSPBalance3
-                 LocalCSPBalance4
-                 LocalCSPBalance5
-                 LocalCSPBalance6
-                 LocalCSPBalance7
-                 LocalCSPBalance8
-                 LocalCSPBalance9
-                 LocalCSPBalance10
-                 LocalCSPBalance11
-                 LocalCSPBalance12
-                 LocalCSPBalance13
-                 LocalCSPBalance14
-                 /;
+  LocalCSPBalance1
+  LocalCSPBalance2
+  LocalCSPBalance3
+  LocalCSPBalance4
+  LocalCSPBalance5
+  LocalCSPBalance6
+  LocalCSPBalance7
+  LocalCSPBalance8
+  LocalCSPBalance9
+  LocalCSPBalance10
+  LocalCSPBalance11
+  LocalCSPBalance12
+  LocalCSPBalance13
+  LocalCSPBalance14
+  /;
